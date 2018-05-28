@@ -11,13 +11,13 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/htmleaf-demo.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/fonts/iconfont.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js"></script>
 </head>
 <body>
 
 	<%@include file="navbar.jsp" %>
 
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/nav.js"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 	<constant name="struts.action.extension" value="action,do,,"/>
 	<constant name="struts.ui.theme" value="simple"/>
 
-	<package name="ylzh-user" extends="json-default">
+	<package name="yl-user" extends="json-default">
 		<global-allowed-methods>regex:.*</global-allowed-methods>
 		<action name="userAction_*" method="{1}" class="userAction">
 			<result name="index" type="redirect">/index.jsp</result>

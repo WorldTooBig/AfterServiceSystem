@@ -35,7 +35,7 @@ public class LoginFilter implements Filter {
 			chain.doFilter(request, response);
 		}else {
 			if(user == null) {
-				servletResponse.sendRedirect("/AfterServiceStstem/pages/login.jsp");
+				servletResponse.sendRedirect("/AfterServiceSystem/pages/login.jsp");
 				return;
 			}
 		}

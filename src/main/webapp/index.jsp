@@ -8,16 +8,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Insert title here</title>
 	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/htmleaf-demo.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/fonts/iconfont.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js"></script>
 </head>
 <body>
-
-	<%@include file="pages/navbar.jsp" %>
-
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<a href="${pageContext.request.contextPath}/pages/perSystem.jsp">用户权限管理</a>
+	<p><br /></p>
+	<a href="${pageContext.request.contextPath}/pages/userManage.jsp">公司部门管理</a>
+	
+	
 </body>
 </html>
