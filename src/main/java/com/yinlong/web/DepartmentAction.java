@@ -28,6 +28,7 @@ public class DepartmentAction {
 	 * @return
 	 */
 	public String addDepartment() {
+		department.setCompany(company);
 		if (departmentService.addDepartment(department)) {
 			 //////////////////////////////
 		}

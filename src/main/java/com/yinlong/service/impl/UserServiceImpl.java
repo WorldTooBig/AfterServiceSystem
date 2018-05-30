@@ -81,6 +81,21 @@ public class UserServiceImpl implements IUserService {
 		String hql = "select ur.urId, r.roleName from UserRole ur left join ur.user u left join ur.role r where u.userId = " + user.getUserId() + " order by r.roleId";
 		return userDao.queryHql(hql);
 	}
+
+	/**
+	 * 根据科室ID查找用户
+	 */
+	public User findUserById(User user) {
+		return userDao.queryUserById(user);
+	}
+
+	/**
+	 * 根据科室id查询该科室的员工
+	 */
+	public List<User> findUserBySectId(Section section) {
+		String hql = "from User where section.sectId = " + section.getSectId();
+		return userDao.queryUserHql(hql);
+	}
 	
 	
 

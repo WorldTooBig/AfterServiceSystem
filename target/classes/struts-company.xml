@@ -9,16 +9,15 @@
 	<constant name="struts.action.extension" value="action,do,,"/>
 	<constant name="struts.ui.theme" value="simple"/>
 
-	<package name="yl-user" extends="json-default">
+	<package name="yl-company" extends="json-default">
 		<global-allowed-methods>regex:.*</global-allowed-methods>
 		<action name="companyAction_*" method="{1}" class="companyAction">
-			<result name="index" type="redirect">/index.jsp</result>
-			<result name="login" type="redirect">/pages/login.jsp</result>
-			<result name="add" type="redirect">/pages/perSystem.jsp</result>
-            <result name="findUserList" type="json">
-                <param name="includeProperties">userList.*</param>
+			<result name="addCompany" type="redirect">companyAction_findCompanyList</result>
+			<result name="findCompanyList" type="redirect">/pages/userManage.jsp</result>
+            <result name="findCompanyById" type="json">
+                <param name="includeProperties">company</param>
             </result>
-            <result name="findCompanyList" type="json">
+            <result name="findCompanyListJson" type="json">
                 <param name="includeProperties">list.*</param>
             </result>
 		</action>

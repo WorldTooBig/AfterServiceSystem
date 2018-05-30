@@ -14,7 +14,10 @@
 	
 	<a href="${pageContext.request.contextPath}/pages/perSystem.jsp">用户权限管理</a>
 	<p><br /></p>
-	<a href="${pageContext.request.contextPath}/pages/userManage.jsp">公司部门管理</a>
+	<%-- <a href="${pageContext.request.contextPath}/companyAction_findCompanyList">公司部门管理</a> --%>
+	<form action="companyAction_findCompanyList" method="post">
+		<button>公司部门管理</button>
+	</form>
 	
 	
 </body>

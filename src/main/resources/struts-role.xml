@@ -9,15 +9,15 @@
 	<constant name="struts.action.extension" value="action,do,,"/>
 	<constant name="struts.ui.theme" value="simple"/>
 
-	<package name="ylzh-role" extends="json-default">
+	<package name="yl-role" extends="json-default">
 		<global-allowed-methods>regex:.*</global-allowed-methods>
 		<action name="roleAction_*" method="{1}" class="roleAction">
 			<result name="addRole" type="redirect">/pages/perSystem.jsp</result>
 			<result name="findRoleList">/pages/perSystem.jsp</result>
-            <result name="findRoleAndPrivilege" type="json">
+            <result name="findRoleAndPermission" type="json">
                 <param name="includeProperties">list.*</param>
             </result>
-            <result name="findRoleAndPrivilegeByRoleName" type="json">
+            <result name="findRoleAndPermissionByRoleName" type="json">
                 <param name="includeProperties">list.*</param>
             </result>
 		</action>

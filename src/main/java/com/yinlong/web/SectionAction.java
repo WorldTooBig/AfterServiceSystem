@@ -29,6 +29,7 @@ public class SectionAction {
 	 * @return
 	 */
 	public String addSection() {
+		section.setDepartment(department);
 		if (sectionService.addSection(section)) {
 			
 		}

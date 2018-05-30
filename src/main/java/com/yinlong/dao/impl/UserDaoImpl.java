@@ -39,5 +39,14 @@ public class UserDaoImpl extends BaseDao implements IUserDao {
 		return null;
 	}
 
+	public User queryUserById(User user) {
+		try {
+			return getSession().get(User.class, user.getUserId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 }

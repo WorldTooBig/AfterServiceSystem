@@ -51,7 +51,7 @@ public class PermissionServiceImpl implements IPermissionService {
 	public List<Permission> findPermissionNoBindingListByRole(Role role) {
 		int rno = role.getRoleId();
 		String hql = "select p.permId, p.permName from RolePermission rp right join rp.permission p"
-				+ " where (rp.role.roleId != " + rno + " or rp.role.roleId is null) and p.pno not in(select rp.permission.permId from rp where rp.role.roleId = " + rno + ")"
+				+ " where (rp.role.roleId != " + rno + " or rp.role.roleId is null) and p.permId not in(select rp.permission.permId from rp where rp.role.roleId = " + rno + ")"
 				+ " group by p.permId, p.permName order by p.permId";
 		return permissionDao.queryPermissionHql(hql);
 	}

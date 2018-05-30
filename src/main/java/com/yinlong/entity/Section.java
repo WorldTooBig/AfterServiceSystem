@@ -27,7 +27,7 @@ public class Section implements Serializable {
 	private String sectName;
 	private String sectRemark;
 	
-	private Department dept;
+	private Department department;
 
 	public Section() {
 		super();
@@ -67,15 +67,15 @@ public class Section implements Serializable {
 		this.sectRemark = sectRemark;
 	}
 
+
 	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
 	@JoinColumn(name="deptId")
-	public Department getDept() {
-		return dept;
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setDept(Department dept) {
-		this.dept = dept;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
-	
 	
 }

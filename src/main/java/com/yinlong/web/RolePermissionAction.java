@@ -43,7 +43,7 @@ public class RolePermissionAction {
 		permission = new Permission();
 		for (int i = 0; i < pno.length; i++) {
 			permission.setPermId(pno[i]);
-			rolePermission.setPerm(permission);
+			rolePermission.setPermission(permission);
 			if(rolePermissionService.addRolePermission(rolePermission)) {
 				
 			}

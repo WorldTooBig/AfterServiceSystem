@@ -4,7 +4,13 @@
 		"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<include file="struts-user.xml"/>
+	<include file="struts-role.xml"/>
+	<include file="struts-userRole.xml"/>
+	<include file="struts-permission.xml"/>
+	<include file="struts-rolePermission.xml"/>
 	<include file="struts-company.xml"/>
+	<include file="struts-department.xml"/>
+	<include file="struts-section.xml"/>
 </struts>
 
 

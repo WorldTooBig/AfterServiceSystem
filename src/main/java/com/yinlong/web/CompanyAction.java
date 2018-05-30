@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.yinlong.entity.Company;
 import com.yinlong.service.ICompanyService;
 
@@ -38,7 +39,13 @@ public class CompanyAction {
 	 */
 	public String findCompanyList() {
 		list = companyService.findCompanyList();
+		ActionContext.getContext().getSession().put("compList", list);
 		return "findCompanyList";
+	}
+	
+	public String findCompanyListJson() {
+		list = companyService.findCompanyList();
+		return "findCompanyListJson";
 	}
 	
 	/**

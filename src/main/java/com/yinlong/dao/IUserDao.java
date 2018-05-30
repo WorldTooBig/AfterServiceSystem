@@ -11,4 +11,6 @@ public interface IUserDao {
 	public boolean addUser(User user);
 	
 	public List queryHql(String hql);
+	
+	public User queryUserById(User user);
 }

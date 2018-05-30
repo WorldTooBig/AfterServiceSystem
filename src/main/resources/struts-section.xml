@@ -9,14 +9,13 @@
 	<constant name="struts.action.extension" value="action,do,,"/>
 	<constant name="struts.ui.theme" value="simple"/>
 
-	<package name="yl-userRoleAction" extends="json-default">
+	<package name="yl-section" extends="json-default">
 		<global-allowed-methods>regex:.*</global-allowed-methods>
-		<action name="userRoleAction_*" method="{1}" class="userRoleAction">
-			<result name="deleteUserRole" type="redirect">/pages/perSystem.jsp</result>
-            <result name="findRoleNoBindingListByUser" type="json">
-                <param name="includeProperties">roleList.*</param>
+		<action name="sectionAction_*" method="{1}" class="sectionAction">
+			<result name="addSection" type="redirect">companyAction_findCompanyList</result>
+            <result name="findSectionList" type="json">
+                <param name="includeProperties">list.*</param>
             </result>
-			<result name="addUserRole" type="redirect">/pages/perSystem.jsp</result>
 		</action>
 	</package>
 </struts>

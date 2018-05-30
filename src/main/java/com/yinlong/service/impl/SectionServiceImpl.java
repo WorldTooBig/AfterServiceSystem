@@ -39,7 +39,7 @@ public class SectionServiceImpl implements ISectionService {
 	 * @return
 	 */
 	public List<Section> findSectionList(Department department) {
-		String hql = "from Section s where s.dept.deptId = " + department.getDeptId();
+		String hql = "from Section s where s.department.deptId = " + department.getDeptId();
 		return sectionDao.querySectionListHql(hql);
 	}
 

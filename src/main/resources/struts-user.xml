@@ -21,6 +21,9 @@
             <result name="findUserAndROleByUserList" type="json">
                 <param name="includeProperties">list.*</param>
             </result>
+            <result name="findUserBySectId" type="json">
+                <param name="includeProperties">userList.*</param>
+            </result>
 		</action>
 	</package>
 </struts>

@@ -17,14 +17,14 @@ public class User implements Serializable {
 	private int userId;			// ID
 	private String userName;	// 用户名（登录名）
 	private String userPwd;		// 密码
-	private String userRealName;// 真是姓名
+	private String userRealName;// 真实姓名
 	private String userJobNum;	// 工号
 	private String userJobName; // 工种（职务）
 	private String userTell;	// 电话
 	private String userEmail;	// 邮箱
 	private String userRemark;	// 备注
 	
-	private Section sect;		// 科室
+	private Section section;	// 科室
 	
 	public User() {
 		super();
@@ -101,16 +101,17 @@ public class User implements Serializable {
 	public void setUserRemark(String userRemark) {
 		this.userRemark = userRemark;
 	}
+
 	
 	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
 	@JoinColumn(name="sectId")
-	public Section getSect() {
-		return sect;
+	public Section getSection() {
+		return section;
 	}
-	public void setSect(Section sect) {
-		this.sect = sect;
+
+	public void setSection(Section section) {
+		this.section = section;
 	}
-	
 	
 	
 }

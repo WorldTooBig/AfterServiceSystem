@@ -27,7 +27,7 @@ public class RolePermission implements Serializable {
 	
 	private Role role;
 	
-	private Permission perm;
+	private Permission permission;
 	
 	public RolePermission() {
 		super();
@@ -59,12 +59,15 @@ public class RolePermission implements Serializable {
 
 	@ManyToOne(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER)
 	@JoinColumn(name="permId")
-	public Permission getPerm() {
-		return perm;
+
+	public Permission getPermission() {
+		return permission;
 	}
-	public void setPerm(Permission perm) {
-		this.perm = perm;
+
+	public void setPermission(Permission permission) {
+		this.permission = permission;
 	}
+	
 	
 
 }

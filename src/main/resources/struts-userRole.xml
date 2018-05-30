@@ -9,7 +9,7 @@
 	<constant name="struts.action.extension" value="action,do,,"/>
 	<constant name="struts.ui.theme" value="simple"/>
 
-	<package name="ylzh-userRoleAction" extends="json-default">
+	<package name="yl-userRoleAction" extends="json-default">
 		<global-allowed-methods>regex:.*</global-allowed-methods>
 		<action name="userRoleAction_*" method="{1}" class="userRoleAction">
 			<result name="deleteUserRole" type="redirect">/pages/perSystem.jsp</result>

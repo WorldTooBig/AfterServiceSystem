@@ -20,6 +20,7 @@ public class UserAction {
 	private IUserService userService;
 	
 	private User user;
+	private Section section;
 	
 	private List list;
 	private List<User> userList;
@@ -86,6 +87,15 @@ public class UserAction {
 		}
 		return "findUserAndROleByUserList";
 	}
+	
+	/**
+	 * 科举科室ID查询该科室的所有员工
+	 * @return
+	 */
+	public String findUserBySectId() {
+		userList = userService.findUserBySectId(section);
+		return "findUserBySectId";
+	}
 
 	
 	public User getUser() {
@@ -130,6 +140,14 @@ public class UserAction {
 
 	public void setErrorInfo(String errorInfo) {
 		this.errorInfo = errorInfo;
+	}
+
+	public Section getSection() {
+		return section;
+	}
+
+	public void setSection(Section section) {
+		this.section = section;
 	}
 	
 	
