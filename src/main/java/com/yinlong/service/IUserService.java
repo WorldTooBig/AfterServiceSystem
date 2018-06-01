@@ -11,8 +11,10 @@ public interface IUserService {
 	public List<Role> userLogin(User user);
 	
 	public boolean addUser(User user);
-	
+
 	public List<User> findUserList();
+	
+	public List<User> findUserList(int page, int limit);
 	
 	public List findUserAndRoleList();
 	
@@ -21,4 +23,7 @@ public interface IUserService {
 	public User findUserById(User user);
 	
 	public List<User> findUserBySectId(Section section);
+	
+	public int findUserListCount();
+	
 }

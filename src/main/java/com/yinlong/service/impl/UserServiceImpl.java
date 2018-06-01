@@ -58,12 +58,21 @@ public class UserServiceImpl implements IUserService {
 		return userDao.addUser(user);
 	}
 
+	public List<User> findUserList() {
+		String hql = "from User";
+		return userDao.queryHql(hql);
+	}
+
 	/**
 	 * 查询所有用户信息
+	 * @param page 第几页
+	 * @param limit 多少条
 	 */
-	public List<User> findUserList() {
-		String hql = "FROM User";
-		return userDao.queryUserHql(hql);
+	public List<User> findUserList(int page, int limit) {
+		int min = (page-1) * 10;
+		int max = min + limit;
+		String sql = "select u.* from (select y.*,rownum rn from yl_user y where rownum <= " + max + ") u where rn > " + min + "";
+		return userDao.queryUserSql(sql);
 	}
 
 	/**
@@ -83,7 +92,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	/**
-	 * 根据科室ID查找用户
+	 * 根据用户ID查找用户
 	 */
 	public User findUserById(User user) {
 		return userDao.queryUserById(user);
@@ -95,6 +104,11 @@ public class UserServiceImpl implements IUserService {
 	public List<User> findUserBySectId(Section section) {
 		String hql = "from User where section.sectId = " + section.getSectId();
 		return userDao.queryUserHql(hql);
+	}
+
+	public int findUserListCount() {
+		String hql = "select count(*) from User";
+		return userDao.queryUserCount(hql);
 	}
 	
 	

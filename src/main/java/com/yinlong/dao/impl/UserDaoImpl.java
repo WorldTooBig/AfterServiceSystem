@@ -48,5 +48,24 @@ public class UserDaoImpl extends BaseDao implements IUserDao {
 		return null;
 	}
 
+	public List<User> queryUserSql(String sql) {
+		try {
+			return getSession().createSQLQuery(sql).addEntity("${u.*}", User.class).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public int queryUserCount(String hql) {
+		try {
+			Long count = (Long) getSession().createQuery(hql).uniqueResult();
+			return count.intValue();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 
 }

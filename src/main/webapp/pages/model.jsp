@@ -4,20 +4,29 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Insert title here</title>
 	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/htmleaf-demo.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/fonts/iconfont.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 </head>
-<body>
+<body class="layui-layout-body">
+	<div class="layui-layout layui-layout-admin">
 
-	<%@include file="navbar.jsp" %>
+		<%@include file="navbar.jsp" %>
 
-	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/nav.js"></script>
+		
+		<div class="layui-body">
+			<!-- 内容主体区域 -->
+			<div style="padding: 15px;">内容主体区域</div>
+			
+		</div>
+		
+		<div class="layui-footer">
+	    	<!-- 底部固定区域 -->
+	    	© layui.com - 底部固定区域
+		</div>
+	</div>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.all.js"></script>
 </body>
 </html>

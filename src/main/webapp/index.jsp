@@ -4,21 +4,28 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Insert title here</title>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui.css">
 </head>
-<body>
-	
-	<a href="${pageContext.request.contextPath}/pages/perSystem.jsp">用户权限管理</a>
-	<p><br /></p>
-	<%-- <a href="${pageContext.request.contextPath}/companyAction_findCompanyList">公司部门管理</a> --%>
-	<form action="companyAction_findCompanyList" method="post">
-		<button>公司部门管理</button>
-	</form>
-	
-	
+<body class="layui-layout-body">
+	<div class="layui-layout layui-layout-admin">
+
+		<%@include file="pages/navbar.jsp" %>
+
+		
+		<div class="layui-body">
+			<!-- 内容主体区域 -->
+			<div style="padding: 15px;">这是首页</div>
+				
+			</div>
+		
+		<div class="layui-footer">
+	    	<!-- 底部固定区域 -->
+	    	© layui.com - 底部固定区域
+		</div>
+	</div>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.all.js"></script>
 </body>
 </html>

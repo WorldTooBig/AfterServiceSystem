@@ -1,55 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<div class="nav">
-	        <div class="nav-top">
-	            <div id="mini" style="border-bottom:1px solid rgba(255,255,255,.1)"><img src="images/mini.png" ></div>
-	        </div>
-	        <ul>
-	            <li class="nav-item">
-	                <a href="javascript:;"><i class="my-icon nav-icon icon_1"></i><span>网站配置</span><i class="my-icon nav-more"></i></a>
-	                <ul>
-	                    <li><a href="javascript:;"><span>网站设置</span></a></li>
-	                    <li><a href="javascript:;"><span>友情链接</span></a></li>
-	                    <li><a href="javascript:;"><span>分类管理</span></a></li>
-	                    <li><a href="javascript:;"><span>系统日志</span></a></li>
-	                </ul>
-	            </li>
-	            <li class="nav-item">
-	                <a href="javascript:;"><i class="my-icon nav-icon icon_2"></i><span>文章管理</span><i class="my-icon nav-more"></i></a>
-	                <ul>
-	                    <li><a href="javascript:;"><span>站内新闻</span></a></li>
-	                    <li><a href="javascript:;"><span>站内公告</span></a></li>
-	                    <li><a href="javascript:;"><span>登录日志</span></a></li>
-	                </ul>
-	            </li>
-	            <li class="nav-item">
-	                <a href="javascript:;"><i class="my-icon nav-icon icon_3"></i><span>订单管理</span><i class="my-icon nav-more"></i></a>
-	                <ul>
-	                    <li><a href="javascript:;"><span>订单列表</span></a></li>
-	                    <li><a href="javascript:;"><span>打个酱油</span></a></li>
-	                    <li><a href="javascript:;"><span>也打酱油</span></a></li>
-	                </ul>
-	            </li>
-	        </ul>
-	    </div>
-	<div class="htmleaf-container">
-		<header class="htmleaf-header">
-			<h1>jquery固定折叠侧边栏菜单插件</h1>
-			<div class="htmleaf-links">
-				<a class="htmleaf-icon icon-htmleaf-home-outline" href="http://www.htmleaf.com/" title="jQuery之家" target="_blank"><span> jQuery之家</span></a>
-				<a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="http://www.htmleaf.com/jQuery/Menu-Navigation/201710244793.html" title="返回下载页" target="_blank"><span> 返回下载页</span></a>
-			</div>
-		</header>
-		<div class="related">
-		    <h3>如果你喜欢这个插件，那么你可能也喜欢:</h3>
-		    <a href="http://www.htmleaf.com/jQuery/Menu-Navigation/201710174783.html">
-			  <img src="related/1.jpg" width="300" alt="js侧边栏菜单插件canvi"/>
-			  <h3>js侧边栏菜单插件canvi</h3>
-			</a>
-			<a href="http://www.htmleaf.com/jQuery/Menu-Navigation/201707034607.html">
-			  <img src="related/2.jpg" width="300" alt="jquery侧边栏插件sideToggle"/>
-			  <h3>jquery侧边栏插件sideToggle</h3>
-			</a>
-		</div>
-	</div>
+<div class="layui-header">
+	<div class="layui-logo">layui 后台布局</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="">控制台</a></li>
+      <li class="layui-nav-item"><a href="">商品管理</a></li>
+      <li class="layui-nav-item"><a href="">用户</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">其它系统</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">邮件管理</a></dd>
+          <dd><a href="">消息管理</a></dd>
+          <dd><a href="">授权管理</a></dd>
+        </dl>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          贤心
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退了</a></li>
+    </ul>
+  </div>
+    
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+      <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">首页</a>
+        </li>
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">单据管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">填写异常反馈单</a></dd>
+            <dd><a href="javascript:;">查询驳回反馈单</a></dd>
+            <dd><a href="javascript:;">查询驳回反馈单2</a></dd>
+            <dd><a href="">超链接</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item layui-nav-itemed">
+          <a href="javascript:;">基本信息</a>
+          <dl class="layui-nav-child">
+            <dd><a href="${pageContext.request.contextPath}/pages/userInfo.jsp">用户信息</a></dd>
+            <dd><a href="companyAction_findCompanyList">公司部门信息</a></dd>
+            <dd><a href="${pageContext.request.contextPath}/pages/perSystem.jsp">权限管理</a></dd>
+            <dd><a href="companyAction_findCompanyList">！！！</a></dd>
+            <!-- <dd class="layui-this"><a href="companyAction_findCompanyList">！！！</a></dd> -->
+            <dd><a href="">超链接</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">云市场</a></li>
+        <li class="layui-nav-item"><a href="">发布商品</a></li>
+      </ul>
+    </div>
+  </div>

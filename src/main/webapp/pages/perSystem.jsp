@@ -1,17 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Insert title here</title>
+	
     <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui.css">
 </head>
-<body>
+<body class="layui-layout-body">
+	<div class="layui-layout layui-layout-admin">
 
-	<h2>${user_login.userName }</h2>
+		<%@include file="navbar.jsp" %>
+
+		
+		<div class="layui-body">
+			<!-- 内容主体区域 -->
+			<div style="padding: 15px;">内容主体区域</div>
+				
+				<h2>${user_login.userName }</h2>
 
 
 <div style="float: left; width: 100%">
@@ -80,9 +90,17 @@
 		<div style="position: fixed; top: 20%; left: 35%; width: 30%; height: 50%; background-color: RGBA(0,0,0,0.5);">
 		</div>
 	</div>
+				
+			</div>
+		
+		<div class="layui-footer">
+	    	<!-- 底部固定区域 -->
+	    	© layui.com - 底部固定区域
+		</div>
+	</div>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.all.js"></script>
 	
-</body>
-<script>
+	<script>
 	
 	window.onload = start();
 
@@ -307,4 +325,5 @@
 	}
 
 </script>
+</body>
 </html>
