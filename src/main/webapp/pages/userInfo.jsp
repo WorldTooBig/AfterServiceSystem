@@ -18,76 +18,87 @@
 		
 		<div class="layui-body">
 			<!-- 内容主体区域 -->
-			<div style="padding: 15px;">内容主体区域</div>
+			<div style="padding: 15px;">根据条件筛选</div>
 			
-			<div class="layui-inline">
-				<label class="layui-form-label">姓名</label>
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
-			</div>			
-			<div class="layui-inline">
-				<label class="layui-form-label">工号</label>
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
-			</div>			
-			<div class="layui-inline">
-				<label class="layui-form-label">职务</label>
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
-			</div>			
-			<div class="layui-inline">
-				<label class="layui-form-label">电话</label>
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
-			</div>			
-			<div class="layui-inline">
-				<label class="layui-form-label">邮箱</label>
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
-			</div>			
-			<div class="layui-inline">
-				<label class="layui-form-label">备注</label>
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
-			</div>		
+			<form class="layui-form" action="">
 			
-			<div class="layui-form">
-			   <div class="layui-form-item">
-    <label class="layui-form-label">行内选择框</label>
-    <div class="layui-input-inline">
-      <select name="quiz1">
-        <option value="">请选择省</option>
-        <option value="浙江" selected="">浙江省</option>
-        <option value="你的工号">江西省</option>
-        <option value="你最喜欢的老师">福建省</option>
-      </select>
-    </div>
-    <div class="layui-input-inline">
-      <select name="quiz2">
-        <option value="">请选择市</option>
-        <option value="杭州">杭州</option>
-        <option value="宁波" disabled="">宁波</option>
-        <option value="温州">温州</option>
-        <option value="温州">台州</option>
-        <option value="温州">绍兴</option>
-      </select>
-    </div>
-    <div class="layui-input-inline">
-      <select name="quiz3">
-        <option value="">请选择县/区</option>
-        <option value="西湖区">西湖区</option>
-        <option value="余杭区">余杭区</option>
-        <option value="拱墅区">临安市</option>
-      </select>
-    </div>
-  </div>
-  </div>
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">姓名</label>
+						<div class="layui-input-inline">
+							<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>			
+					<div class="layui-inline">
+						<label class="layui-form-label">工号</label>
+						<div class="layui-input-inline">
+							<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>			
+					<div class="layui-inline">
+						<label class="layui-form-label">职务</label>
+						<div class="layui-input-inline">
+							<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>			
+					<div class="layui-inline">
+						<label class="layui-form-label">电话</label>
+						<div class="layui-input-inline">
+							<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>			
+					<div class="layui-inline">
+						<label class="layui-form-label">邮箱</label>
+						<div class="layui-input-inline">
+							<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>			
+					<div class="layui-inline">
+						<label class="layui-form-label">备注</label>
+						<div class="layui-input-inline">
+							<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>		
+				
+					<div class="layui-inline">
+						<label class="layui-form-label">行内选择框</label>
+						<div class="layui-input-inline">
+							<select name="quiz1">
+								<option value="">请选择省</option>
+								<option value="浙江" selected="">浙江省</option>
+								<option value="你的工号">江西省</option>
+								<option value="你最喜欢的老师">福建省</option>
+							</select>
+						</div>
+						<div class="layui-input-inline">
+							<select name="quiz2">
+								<option value="">请选择市</option>
+								<option value="杭州">杭州</option>
+								<option value="宁波" disabled="">宁波</option>
+								<option value="温州">温州</option>
+								<option value="温州">台州</option>
+								<option value="温州">绍兴</option>
+							</select>
+						</div>
+						<div class="layui-input-inline">
+							<select name="quiz3">
+								<option value="">请选择县/区</option>
+								<option value="西湖区">西湖区</option>
+								<option value="余杭区">余杭区</option>
+								<option value="拱墅区">临安市</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit="" lay-filter="demo1">立即查询</button>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					</div>
+				</div>
+				
+			</form>
 			
 			<table class="layui-hide" id="userTab"></table>
 			
@@ -108,16 +119,16 @@
 				,url:'userAction_findUseListLayui' 
 				,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 			    ,cols: [[
-			    	   {type:'numbers', width:80, title: '序号'}
-				      ,{field:'userId', width:80, title: 'ID', sort: true}
-				      ,{field:'userName', width:80, title: '用户名'}
-				      ,{field:'userPwd', width:80, title: '密码'}
-				      ,{field:'userRealName', width:80, title: '真实姓名'}
-				      ,{field:'userJobNum', width:80, title: '工号'}
-				      ,{field:'userJobName', width:80, title: '职务'}
-				      ,{field:'userTell', width:80, title: '电话'}
-				      ,{field:'userEmail', width:80, title: '邮箱'}
-				      ,{field:'userRemark', width:80, title: '备注'}
+			    	   {type:'numbers', title: '序号'}
+				      ,{field:'userId', title: 'ID', sort: true}
+				      ,{field:'userName', title: '用户名'}
+				      ,{field:'userPwd', title: '密码'}
+				      ,{field:'userRealName', title: '真实姓名'}
+				      ,{field:'userJobNum', title: '工号'}
+				      ,{field:'userJobName', title: '职务'}
+				      ,{field:'userTell', title: '电话'}
+				      ,{field:'userEmail', title: '邮箱'}
+				      ,{field:'userRemark', title: '备注'}
 			    ]]
 			    ,page: true
 			  });

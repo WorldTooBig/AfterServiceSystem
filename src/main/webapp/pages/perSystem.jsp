@@ -19,50 +19,156 @@
 		
 		<div class="layui-body">
 			<!-- 内容主体区域 -->
-			<div style="padding: 15px;">内容主体区域</div>
+			<%-- <div style="padding: 15px;">内容主体区域</div>
 				
 				<h2>${user_login.userName }</h2>
+				 --%>
+				<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+					<legend>用户权限管理</legend>
+				</fieldset>
+ 
+				<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+					<ul class="layui-tab-title">
+						<li class="layui-this">基本用户信息</li>
+						<li>添加用户</li>
+						<li>添加角色</li>
+						<li>添加权限</li>
+						<li>一二三四</li>
+					</ul>
+					<div class="layui-tab-content" style="height: 100px;">
+						<div class="layui-tab-item layui-show">
+						
+						</div>
+						<!-- 添加用户 -->
+						<div class="layui-tab-item">
+							<form class="layui-form" action="userAction_addUser" method="post">
+								<div class="layui-form-item">
+									<label class="layui-form-label">登录账号</label>
+									<div class="layui-input-block">
+										<input type="text" name="user.userName" lay-verify="required" autocomplete="off" placeholder="请输入账号" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">登录密码</label>
+									<div class="layui-input-block">
+										<input type="text" name="user.userPwd" lay-verify="required" autocomplete="off" placeholder="请输入密码" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">真实姓名</label>
+									<div class="layui-input-block">
+										<input type="text" name="user.userRealName" lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">工号</label>
+									<div class="layui-input-block">
+										<input type="text" name="user.userJobNum" lay-verify="required" autocomplete="off" placeholder="请输入工号" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">职务</label>
+									<div class="layui-input-block">
+										<input type="text" name="user.userJobName" lay-verify="required" autocomplete="off" placeholder="请输入职务" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">电话</label>
+									<div class="layui-input-block">
+										<input type="text" name="user.userTell" lay-verify="phone" autocomplete="off" placeholder="请输入电话" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">邮箱</label>
+									<div class="layui-input-block">
+										<input type="text" name="user.userEmail" lay-verify="email" autocomplete="off" placeholder="请输入邮箱" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">所属公司</label>
+									<div class="layui-input-block">
+										<select id="compId" lay-filter="findDepartmentList" lay-verify="number">
+											<option value="">--请选择--</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">所属部门</label>
+									<div class="layui-input-block">
+										<select id="deptId" lay-filter="findSectionList" lay-verify="number">
+											<option value="">--请选择--</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">所属科室</label>
+									<div class="layui-input-block">
+										<select name="section.sectId" lay-verify="number">
+											<option value="">--请选择--</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-text">
+									<label class="layui-form-label">备注</label>
+									<div class="layui-input-block">
+										<textarea name="user.userRemark" placeholder="请输入备注" class="layui-textarea"></textarea>
+									</div>
+								</div>
+								<!-- 按钮 -->
+								<div class="layui-form-item">
+									<div  class="layui-input-block">
+										<div style="width: 216px; margin: 0;">
+											<button lay-submit class="layui-btn layui-btn-fluid">添加</button>
+										</div>
+									</div>
+								</div>
+							</form>
+					    </div>
+						<div class="layui-tab-item">
+							<form class="layui-form" action="roleAction_addRole" method="post">
+								<div class="layui-form-item">
+									<label class="layui-form-label">添加角色</label>
+									<div class="layui-input-block">
+										<input name="role.roleName" lay-verify="required" autocomplete="off" placeholder="请输入角色名称" class="layui-input" />
+									</div>
+								</div>	
+								<!-- 按钮 -->
+								<div class="layui-form-item">
+									<div  class="layui-input-block">
+										<div style="width: 216px; margin: 0;">
+											<button lay-submit class="layui-btn layui-btn-fluid">添加</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="layui-tab-item">
+							<form class="layui-form" action="permissionAction_addPermission" method="post">
+								<div class="layui-form-item">
+									<label class="layui-form-label">添加权限</label>
+									<div class="layui-input-block">
+										<input name="permission.permName" lay-verify="required" autocomplete="off" placeholder="请输入角色名称" class="layui-input" />
+									</div>
+								</div>	
+								<!-- 按钮 -->
+								<div class="layui-form-item">
+									<div  class="layui-input-block">
+										<div style="width: 216px; margin: 0;">
+											<button lay-submit class="layui-btn layui-btn-fluid">添加</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						
+						</div>
+						<div class="layui-tab-item">内容5
+						
+						</div>
+					</div>
+				</div> 
 
 
-<div style="float: left; width: 100%">
-	<div style="float:left; width:30%;">
-		<h2>添加用户</h2>
-		<s:form action="userAction_addUser" method="post" onsubmit="return validUser(this)">
-			登录账号：<s:textfield name="user.userName"/><br/>
-			登录密码：<s:password name="user.userPwd"/><br/>
-			真实姓名：<s:textfield name="user.userRealName"/><br/>
-			工号：<s:textfield name="user.userJobNum"/><br/>
-			职务：<s:textfield name="user.userJobName"/><br/>
-			电话：<s:textfield name="user.userTell"/><br/>
-			邮箱：<s:textfield name="user.userEmail"/><br/>
-			备注：<s:textfield name="user.userRemark"/><br/>
-			公司：<select id="compId" onchange="findDepartmentList(event)"><option value="0">--- 请选择 ---</option></select><br/>
-			部门：<select id="deptId" onchange="findSectionList(event)"><option value="0">--- 请选择 ---</option></select><br/>
-			科室：<select name="section.sectId"><option value="0">--- 请选择 ---</option></select><br/>
-			<s:submit value="提交"/>
-		</s:form>
-	</div>
-	
-	<div style="float:left; width:30%;">
-		<p></p>
-		<h2>添加角色</h2>
-		<s:form action="roleAction_addRole" method="post">
-			角色名：<s:textfield name="role.roleName"/><br/>
-			<s:submit value="提交"/>
-		</s:form>
-	</div>
-	
-	<div style="float:left; width:30%;">
-		<p></p>
-		<h2>添加权限</h2>
-		<s:form action="permissionAction_addPermission" method="post">
-			权限名：<s:textfield name="permission.permName"/><br/>
-			<s:submit value="提交"/>
-		</s:form>
-	</div>
-</div>
-	
-	<hr>
+<!-- 	<hr>
 	<div id="userDiv">
 		<h2>用户信息</h2>
 		<table border=1>
@@ -89,7 +195,7 @@
 	<div id="fixDiv" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;">
 		<div style="position: fixed; top: 20%; left: 35%; width: 30%; height: 50%; background-color: RGBA(0,0,0,0.5);">
 		</div>
-	</div>
+	</div> -->
 				
 			</div>
 		
@@ -101,6 +207,40 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.all.js"></script>
 	
 	<script>
+	
+	layui.use(['jquery', 'layer', 'form', 'element'], function(){
+		var layer = layui.layer
+		,form = layui.form
+		,element = layui.element
+		,$ = layui.$
+
+		//获取部门
+		form.on('select(findDepartmentList)', function(data){
+			$.post("departmentAction_findDepartmentList", "company.compId=" + data.elem.value, function(data) {
+				$("#deptId option:not(:first)").remove();
+				var str = "";
+				$.each(data.list, function(i, v) {
+					str += "<option value='" + v.deptId + "'>" + v.deptName + "</option>";
+				});
+				$("#deptId").append(str);
+				form.render();
+			}, "json");
+		});   
+		
+		//获取科室
+		form.on('select(findSectionList)', function(data){
+			$.post("sectionAction_findSectionList", "department.deptId=" + e.target.value, function(data) {
+				$("select[name='section.sectId'] option:not(:first)").remove();
+				var str = "";
+				$.each(data.list, function(i, v) {
+					str += "<option value='" + v.sectId + "'>" + v.sectName + "</option>";
+				});
+				$("select[name='section.sectId']").eq(0).append(str);
+			}, "json");
+		});
+		
+		  
+	});
 	
 	window.onload = start();
 

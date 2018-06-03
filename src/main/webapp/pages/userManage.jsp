@@ -19,9 +19,9 @@
 		
 		<div class="layui-body">
 			<!-- 内容主体区域 -->
-			<div style="padding: 15px;">内容主体区域</div>
+			<!-- <div style="padding: 15px;">内容主体区域</div> -->
 				<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-					<legend>简洁风格的Tab</legend>
+					<legend>公司部门管理</legend>
 				</fieldset>
 				 
 				<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
@@ -32,6 +32,7 @@
 				    <li>添加科室</li>
 				  </ul>
 				  <div class="layui-tab-content" style="height: 100px;">
+				    <!-- 查看公司 -->
 				    <div class="layui-tab-item layui-show">
 				    	<ul>
 						<s:iterator var="comps" value="#session.compList">
@@ -39,40 +40,91 @@
 						</s:iterator>
 						</ul>
 				    </div>
+				    <!-- 添加公司 -->
 				    <div class="layui-tab-item">
-						<form action="companyAction_addCompany" method="post" onsubmit="return validCompany(this)">
-							公司名称：<input name="company.compName" /><br />
-							<button>添加</button>
+						<form class="layui-form" action="companyAction_addCompany" method="post">
+							<div class="layui-form-item">
+								<label class="layui-form-label">公司名称</label>
+								<div class="layui-input-block">
+									<input name="company.compName" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input" />
+								</div>
+							</div>	
+							<!-- 按钮 -->
+							<div class="layui-form-item">
+								<div  class="layui-input-block">
+									<div style="width: 216px; margin: 0;">
+										<button lay-submit class="layui-btn layui-btn-fluid">添加</button>
+									</div>
+								</div>
+							</div>
 						</form>
 				    </div>
+				    <!-- 添加部门 -->
 				    <div class="layui-tab-item">
-						<form action="departmentAction_addDepartment" method="post" onsubmit="return validDepartment(this)">
-							部门名称: <input name="department.deptName" /><br />
-							所属公司:
-							<select name="company.compId">
-								<option value="0">--请选择--</option>
-							<s:iterator var="comp" value="#session.compList">
-								<option value="${comp.compId }">${comp.compName }</option>
-							</s:iterator>
-							</select><br />
-							<button>添加</button>
+						<form class="layui-form" action="departmentAction_addDepartment" method="post">
+							<div class="layui-form-item">
+								<label class="layui-form-label">部门名称</label>
+								<div class="layui-input-block">
+									<input type="text" name="department.deptName" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">所属公司</label>
+								<div class="layui-input-block">
+									<select name="company.compId" lay-filter="aihao" lay-verify="number">
+										<option value="">--请选择--</option>
+										<s:iterator var="comp" value="#session.compList">
+											<option value="${comp.compId }">${comp.compName }</option>
+										</s:iterator>
+									</select>
+								</div>
+							</div>
+							<!-- 按钮 -->
+							<div class="layui-form-item">
+								<div  class="layui-input-block">
+									<div style="width: 216px; margin: 0;">
+										<button lay-submit class="layui-btn layui-btn-fluid">添加</button>
+									</div>
+								</div>
+							</div>
 						</form>
 				    </div>
+				    <!-- 添加科室 -->
 				    <div class="layui-tab-item">
-						<form action="sectionAction_addSection" method="post" onsubmit="return validSection(this)">
-							科室名称: <input name="section.sectName" /><br />
-							所属公司:
-							<select onchange="findDepartmentList(event)">
-								<option value="0">--请选择--</option>
-							<s:iterator var="comp" value="#session.compList">
-								<option value="${comp.compId }">${comp.compName }</option>
-							</s:iterator>
-							</select><br />
-							所属部门: 
-							<select name="department.deptId">
-								<option value="0">--请选择--</option>
-							</select><br />
-							<button>添加</button>
+						<form class="layui-form" action="sectionAction_addSection" method="post">
+							<div class="layui-form-item">
+								<label class="layui-form-label">科室名称</label>
+								<div class="layui-input-block">
+									<input type="text" name="section.sectName" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">所属公司</label>
+								<div class="layui-input-block">
+									<select lay-filter="findDepartmentList" lay-verify="number">
+										<option value="">--请选择--</option>
+										<s:iterator var="comp" value="#session.compList">
+											<option value="${comp.compId }">${comp.compName }</option>
+										</s:iterator>
+									</select>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">所属部门</label>
+								<div class="layui-input-block">
+									<select name="department.deptId" lay-filter="aihao" lay-verify="number">
+										<option value="">--请选择--</option>
+									</select>
+								</div>
+							</div>
+							<!-- 按钮 -->
+							<div class="layui-form-item">
+								<div  class="layui-input-block">
+									<div style="width: 216px; margin: 0;">
+										<button lay-submit class="layui-btn layui-btn-fluid">添加</button>
+									</div>
+								</div>
+							</div>
 						</form>
 				    </div>
 				  </div>
@@ -88,17 +140,29 @@
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.all.js"></script>
 	<script>
-	
-	//获取部门
-	function findDepartmentList(e) {
-		$.post("departmentAction_findDepartmentList", "company.compId=" + e.target.value, function(data) {
-			var str = "";
-			$.each(data.list, function(i, v) {
-				str += "<option value='" + v.deptId + "'>" + v.deptName + "</option>";
-			});
-			$("select[name='department.deptId']").eq(0).append(str);
-		}, "json");
-	}
+	layui.use(['jquery', 'layer', 'form', 'element'], function(){
+		var layer = layui.layer
+		,form = layui.form
+		,element = layui.element
+		,$ = layui.$
+
+		//获取部门
+		form.on('select(findDepartmentList)', function(data){
+			$.post("departmentAction_findDepartmentList", "company.compId=" + data.elem.value, function(data) {
+				$("select[name='department.deptId'] option:not(:first)").remove();
+				var str = "";
+				$.each(data.list, function(i, v) {
+					str += "<option value='" + v.deptId + "'>" + v.deptName + "</option>";
+				});
+				$("select[name='department.deptId']").append(str);
+				form.render();
+			}, "json");
+		});   
+		
+		//下拉框选择验证
+		
+		  
+	});
 	
 	//查看部门 
 	function selectDepartmentList(compId) {
@@ -147,60 +211,6 @@
 		$(e.target).parent().remove();
 	}
 	
-	//验证
-	/**
-	 *  添加公司
-	          添加部门
-	          添加科室
-	 * 
-	 */
-	 function validCompany(form) {
-		var compName = $(form).children("input[name='company.compName']").val();
-		if (compName == "") {
-			alert("公司名称不能为空！");
-			return false;
-		} else if (compName.length  > 16) {
-			alert("公司名称太长！");
-			return false;
-		}
-		return true;
-	}
-	
-	function validDepartment(form) {
-		var deptName = $(form).children("input[name='department.deptName']").val();
-		var compId = $(form).children("select[name='company.compId']").val();
-		if (deptName == "") {
-			alert("部门名称不能为空！");
-			return false;
-		} else if (deptName.length > 16) {
-			alert("部门名称太长！");
-			return false;
-		} else if (compId == 0) {
-			alert("请选择所属公司!");
-			return false;
-		}
-		return true;
-	}
-	
-	function validSection(form) {
-		var sectName = $(from).children("input[name='department.deptName']").val();
-		var compId = $(form).children("select:first").val();
-		var deptId = $(form).children("select[name='department.deptId']").val();
-		if (sectName == "") {
-			alert("科室名称不能为空！");
-			return false;
-		} else if (sectName.length > 16) {
-			alert("科室名称太长!");
-			return false;
-		} else if (compId == 0) {
-			alert("请选择所属公司！");
-			return false;
-		} else if (deptId == 0) {
-			alert("请选择所属部门！");
-			return false;
-		}
-		return true;
-	}
 	 
 	//tab层
 	function layerTab() {
