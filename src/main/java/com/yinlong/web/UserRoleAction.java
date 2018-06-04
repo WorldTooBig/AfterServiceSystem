@@ -26,7 +26,7 @@ public class UserRoleAction {
 	private int[] rno;
 	
 	/**
-	 * Ìí¼ÓÊı¾İ£¬°ó¶¨ÓÃ»§½ÇÉ«
+	 * æ·»åŠ æ•°æ®ï¼Œç»‘å®šç”¨æˆ·è§’è‰²
 	 * @return
 	 */
 	public String addUserRole() {
@@ -42,7 +42,7 @@ public class UserRoleAction {
 	}
 	
 	/**
-	 * É¾³ı¸ÃÌõÊı¾İ£¬½â°óÓÃ»§½ÇÉ«
+	 * åˆ é™¤è¯¥æ¡æ•°æ®ï¼Œè§£ç»‘ç”¨æˆ·è§’è‰²
 	 * @return
 	 */
 	public String deleteUserRole() {
@@ -53,7 +53,7 @@ public class UserRoleAction {
 	}
 
 	/**
-	 * ²éÑ¯¸ÃÓÃ»§Ã»ÓĞ°ó¶¨µÄ½ÇÉ«
+	 * æŸ¥è¯¢è¯¥ç”¨æˆ·æ²¡æœ‰ç»‘å®šçš„è§’è‰²
 	 * @return
 	 */
 	public String findRoleNoBindingListByUser() {

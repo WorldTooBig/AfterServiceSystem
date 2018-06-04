@@ -20,72 +20,61 @@
 			<!-- 内容主体区域 -->
 			<div style="padding: 15px;">根据条件筛选</div>
 			
-			<form class="layui-form" action="">
+			<form class="layui-form" action="userAction_findUserListLike" method="post">
 			
 				<div class="layui-form-item">
 					<div class="layui-inline">
 						<label class="layui-form-label">姓名</label>
 						<div class="layui-input-inline">
-							<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input type="text" name="user.userRealName" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>			
 					<div class="layui-inline">
 						<label class="layui-form-label">工号</label>
 						<div class="layui-input-inline">
-							<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input type="text" name="user.userJobNum" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>			
 					<div class="layui-inline">
 						<label class="layui-form-label">职务</label>
 						<div class="layui-input-inline">
-							<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input type="text" name="user.userJobName" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>			
 					<div class="layui-inline">
 						<label class="layui-form-label">电话</label>
 						<div class="layui-input-inline">
-							<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input type="text" name="user.userTell" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>			
 					<div class="layui-inline">
 						<label class="layui-form-label">邮箱</label>
 						<div class="layui-input-inline">
-							<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input type="text" name="user.userEmail" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>			
 					<div class="layui-inline">
 						<label class="layui-form-label">备注</label>
 						<div class="layui-input-inline">
-							<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input type="text" name="user.userRemark" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>		
 				
 					<div class="layui-inline">
-						<label class="layui-form-label">行内选择框</label>
+						<label class="layui-form-label">选择归属</label>
 						<div class="layui-input-inline">
-							<select name="quiz1">
-								<option value="">请选择省</option>
-								<option value="浙江" selected="">浙江省</option>
-								<option value="你的工号">江西省</option>
-								<option value="你最喜欢的老师">福建省</option>
+							<select name="company.compId" lay-filter="findDepartmentList">
+								<option value="0">请选择公司</option>
 							</select>
 						</div>
 						<div class="layui-input-inline">
-							<select name="quiz2">
-								<option value="">请选择市</option>
-								<option value="杭州">杭州</option>
-								<option value="宁波" disabled="">宁波</option>
-								<option value="温州">温州</option>
-								<option value="温州">台州</option>
-								<option value="温州">绍兴</option>
+							<select name="department.deptId" lay-filter="findSectionList">
+								<option value="0">请选择部门</option>
 							</select>
 						</div>
 						<div class="layui-input-inline">
-							<select name="quiz3">
-								<option value="">请选择县/区</option>
-								<option value="西湖区">西湖区</option>
-								<option value="余杭区">余杭区</option>
-								<option value="拱墅区">临安市</option>
+							<select name="section.sectId">
+								<option value="0">请选择科室</option>
 							</select>
 						</div>
 					</div>
@@ -93,14 +82,14 @@
 				
 				<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button class="layui-btn" lay-submit="" lay-filter="demo1">立即查询</button>
+						<button type="button" class="layui-btn" onclick="buildTable()">立即查询</button>
 						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 					</div>
 				</div>
 				
 			</form>
 			
-			<table class="layui-hide" id="userTab"></table>
+			<table class="layui-hide" id="userTab" lay-data="{id: 'idTest'}"></table>
 			
 		</div>
 		
@@ -111,12 +100,61 @@
 	</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.all.js"></script>
 	<script>
+	layui.use(['jquery', 'layer', 'form', 'element'], function(){
+		var layer = layui.layer
+		,form = layui.form
+		,element = layui.element
+		,$ = layui.$
+		,table = layui.table
+
+		//获取公司
+		$.post("companyAction_findCompanyListJson", "", function(data){
+			var str = "";
+			$.each(data.list, function(i, v) {
+				str += "<option value='" + v.compId + "'>" + v.compName + "</option>";
+			});
+			$("select[name='company.compId']").append(str);
+			form.render();
+		}, "json");
+
+		//根据公司ID获取部门
+		form.on('select(findDepartmentList)', function(data){
+			$.post("departmentAction_findDepartmentList", "company.compId=" + data.elem.value, function(data) {
+				$("#deptId option:not(:first)").remove();
+				var str = "";
+				$.each(data.list, function(i, v) {
+					str += "<option value='" + v.deptId + "'>" + v.deptName + "</option>";
+				});
+				$("select[name='department.deptId']").append(str);
+				form.render();
+			}, "json");
+		});   
+		
+		//根据部门ID获取科室
+		form.on('select(findSectionList)', function(data){
+			$.post("sectionAction_findSectionList", "department.deptId=" + data.elem.value, function(data) {
+				$("select[name='section.sectId'] option:not(:first)").remove();
+				var str = "";
+				$.each(data.list, function(i, v) {
+					str += "<option value='" + v.sectId + "'>" + v.sectName + "</option>";
+				});
+				$("select[name='section.sectId']").eq(0).append(str);
+				form.render();
+			}, "json");
+		});
+		
+	});
+	
+	window.onload = buildTable();
+	
+	//生成表格
+	function buildTable() {
 		layui.use('table', function(){
 			  var table = layui.table;
 			  
 			  table.render({
 			    elem: '#userTab'
-				,url:'userAction_findUseListLayui' 
+				,url:'userAction_findUserListLike?' + $("form:first").serialize()
 				,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 			    ,cols: [[
 			    	   {type:'numbers', title: '序号'}
@@ -129,10 +167,16 @@
 				      ,{field:'userTell', title: '电话'}
 				      ,{field:'userEmail', title: '邮箱'}
 				      ,{field:'userRemark', title: '备注'}
+				      ,{field:'section', title: 'OO' ,  templet: '<div>{{d.section.department.company.compName}}</div>'}
+				      ,{field:'section', title: 'OO' ,  templet: '<div>{{d.section.department.deptName}}</div>'}
+				      ,{field:'section', title: 'OO' ,  templet: '<div>{{d.section.sectName}}</div>'}
 			    ]]
 			    ,page: true
 			  });
 			});
+	}
+	
+	
 	</script>
 </body>
 </html>

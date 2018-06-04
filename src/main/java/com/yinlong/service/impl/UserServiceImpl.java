@@ -31,19 +31,19 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	/**
-	 * ÓÃ»§µÇÂ¼
+	 * ç”¨æˆ·ç™»å½•
 	 */
 	public List<Role> userLogin(User user) {
-		String hql = "from User where userName = '" + user.getUserName() + "'";	// ²éÑ¯¹¤ºÅ
+		String hql = "from User where userName = '" + user.getUserName() + "'";	// æŸ¥è¯¢å·¥å·
 		List<User> list = userDao.queryUserHql(hql);
 		for (User u : list) {
 			if(user.getUserPwd().equals(u.getUserPwd())) {
-				//»ñÈ¡µ½ÓÃ»§ĞÅÏ¢
+				//è·å–åˆ°ç”¨æˆ·ä¿¡æ¯
 				ActionContext.getContext().getSession().put("user_login", u);
-				//ÓÃ»§ÃûºÍÃÜÂëÆ¥ÅäÔò²éÑ¯³ö¸ÃÓÃ»§ÏÂµÄËùÓĞÈ¨ÏŞ
+				//ç”¨æˆ·åå’Œå¯†ç åŒ¹é…åˆ™æŸ¥è¯¢å‡ºè¯¥ç”¨æˆ·ä¸‹çš„æ‰€æœ‰æƒé™
 //				String sql = "select pname from ylzh_privilege where pno in (select pno from ylzh_roleprivilege where rno in (select rno from ylzh_userrole where uno = " + u.getUno() + "))";
 //				return privilegeDao.queryPrivilegeSql(sql);
-				//ÓÃ»§ÃûºÍÃÜÂëÆ¥ÅäÔò²éÑ¯³ö¸ÃÓÃ»§µÄËùÓĞ½ÇÉ«
+				//ç”¨æˆ·åå’Œå¯†ç åŒ¹é…åˆ™æŸ¥è¯¢å‡ºè¯¥ç”¨æˆ·çš„æ‰€æœ‰è§’è‰²
 				String h   = "select r.roleName from UserRole ur right join ur.role r where ur.user.userId = " + u.getUserId() + ")";
 				return roleDao.queryRoleHql(h);
 			}
@@ -52,7 +52,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	/**
-	 * Ìí¼ÓÓÃ»§
+	 * æ·»åŠ ç”¨æˆ·
 	 */
 	public boolean addUser(User user) {
 		return userDao.addUser(user);
@@ -64,9 +64,9 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞÓÃ»§ĞÅÏ¢
-	 * @param page µÚ¼¸Ò³
-	 * @param limit ¶àÉÙÌõ
+	 * æŸ¥è¯¢æ‰€æœ‰ç”¨æˆ·ä¿¡æ¯
+	 * @param page ç¬¬å‡ é¡µ
+	 * @param limit å¤šå°‘æ¡
 	 */
 	public List<User> findUserList(int page, int limit) {
 		int min = (page-1) * 10;
@@ -76,7 +76,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞÓÃ»§ÒÔ¼°ËüµÄ½ÇÉ«
+	 * æŸ¥è¯¢æ‰€æœ‰ç”¨æˆ·ä»¥åŠå®ƒçš„è§’è‰²
 	 */
 	public List findUserAndRoleList() {
 		String hql = "select u.userName, r.roleName from User u left join UserRole ur on u.userId = ur.urId left ru.role r";
@@ -84,7 +84,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	/**
-	 * ¸ù¾İuser²éÑ¯¸ÃÓÃ»§µÄËùÓĞ½ÇÉ«
+	 * æ ¹æ®useræŸ¥è¯¢è¯¥ç”¨æˆ·çš„æ‰€æœ‰è§’è‰²
 	 */
 	public List findUserAndRoleByUserList(User user) {
 		String hql = "select ur.urId, r.roleName from UserRole ur left join ur.user u left join ur.role r where u.userId = " + user.getUserId() + " order by r.roleId";
@@ -92,14 +92,14 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	/**
-	 * ¸ù¾İÓÃ»§ID²éÕÒÓÃ»§
+	 * æ ¹æ®ç”¨æˆ·IDæŸ¥æ‰¾ç”¨æˆ·
 	 */
 	public User findUserById(User user) {
 		return userDao.queryUserById(user);
 	}
 
 	/**
-	 * ¸ù¾İ¿ÆÊÒid²éÑ¯¸Ã¿ÆÊÒµÄÔ±¹¤
+	 * æ ¹æ®ç§‘å®¤idæŸ¥è¯¢è¯¥ç§‘å®¤çš„å‘˜å·¥
 	 */
 	public List<User> findUserBySectId(Section section) {
 		String hql = "from User where section.sectId = " + section.getSectId();
@@ -109,6 +109,30 @@ public class UserServiceImpl implements IUserService {
 	public int findUserListCount() {
 		String hql = "select count(*) from User";
 		return userDao.queryUserCount(hql);
+	}
+
+	@Override
+	public List findUserListLike(User user, Section section, Department department, Company company) {
+		String hql = "select u from User u left join u.section s left join s.department d left join d.company c where 1 = 1";
+		if(user.getUserRealName() != null && !user.getUserRealName().equals(""))
+			hql += " and u.userName like '%" + user.getUserRealName() + "%'";
+		if(user.getUserJobNum() != null && !user.getUserJobNum().equals(""))
+			hql += " and u.userJobNum like '%" + user.getUserJobNum() + "%'";
+		if(user.getUserJobName() != null && !user.getUserJobName().equals(""))
+			hql += " and u.userJobName like '%" + user.getUserJobName() + "%'";
+		if(user.getUserTell() != null && !user.getUserTell().equals(""))
+			hql += " and u.userTell like '%" + user.getUserTell() + "%'";
+		if(user.getUserEmail() != null && !user.getUserEmail().equals(""))
+			hql += " and u.userEmail like '%" + user.getUserEmail() + "%'";
+		if(user.getUserRemark() != null && !user.getUserRemark().equals(""))
+			hql += " and u.userRemark like '%" + user.getUserRemark() + "%'";
+		if(company.getCompId() != 0)
+			hql += " and c.compId = " + company.getCompId();
+		if(department.getDeptId() != 0)
+			hql += " and d.deptId = " + department.getDeptId();
+		if(section.getSectId() != 0)
+			hql += " and s.sectId = " + section.getSectId();
+		return userDao.queryUserHql(hql);
 	}
 	
 	

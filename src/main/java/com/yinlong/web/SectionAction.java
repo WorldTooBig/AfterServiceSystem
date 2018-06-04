@@ -25,7 +25,7 @@ public class SectionAction {
 
 	
 	/**
-	 * Ìí¼Ó¿ÆÊÒ
+	 * æ·»åŠ ç§‘å®¤
 	 * @return
 	 */
 	public String addSection() {
@@ -37,7 +37,7 @@ public class SectionAction {
 	}
 	
 	/**
-	 * ²éÑ¯ËùÓĞ¿ÆÊÒĞÅÏ¢
+	 * æŸ¥è¯¢æ‰€æœ‰ç§‘å®¤ä¿¡æ¯
 	 * @return
 	 */
 	public String findSectionList() {

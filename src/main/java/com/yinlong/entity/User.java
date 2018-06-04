@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * 用户（员工）
+ * 鐢ㄦ埛锛堝憳宸ワ級
  * @author 01270059
  *
  */
@@ -15,16 +15,16 @@ import javax.persistence.*;
 public class User implements Serializable {
 
 	private int userId;			// ID
-	private String userName;	// 用户名（登录名）
-	private String userPwd;		// 密码
-	private String userRealName;// 真实姓名
-	private String userJobNum;	// 工号
-	private String userJobName; // 工种（职务）
-	private String userTell;	// 电话
-	private String userEmail;	// 邮箱
-	private String userRemark;	// 备注
+	private String userName;	// 鐢ㄦ埛鍚嶏紙鐧诲綍鍚嶏級
+	private String userPwd;		// 瀵嗙爜
+	private String userRealName;// 鐪熷疄濮撳悕
+	private String userJobNum;	// 宸ュ彿
+	private String userJobName; // 宸ョ锛堣亴鍔★級
+	private String userTell;	// 鐢佃瘽
+	private String userEmail;	// 閭
+	private String userRemark;	// 澶囨敞
 	
-	private Section section;	// 科室
+	private Section section;	// 绉戝
 	
 	public User() {
 		super();

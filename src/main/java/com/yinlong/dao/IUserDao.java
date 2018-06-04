@@ -17,4 +17,6 @@ public interface IUserDao {
 	public User queryUserById(User user);
 	
 	public int queryUserCount(String hql);
+	
+	public List layuiTableUserList(String hql);
 }

@@ -24,7 +24,7 @@ public class DepartmentAction {
 	
 
 	/**
-	 * Ìí¼Ó²¿ÃÅ
+	 * æ·»åŠ éƒ¨é—¨
 	 * @return
 	 */
 	public String addDepartment() {
@@ -36,7 +36,7 @@ public class DepartmentAction {
 	}
 	
 	/**
-	 * ²éÑ¯ËùÓĞ²¿ÃÅĞÅÏ¢,¸ù¾İ¹«Ë¾ID
+	 * æŸ¥è¯¢æ‰€æœ‰éƒ¨é—¨ä¿¡æ¯,æ ¹æ®å…¬å¸ID
 	 * @return
 	 */
 	public String findDepartmentList() {

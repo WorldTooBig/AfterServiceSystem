@@ -26,19 +26,19 @@ public class RoleAction {
 	private String errorInfo;
 	
 	/**
-	 * Ìí¼Ó½ÇÉ«
+	 * æ·»åŠ è§’è‰²
 	 * @return
 	 */
 	public String addRole() {
 		if(roleService.addRole(role)) {
-			errorInfo =  "Ìí¼Ó½ÇÉ«³É¹¦";
+			errorInfo =  "æ·»åŠ è§’è‰²æˆåŠŸ";
 		}
-		errorInfo =  "Ìí¼Ó½ÇÉ«Ê§°Ü";
+		errorInfo =  "æ·»åŠ è§’è‰²å¤±è´¥";
 		return "addRole";
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞ½ÇÉ«
+	 * æŸ¥è¯¢æ‰€æœ‰è§’è‰²
 	 * @return
 	 */
 	public String findRoleList() {
@@ -48,7 +48,7 @@ public class RoleAction {
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞ½ÇÉ«¼°ÆäÓµÓĞµÄÈ¨ÏŞ
+	 * æŸ¥è¯¢æ‰€æœ‰è§’è‰²åŠå…¶æ‹¥æœ‰çš„æƒé™
 	 * @return
 	 */
 	public String findRoleAndPermission() {
@@ -64,7 +64,7 @@ public class RoleAction {
 	}
 
 	/**
-	 * ¸ù¾İ´«ÈëµÄRoleµÄrname²éÑ¯¸ÃRoleËùÓµÓĞµÄÈ¨ÏŞ
+	 * æ ¹æ®ä¼ å…¥çš„Roleçš„rnameæŸ¥è¯¢è¯¥Roleæ‰€æ‹¥æœ‰çš„æƒé™
 	 * @param role
 	 * @return
 	 */

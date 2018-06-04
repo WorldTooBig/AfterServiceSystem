@@ -67,5 +67,15 @@ public class UserDaoImpl extends BaseDao implements IUserDao {
 		return 0;
 	}
 
+	@Override
+	public List layuiTableUserList(String hql) {
+		try {
+			getSession().createQuery(hql).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 }

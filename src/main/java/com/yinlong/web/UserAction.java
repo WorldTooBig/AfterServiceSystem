@@ -1,223 +1,1 @@
-package com.yinlong.web;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.ServletActionContext;
-import org.json.JSONObject;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
-import com.opensymphony.xwork2.ActionContext;
-import com.yinlong.entity.*;
-import com.yinlong.service.IUserService;
-
-@Controller("userAction")
-@Scope("prototype")
-public class UserAction {
-	
-	@Resource(name = "userService")
-	private IUserService userService;
-	
-	private User user;
-	private Section section;
-	
-	private List list;
-	private List<User> userList;
-	private List<Role> roleList;
-	
-	//layui table ·ÖÒ³ Ä¬ÈÏ´«ÈëµÄ2¸ö²ÎÊı
-	private int page;	// Ò³Âë
-	private int limit;	// ÊıÁ¿
-	private String errorInfo;
-	
-	/**
-	 * ÓÃ»§µÇÂ¼
-	 * @return
-	 */
-	public String userLogin() {
-		roleList = userService.userLogin(user);
-		if(roleList != null) {
-			//³É¹¦Ôò»ñÈ¡¸ÃÓÃ»§ÓµÓĞµÄÈ¨ÏŞ
-			ActionContext.getContext().getSession().put("user_role", roleList);
-			return "index";
-		}
-		ActionContext.getContext().getSession().put("login_lose", "ÓÃ»§Ãû»òÃÜÂë´íÎó");
-		return "login";
-	}
-	
-	/**
-	 * Ìí¼ÓÓÃ»§
-	 * @return
-	 */
-	public String addUser() {
-		user.setSection(section);
-		if(userService.addUser(user)) {
-			errorInfo = "Ìí¼ÓÓÃ»§³É¹¦";
-		}
-		errorInfo = "Ìí¼ÓÓÃ»§Ê§°Ü";
-		return "add";
-	}
-	
-	/**
-	 * ²éÑ¯ËùÓĞÓÃ»§ĞÅÏ¢
-	 * @return
-	 */
-	public String findUserList() {
-		userList = userService.findUserList();
-		return "findUserList";
-	}
-	
-	/**
-	 * ²éÑ¯ËùÓĞÓÃ»§ºÍËüµÄ½ÇÉ«
-	 * @return
-	 */
-	public String findUserAndRoleList() {
-		list = userService.findUserAndRoleList();
-		return "findUserAndRoleList";
-	}
-	
-	/**
-	 * ¸ù¾İÓÃ»§²éÑ¯¸ÃÓÃ»§µÄ½ÇÉ«
-	 * @return
-	 */
-	public String findUserAndROleByUserList() {
-		list = new ArrayList();
-		userList = userService.findUserList();
-		for (User user : userList) {
-			List l = new ArrayList();
-			l.add(user);
-			l.add(userService.findUserAndRoleByUserList(user));
-			list.add(l);
-		}
-		return "findUserAndROleByUserList";
-	}
-	
-	/**
-	 * ¿Æ¾Ù¿ÆÊÒID²éÑ¯¸Ã¿ÆÊÒµÄËùÓĞÔ±¹¤
-	 * @return
-	 */
-	public String findUserBySectId() {
-		userList = userService.findUserBySectId(section);
-		return "findUserBySectId";
-	}
-	
-	/**
-	 * ·ÖÒ³²éÑ¯ËùÓĞÔ±¹¤
-	 * @throws IOException
-	 */
-	public void findUseListLayui() throws IOException {
-		userList = userService.findUserList(page, limit);
-		
-		JSONObject jsonObj = new JSONObject();
-		jsonObj.put("code", 0);    
-		jsonObj.put("msg", "");    
-		jsonObj.put("count",userService.findUserListCount());    
-		jsonObj.put("data",userList);    
-		
-        HttpServletResponse response = ServletActionContext.getResponse();
-        response.setContentType("text/json; charset=utf-8");
-        PrintWriter out = response.getWriter();
-        out.println(jsonObj.toString());
-        out.close();
-	}
-	
-	/**
-	 * ¸ù¾İ¿ÆÊÒID²éÑ¯¸Ã¿ÆÊÒµÄËùÓĞÔ±¹¤
-	 * ÊÊÅäsayui table µÄ½ÓÊÜÊı¾İ
-	 * strtus2 ·µ»ØµÄÊı¾İÊ¹ÓÃ»áÒÔ±äÁ¿Ãû×öÊı¾İÍ·£¬ËùÒÔ²»ÄÜÓÃstrtus2·µ»ØÊı¾İ
-	 * @return
-	 * @throws IOException 
-	 */
-	public void findUserBySectIdLayui() throws IOException {
-		userList = userService.findUserBySectId(section);
-		JSONObject jsonObj = new JSONObject();
-		jsonObj.put("code", 0);    
-		jsonObj.put("msg", "");    
-		jsonObj.put("count",1000);    
-		jsonObj.put("data",userList);    
-        
-        HttpServletResponse response = ServletActionContext.getResponse();
-        response.setContentType("text/json; charset=utf-8");
-        PrintWriter out = response.getWriter();
-        out.println(jsonObj.toString());
-        out.close();
-	}
-
-	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	public List getList() {
-		return list;
-	}
-
-	public void setList(List list) {
-		this.list = list;
-	}
-
-	public List<Role> getRoleList() {
-		return roleList;
-	}
-
-	public void setRoleList(List<Role> roleList) {
-		this.roleList = roleList;
-	}
-
-	public void setUserService(IUserService userService) {
-		this.userService = userService;
-	}
-
-	public List<User> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
-	}
-
-	public String getErrorInfo() {
-		return errorInfo;
-	}
-
-	public void setErrorInfo(String errorInfo) {
-		this.errorInfo = errorInfo;
-	}
-
-	public Section getSection() {
-		return section;
-	}
-
-	public void setSection(Section section) {
-		this.section = section;
-	}
-
-	public int getPage() {
-		return page;
-	}
-
-	public void setPage(int page) {
-		this.page = page;
-	}
-
-	public int getLimit() {
-		return limit;
-	}
-
-	public void setLimit(int limit) {
-		this.limit = limit;
-	}
-	
-}
+package com.yinlong.web;import java.io.IOException;import java.io.PrintWriter;import java.util.ArrayList;import java.util.List;import javax.annotation.Resource;import javax.servlet.http.HttpServletResponse;import org.apache.struts2.ServletActionContext;import org.json.JSONArray;import org.json.JSONObject;import org.springframework.context.annotation.Scope;import org.springframework.stereotype.Controller;import com.opensymphony.xwork2.ActionContext;import com.yinlong.entity.*;import com.yinlong.service.IUserService;@Controller("userAction")@Scope("prototype")public class UserAction {		@Resource(name = "userService")	private IUserService userService;		private User user;	private Company company;	private Department department;	private Section section;		private List list;	private List<User> userList;	private List<Role> roleList;		//layui table åˆ†é¡µ é»˜è®¤ä¼ å…¥çš„2ä¸ªå‚æ•°	private int page;	// é¡µç 	private int limit;	// æ•°é‡	private String errorInfo;		/**	 * ç”¨æˆ·ç™»å½•	 * @return	 */	public String userLogin() {		roleList = userService.userLogin(user);		if(roleList != null) {			//æˆåŠŸåˆ™è·å–è¯¥ç”¨æˆ·æ‹¥æœ‰çš„æƒé™			ActionContext.getContext().getSession().put("user_role", roleList);			return "index";		}		ActionContext.getContext().getSession().put("login_lose", "ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯");		return "login";	}		/**	 * æ·»åŠ ç”¨æˆ·	 * @return	 */	public String addUser() {		user.setSection(section);		if(userService.addUser(user)) {			errorInfo = "æ·»åŠ ç”¨æˆ·æˆåŠŸ";		}		errorInfo = "æ·»åŠ ç”¨æˆ·å¤±è´¥";		return "add";	}		/**	 * æŸ¥è¯¢æ‰€æœ‰ç”¨æˆ·ä¿¡æ¯	 * @return	 */	public String findUserList() {		userList = userService.findUserList();		return "findUserList";	}		/**	 * æŸ¥è¯¢æ‰€æœ‰ç”¨æˆ·å’Œå®ƒçš„è§’è‰²	 * @return	 */	public String findUserAndRoleList() {		list = userService.findUserAndRoleList();		return "findUserAndRoleList";	}		/**	 * æ ¹æ®ç”¨æˆ·æŸ¥è¯¢è¯¥ç”¨æˆ·çš„è§’è‰²	 * @return	 */	public String findUserAndROleByUserList() {		list = new ArrayList();		userList = userService.findUserList();		for (User user : userList) {			List l = new ArrayList();			l.add(user);			l.add(userService.findUserAndRoleByUserList(user));			list.add(l);		}		return "findUserAndROleByUserList";	}		/**	 * ç§‘ä¸¾ç§‘å®¤IDæŸ¥è¯¢è¯¥ç§‘å®¤çš„æ‰€æœ‰å‘˜å·¥	 * @return	 */	public String findUserBySectId() {		userList = userService.findUserBySectId(section);		return "findUserBySectId";	}		/**	 * layui table è¡¨æ ¼æ‰€éœ€æ•°æ®	 * @param code		 * @param msg		 * @param count	æ•°æ®æ€»æ•°	 * @param list		 * @throws IOException	 */	public void layuiTableUserList(int code, String msg, int count, List<User> list) throws IOException {		JSONObject jsonObj = new JSONObject();				jsonObj.put("code", code);    		jsonObj.put("msg", msg);    		jsonObj.put("count", count);    		jsonObj.put("data",userList);    		        HttpServletResponse response = ServletActionContext.getResponse();        response.setContentType("text/json; charset=utf-8");        PrintWriter out = response.getWriter();        out.println(jsonObj.toString());        out.close();	}		/**	 * åˆ†é¡µæŸ¥è¯¢æ‰€æœ‰å‘˜å·¥	 * @throws IOException	 */	public void findUseListLayui() throws IOException {		userList = userService.findUserList(page, limit);		int count = userService.findUserListCount();		layuiTableUserList(0, "", count, userList);	}		/**	 * æ ¹æ®ç§‘å®¤IDæŸ¥è¯¢è¯¥ç§‘å®¤çš„æ‰€æœ‰å‘˜å·¥	 * é€‚é…sayui table çš„æ¥å—æ•°æ®	 * strtus2 è¿”å›çš„æ•°æ®ä½¿ç”¨ä¼šä»¥å˜é‡ååšæ•°æ®å¤´ï¼Œæ‰€ä»¥ä¸èƒ½ç”¨strtus2è¿”å›æ•°æ®	 * @return	 * @throws IOException 	 */	public void findUserBySectIdLayui() throws IOException {		userList = userService.findUserBySectId(section);		int count = userService.findUserListCount();		layuiTableUserList(0, "", count, userList);	}		/**	 * ç”¨æˆ·ä¿¡æ¯æ¨¡ç³ŠæŸ¥è¯¢	 * @return	 * @throws IOException 	 */	public void findUserListLike() throws IOException {		if(user == null) { 			System.out.println("user");			user = new User(); }		if(section == null) { section = new Section(); }		if(department == null) {department = new Department(); }		if(company == null) { company = new Company(); }		userList = userService.findUserListLike(user, section, department, company);		int count = userList.size();		layuiTableUserList(0, "", count, userList);	}		public User getUser() {		return user;	}	public void setUser(User user) {		this.user = user;	}		public Company getCompany() {		return company;	}	public void setCompany(Company company) {		this.company = company;	}	public Department getDepartment() {		return department;	}	public void setDepartment(Department department) {		this.department = department;	}	public List getList() {		return list;	}	public void setList(List list) {		this.list = list;	}	public List<Role> getRoleList() {		return roleList;	}	public void setRoleList(List<Role> roleList) {		this.roleList = roleList;	}	public void setUserService(IUserService userService) {		this.userService = userService;	}	public List<User> getUserList() {		return userList;	}	public void setUserList(List<User> userList) {		this.userList = userList;	}	public String getErrorInfo() {		return errorInfo;	}	public void setErrorInfo(String errorInfo) {		this.errorInfo = errorInfo;	}	public Section getSection() {		return section;	}	public void setSection(Section section) {		this.section = section;	}	public int getPage() {		return page;	}	public void setPage(int page) {		this.page = page;	}	public int getLimit() {		return limit;	}	public void setLimit(int limit) {		this.limit = limit;	}	}

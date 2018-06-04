@@ -2,6 +2,8 @@ package com.yinlong.service;
 
 import java.util.List;
 
+import com.yinlong.entity.Company;
+import com.yinlong.entity.Department;
 import com.yinlong.entity.Role;
 import com.yinlong.entity.Section;
 import com.yinlong.entity.User;
@@ -25,5 +27,7 @@ public interface IUserService {
 	public List<User> findUserBySectId(Section section);
 	
 	public int findUserListCount();
+	
+	public List<User> findUserListLike(User user, Section section, Department department, Company company);
 	
 }

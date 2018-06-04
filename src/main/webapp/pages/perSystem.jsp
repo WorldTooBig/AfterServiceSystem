@@ -214,7 +214,17 @@
 		,element = layui.element
 		,$ = layui.$
 
-		//获取部门
+		//获取公司
+		$.post("companyAction_findCompanyListJson", "", function(data){
+			var str = "";
+			$.each(data.list, function(i, v) {
+				str += "<option value='" + v.compId + "'>" + v.compName + "</option>";
+			});
+			$("#compId").append(str);
+			form.render();
+		}, "json");
+		
+		//根据公司ID获取部门
 		form.on('select(findDepartmentList)', function(data){
 			$.post("departmentAction_findDepartmentList", "company.compId=" + data.elem.value, function(data) {
 				$("#deptId option:not(:first)").remove();
@@ -227,15 +237,16 @@
 			}, "json");
 		});   
 		
-		//获取科室
+		//根据部门ID获取科室
 		form.on('select(findSectionList)', function(data){
-			$.post("sectionAction_findSectionList", "department.deptId=" + e.target.value, function(data) {
+			$.post("sectionAction_findSectionList", "department.deptId=" + data.elem.value, function(data) {
 				$("select[name='section.sectId'] option:not(:first)").remove();
 				var str = "";
 				$.each(data.list, function(i, v) {
 					str += "<option value='" + v.sectId + "'>" + v.sectName + "</option>";
 				});
 				$("select[name='section.sectId']").eq(0).append(str);
+				form.render();
 			}, "json");
 		});
 		
@@ -248,8 +259,6 @@
 		userFind();
 		roleFind();
 		perFind();
-		findCompanyList();
-		fixDivToggle();
 	}
 	
 	//获得所有用户信息
@@ -362,38 +371,7 @@
 		}, "json");
 	}
 	
-	//获取所有公司
-	function findCompanyList() {
-		$.post("companyAction_findCompanyListJson", "", function(data){
-			var str = "";
-			$.each(data.list, function(i, v) {
-				str += "<option value='" + v.compId + "'>" + v.compName + "</option>";
-			});
-			$("#compId").append(str);
-		}, "json");
-	}
 	
-	//根据公司ID查询它的所有部门
-	function findDepartmentList(e) {
-		$.post("departmentAction_findDepartmentList", "company.compId=" + e.target.value, function(data) {
-			var str = "";
-			$.each(data.list, function(i, v) {
-				str += "<option value='" + v.deptId + "'>" + v.deptName + "</option>";
-			}); 
-			$("#deptId").append(str);
-		}, "json");
-	}	
-	
-	//根据部门ID查询它的所有科室
-	function findSectionList(e) {
-		$.post("sectionAction_findSectionList", "department.deptId=" + e.target.value, function(data) {
-			var str = "";
-			$.each(data.list, function(i, v) {
-				str += "<option value='" + v.sectId + "'>" + v.sectName + "</option>";
-			});
-			$("select[name='section.sectId']").eq(0).append(str);
-		}, "json");
-	}
 	
 	//添加用户验证
 	function validUser(form) {
@@ -454,15 +432,7 @@
 		return true;
 	}
 	
-	
-	function fixDivToggle() {
-		var $fixDiv = $("#fixDiv");
-		if($fixDiv.css("display") == "none") {
-			$fixDiv.css("display", "block");
-		} else {
-			$fixDiv.css("display", "none");
-		}
-	}
+
 
 </script>
 </body>

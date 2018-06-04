@@ -23,7 +23,7 @@ public class CompanyAction {
 	
 	
 	/**
-	 * Ìí¼Ó¹«Ë¾
+	 * æ·»åŠ å…¬å¸
 	 * @return
 	 */
 	public String addCompany() {
@@ -34,7 +34,7 @@ public class CompanyAction {
 	}
 	
 	/**
-	 * ²éÑ¯ËùÓĞ¹«Ë¾ĞÅÏ¢
+	 * æŸ¥è¯¢æ‰€æœ‰å…¬å¸ä¿¡æ¯
 	 * @return
 	 */
 	public String findCompanyList() {
@@ -49,7 +49,7 @@ public class CompanyAction {
 	}
 	
 	/**
-	 * ¸ù¾İID²éÑ¯¹«Ë¾ĞÅÏ¢
+	 * æ ¹æ®IDæŸ¥è¯¢å…¬å¸ä¿¡æ¯
 	 * @return
 	 */
 	public String findCompanyById() {

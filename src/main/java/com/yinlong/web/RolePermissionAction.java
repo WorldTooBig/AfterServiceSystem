@@ -25,20 +25,20 @@ public class RolePermissionAction {
 	private List<RolePermission> list;
 	private int[] pno;
 	
-	//²éÑ¯½ÇÉ«È¨ÏŞĞÅÏ¢
+	//æŸ¥è¯¢è§’è‰²æƒé™ä¿¡æ¯
 	public String findRolePermissionList() {
 		list = rolePermissionService.findRolePermission();
 		return "findRolePermissionList";
 	}
 	
-	//¸ù¾İIDÉ¾³ı½ÇÉ«È¨ÏŞ
+	//æ ¹æ®IDåˆ é™¤è§’è‰²æƒé™
 	public String deleteRolePermissionById() {
 		if(rolePermissionService.deleteRolePermissionById(rolePermission)) {
 		}
 		return "deleteRolePermissionById";
 	}
 	
-	//Îª½ÇÉ«°ó¶¨È¨ÏŞ
+	//ä¸ºè§’è‰²ç»‘å®šæƒé™
 	public String addRolePermission() {
 		permission = new Permission();
 		for (int i = 0; i < pno.length; i++) {
