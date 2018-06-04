@@ -45,6 +45,7 @@ D:\eclipse-workspace\AfterServiceSystem\src\main\java\com\yinlong\dao\IUserDao.j
 D:\eclipse-workspace\AfterServiceSystem\src\main\java\com\yinlong\dao\IPermissionDao.java
 D:\eclipse-workspace\AfterServiceSystem\src\main\java\com\yinlong\dao\IRolePermissionDao.java
 D:\eclipse-workspace\AfterServiceSystem\src\main\java\com\yinlong\web\RolePermissionAction.java
+D:\eclipse-workspace\AfterServiceSystem\src\main\java\com\yinlong\entity\Quas002.java
 D:\eclipse-workspace\AfterServiceSystem\src\main\java\com\yinlong\dao\impl\RolePermissionDaoImpl.java
 D:\eclipse-workspace\AfterServiceSystem\src\main\java\com\yinlong\dao\impl\PermissionDaoImpl.java
 D:\eclipse-workspace\AfterServiceSystem\src\main\java\com\yinlong\entity\RolePermission.java

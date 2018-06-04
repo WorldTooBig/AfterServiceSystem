@@ -41,7 +41,7 @@
         <li class="layui-nav-item layui-nav-itemed">
           <a class="" href="javascript:;">单据管理</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">填写异常反馈单</a></dd>
+            <dd><a href="${pageContext.request.contextPath}/pages/quas.jsp">填写异常反馈单</a></dd>
             <dd><a href="javascript:;">查询驳回反馈单</a></dd>
             <dd><a href="javascript:;">查询驳回反馈单2</a></dd>
             <dd><a href="">超链接</a></dd>
