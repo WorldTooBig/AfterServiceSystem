@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Insert title here</title>
 	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui1.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 </head>
 <body class="layui-layout-body">
@@ -39,15 +39,19 @@
 						<div class="layui-input-inline">
 							<input id="date" name="" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
 						</div>
-					</div>	
+					</div>		
 					<div class="layui-inline">
 						<label class="layui-form-label">发现时间</label>
 						<div class="layui-input-inline">
 							<input id="date1" name="" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
 						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">发现地点</label>
+						<div class="layui-input-inline">
+							<input name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
 					</div>	
-				</div>
-				<div class="layui-form-item">
 					<div class="layui-inline">
 						<label class="layui-form-label">异常类型</label>
 						<div class="layui-input-inline">
@@ -58,12 +62,6 @@
 								<option value="">类型四</option>
 								<option value="">类型五</option>
 							</select>
-						</div>
-					</div>	
-					<div class="layui-inline">
-						<label class="layui-form-label">发现地点</label>
-						<div class="layui-input-inline">
-							<input name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>	
 				</div>
@@ -165,9 +163,69 @@
 				</div>
 				<div class="layui-form-item">
 					<div class="layui-inline">
-						<label class="layui-form-label">是否停线</label>
+    					<label class="layui-form-label">是否停线</label>
 						<div class="layui-input-inline">
-						
+							<input type="radio" name="" value="1" title="是" checked="">
+							<input type="radio" name="" value="0" title="否">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">工时损失</label>
+						<div class="layui-input-inline">
+							<input name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">不合格等级</label>
+						<div class="layui-input-inline">
+							<select name="" lay-filter="aihao">
+								<option value="">类型一</option>
+								<option value="">类型二</option>
+								<option value="">类型三</option>
+								<option value="">类型四</option>
+								<option value="">类型五</option>
+							</select>
+						</div>	
+					</div>	
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">使用数量</label>
+						<div class="layui-input-inline">
+							<input name="" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">不良品数量</label>
+						<div class="layui-input-inline">
+							<input name="" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">发现异常单位</label>
+						<div class="layui-input-inline">
+							<input name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">是否批量</label>
+						<div class="layui-input-inline">
+							<input type="radio" name="" value="1" title="是" checked="">
+							<input type="radio" name="" value="0" title="否">
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">反馈人</label>
+						<div class="layui-input-inline">
+							<input name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">收件人</label>
+						<div class="layui-input-inline">
+							<input name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 				</div>

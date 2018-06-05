@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Insert title here</title>
 	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui1.css">
 </head>
 <body class="layui-layout-body">
 	<div class="layui-layout layui-layout-admin">

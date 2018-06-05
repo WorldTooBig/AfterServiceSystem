@@ -35,8 +35,8 @@
     <div class="layui-side-scroll">
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-      <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="${pageContext.request.contextPath}/index.jsp">首页</a>
+      <li class="layui-nav-item layui-nav-itemed layui-this">
+          <a href="${pageContext.request.contextPath}/index.jsp">首页</a>
         </li>
         <li class="layui-nav-item layui-nav-itemed">
           <a class="" href="javascript:;">单据管理</a>

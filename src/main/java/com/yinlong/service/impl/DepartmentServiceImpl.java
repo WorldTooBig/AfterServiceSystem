@@ -26,7 +26,7 @@ public class DepartmentServiceImpl implements IDepartmentService {
 
 
 	/**
-	 * Ìí¼Ó²¿ÃÅ
+	 * ï¿½ï¿½Ó²ï¿½ï¿½ï¿½
 	 * @param department
 	 * @return
 	 */
@@ -35,7 +35,7 @@ public class DepartmentServiceImpl implements IDepartmentService {
 	}
 	
 	/**
-	 * ²éÑ¯ËùÓÐµÄ²¿ÃÅÐÅÏ¢  ¸ù¾Ý¹«Ë¾ID
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ÐµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢  ï¿½ï¿½ï¿½Ý¹ï¿½Ë¾ID
 	 * @return
 	 */
 	public List<Department> findDepartmentList(Company company) {
