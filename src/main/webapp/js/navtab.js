@@ -83,12 +83,13 @@ layui.define(['element'], function(exports){
          * @param  {[type]} data [description]
          * @return {[type]}      [description]
          */
-        LarryTab.prototype.tabAdd = function(data){
+        LarryTab.prototype.tabAdd = function(data, $dd){
             var _this = this;
 		    var tabIndex = _this.exists(data.title);
 		    // 若不存在
 		    if(tabIndex === -1){
 		    	globalTabIdIndex++;
+		    	$dd.attr("lay_id", globalTabIdIndex);
 		    	var content = '<iframe src="' + data.href + '" data-id="' + globalTabIdIndex + '" class="larry-iframe"></iframe>';
 			    var title = '';
 			    // 若icon有定义
@@ -106,7 +107,8 @@ layui.define(['element'], function(exports){
 			    //添加tab
 			    element.tabAdd(ELEM.tabFilter, {
 				    title: title,
-				    content: content
+				    content: content,
+				    id: globalTabIdIndex
 			    });
 			    //iframe 自适应
 			    ELEM.contentBox.find('iframe[data-id=' + globalTabIdIndex + ']').each(function() {
@@ -115,13 +117,13 @@ layui.define(['element'], function(exports){
 			    if(_this.config.closed) {
 				//监听关闭事件
 				    ELEM.titleBox.find('li').children('i.layui-tab-close[data-id=' + globalTabIdIndex + ']').on('click', function() {
-				    	element.tabDelete(ELEM.tabFilter, $(this).parent('li').index()).init();
+				    	element.tabDelete(ELEM.tabFilter, $(this).parent('li').attr("lay-id")).init();
 				    });
 			    };
 			    //切换到当前打开的选项卡
-			    element.tabChange(ELEM.tabFilter, ELEM.titleBox.find('li').length - 1);
+			    element.tabChange(ELEM.tabFilter, globalTabIdIndex);
 		    }else {
-			    element.tabChange(ELEM.tabFilter, tabIndex);
+			    element.tabChange(ELEM.tabFilter, $dd.attr("lay_id"));
 		    }
         };
     var navtab = new LarryTab();

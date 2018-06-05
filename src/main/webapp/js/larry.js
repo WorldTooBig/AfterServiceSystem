@@ -40,7 +40,22 @@ $(function(){
     // var $menu = $('.larry-tab-menu');
     // console.log($menu);
     // $('#larry-tab .layui-tab-title').append($menu);
-    $('#larry-nav-side').click(function(){
+
+	$("#larry-nav-side ul li dl dd").click(function(){
+                           var $a = $(this).children('a');
+                           var href = $a.data('url');
+                           if(href == "none") return;
+                           var icon = $a.children('i:first').data('icon');
+                           var title = $a.children('span').text();
+                           var data = {
+                                 href: href,
+                                 icon: icon,
+                                 title: title
+                           }
+                           navtab.tabAdd(data, $(this));
+                       });
+	
+    /*$('#larry-nav-side').click(function(){
         if($(this).attr('lay-filter')!== undefined){
             $(this).children('ul').find('li').each(function(){
                 var $this = $(this);
@@ -49,6 +64,7 @@ $(function(){
                        $(this).click(function(){
                            var $a = $(this).children('a');
                            var href = $a.data('url');
+                           if(href == "none") return;
                            var icon = $a.children('i:first').data('icon');
                            var title = $a.children('span').text();
                            var data = {
@@ -63,6 +79,7 @@ $(function(){
                     $this.click(function(){
                            var $a = $(this).children('a');
                            var href = $a.data('url');
+                           if(href == "none") return;
                            var icon = $a.children('i:first').data('icon');
                            var title = $a.children('span').text();
                            var data = {
@@ -75,7 +92,7 @@ $(function(){
                 }
             });
         }
-    })
+    })*/
 })
 
 

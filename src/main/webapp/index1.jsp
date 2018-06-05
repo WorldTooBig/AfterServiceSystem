@@ -19,9 +19,9 @@
 		<div class="layui-main">
 		    <!-- logo区域 -->
 			<div class="admin-logo-box">
-				<a class="logo" href="http://www.kuxuebao.net" title="logo"><img src="../common/images/logo.png" alt=""></a>
+				<a class="logo" href="javascript:;" title="logo"><img src="images/yl.jpg" alt=""></a>
 				<div class="larry-side-menu">
-					<i class="fa fa-bars" aria-hidden="true"></i>
+					<i class="fa fa-bars" aria-hidden="true" style="line-height: 30px"></i>
 				</div>
 			</div>
             <!-- 顶级菜单区域 -->
@@ -74,236 +74,323 @@
         <div class="layui-side-scroll" id="larry-nav-side" lay-filter="side">
 		<div class="user-photo">
 			<a class="img" title="我的头像" >
-				<img src="images/user.jpg" class="userimg1"></a>
+				<img src="images/user.png" class="userimg1"></a>
 			<p>你好！admin, 欢迎登录</p>
 		</div>
 		<!-- 左侧菜单 -->
 		<ul class="layui-nav layui-nav-tree">
 			<li class="layui-nav-item layui-this">
-				<a href="javascript:;" data-url="main.html">
+				<a href="javascript:;" data-url="${pageContext.request.contextPath}/index.jsp">
 				    <i class="iconfont icon-home1" data-icon='icon-home1'></i>
 					<span>后台首页</span>
 				</a>
 			</li>
-			<!-- 个人信息 -->
+			<!-- 质量异常反馈 -->
 			<li class="layui-nav-item">
 				<a href="javascript:;">
 					<i class="iconfont icon-jiaoseguanli" ></i>
-					<span>我的面板</span>
+					<span>质量异常反馈</span>
 					<em class="layui-nav-more"></em>
 				</a>
 				<dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" data-url="personInfo.html">
+                        <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/quas.jsp">
                             <i class="iconfont icon-geren1" data-icon='icon-geren1'></i>
-                            <span>个人信息</span>
+                            <span>填写异常反馈单</span>
                         </a>
                     </dd>
                     <dd>
                         <a href="javascript:;" data-url="changepwd.html">
                             <i class="iconfont icon-iconfuzhi01" data-icon='icon-iconfuzhi01'></i>
-                            <span>修改密码</span>
+                            <span>编辑驳回反馈单</span>
                         </a>
                     </dd>
                     <dd>
                         <a href="javascript:;" data-url="myloginfo.html">
                             <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
-                            <span>日志信息</span>
+                            <span>查询异常反馈单内容</span>
                         </a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;" data-url="myloginfo.html">
+                            <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
+                            <span>导出异常反馈单</span>
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;" data-url="none">
+                            <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
+                            <span>已完成异常反馈单</span>
+                        </a>
+						<dl class="layui-nav-child">
+		                    <dd>
+		                        <a href="javascript:;" data-url="myloginfo.html">
+		                            <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
+		                            <span>已限期整改的异常反馈单</span>
+		                        </a>
+		                    </dd>
+		                    <dd>
+		                        <a href="javascript:;" data-url="myloginfo.html">
+		                            <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
+		                            <span>已考核处理的异常反馈单</span>
+		                        </a>
+		                    </dd>
+		                    <dd>
+		                        <a href="javascript:;" data-url="myloginfo.html">
+		                            <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
+		                            <span>已暂停处理的异常反馈单</span>
+		                        </a>
+		                    </dd>
+	                    </dl>
                     </dd>
                 </dl>
 			</li>
-			<!-- 用户管理 -->
+			<!-- 归档处理 -->
 			<li class="layui-nav-item">
-					<a href="javascript:;">
-					   <i class="iconfont icon-jiaoseguanli2" ></i>
-					   <span>用户管理</span>
-					   <em class="layui-nav-more"></em>
-					</a>
-					    <dl class="layui-nav-child">
-					    	<dd>
-					    		<a href="javascript:;" data-url="userlist.html">
-					    		   <i class="iconfont icon-yonghu1" data-icon='icon-yonghu1'></i>
-					    		   <span>用户列表</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-jiaoseguanli4" data-icon='icon-jiaoseguanli4'></i>
-					    		   <span>角色列表</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-quanxian2" data-icon='icon-quanxian2'></i>
-					    		   <span>菜单管理</span>
-					    		</a>
-					    	</dd>
-					    </dl>
-			    </li>
-			<!-- 内容管理 -->
+				<a href="javascript:;">
+				   <i class="iconfont icon-jiaoseguanli2" ></i>
+				   <span>归档处理</span>
+				   <em class="layui-nav-more"></em>
+				</a>
+			    <dl class="layui-nav-child">
+			    	<dd>
+			    		<a href="javascript:;" data-url="userlist.html">
+			    		   <i class="iconfont icon-yonghu1" data-icon='icon-yonghu1'></i>
+			    		   <span>质量异常反馈归档处</span>
+			    		</a>
+			    	</dd>
+			    </dl>
+		    </li>
+			<!-- 质控部考核通报 -->
 			<li class="layui-nav-item">
-					<a href="javascript:;">
-					   <i class="iconfont icon-wenzhang1" ></i>
-					   <span>内容管理</span>
-					   <em class="layui-nav-more"></em>
-					</a>
-					   <dl class="layui-nav-child">
-					   	   <dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-lanmuguanli" data-icon='icon-lanmuguanli'></i>
-					    		   <span>网站栏目管理</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-wenzhang2" data-icon='icon-wenzhang2'></i>
-					    		   <span>所有档案列表</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-icon1" data-icon='icon-icon1'></i>
-					    		   <span>待审核的档案</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-word" data-icon='icon-word'></i>
-					    		   <span>我发布的文档</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-pinglun1" data-icon='icon-pinglun1'></i>
-					    		   <span>评论管理</span>
-					    		</a>
-					    	</dd>
-					    	
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-tags1" data-icon='icon-tags1'></i>
-					    		   <span>TAGS管理</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-huishouzhan1" data-icon='icon-huishouzhan1'></i>
-					    		   <span>内容回收站</span>
-					    		</a>
-					    	</dd>
-					   </dl>
-			   </li>
+				<a href="javascript:;">
+				   <i class="iconfont icon-wenzhang1" ></i>
+				   <span>质控部考核通报</span>
+				   <em class="layui-nav-more"></em>
+				</a>
+			   <dl class="layui-nav-child">
+			   	   <dd>
+			    		<a href="javascript:;">
+			    		   <i class="iconfont icon-lanmuguanli" data-icon='icon-lanmuguanli'></i>
+			    		   <span>质量工程师编制考核通报</span>
+			    		</a>
+			    	</dd>
+			    	<dd>
+			    		<a href="javascript:;">
+			    		   <i class="iconfont icon-wenzhang2" data-icon='icon-wenzhang2'></i>
+			    		   <span>质控部审核考核通报</span>
+			    		</a>
+			    	</dd>
+			    	<dd>
+			    		<a href="javascript:;">
+			    		   <i class="iconfont icon-icon1" data-icon='icon-icon1'></i>
+			    		   <span>质控部领导审批考核通报</span>
+			    		</a>
+			    	</dd>
+			    	<dd>
+			    		<a href="javascript:;">
+			    		   <i class="iconfont icon-word" data-icon='icon-word'></i>
+			    		   <span>责任单位答复</span>
+			    		</a>
+			    	</dd>
+			    	<dd>
+			    		<a href="javascript:;">
+			    		   <i class="iconfont icon-pinglun1" data-icon='icon-pinglun1'></i>
+			    		   <span>责任单位领导审批答复</span>
+			    		</a>
+			    	</dd>
+			    	<dd>
+			    		<a href="javascript:;">
+			    		   <i class="iconfont icon-tags1" data-icon='icon-tags1'></i>
+			    		   <span>质量工程师下考核结论</span>
+			    		</a>
+			    	</dd>
+			    	<dd>
+			    		<a href="javascript:;">
+			    		   <i class="iconfont icon-huishouzhan1" data-icon='icon-huishouzhan1'></i>
+			    		   <span>质控部审核考核结论</span>
+			    		</a>
+			    	</dd>
+			    	<dd>
+			    		<a href="javascript:;">
+			    		   <i class="iconfont icon-huishouzhan1" data-icon='icon-huishouzhan1'></i>
+			    		   <span>质控部领导审批考核结论</span>
+			    		</a>
+			    	</dd>
+			    	<dd>
+			    		<a href="javascript:;">
+			    		   <i class="iconfont icon-huishouzhan1" data-icon='icon-huishouzhan1'></i>
+			    		   <span>查询考核通报</span>
+			    		</a>
+			    	</dd>
+			    	<dd>
+			    		<a href="javascript:;">
+			    		   <i class="iconfont icon-huishouzhan1" data-icon='icon-huishouzhan1'></i>
+			    		   <span>导出详细信息xls表</span>
+			    		</a>
+			    	</dd>
+			    	<dd>
+			    		<a href="javascript:;">
+			    		   <i class="iconfont icon-huishouzhan1" data-icon='icon-huishouzhan1'></i>
+			    		   <span>统计问题类别xls表</span>
+			    		</a>
+			    	</dd>
+			   </dl>
+		   </li>
 			
-                 <!-- 会员管理 -->
-				<li class="layui-nav-item">
-					<a href="javascript:;">
-					   <i class="iconfont icon-m-members" ></i>
-					   <span>会员管理</span>
-					   <em class="layui-nav-more"></em>
-					</a>
-					<dl class="layui-nav-child">
-                           <dd>
-                           	   <a href="javascript:;">
-					              <i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
-					              <span>注册会员列表</span>
-					           </a>
-                           </dd>
-                           <dd>
-                           	   <a href="javascript:;">
-					              <i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
-					              <span>会员留言管理</span>
-					           </a>
-                           </dd>
-                    </dl>
-				</li>
-				
-				<li class="layui-nav-item">
-					<a href="javascript:;">
-					   <i class="iconfont icon-shengchengbaogao" ></i>
-					   <span>网站维护</span>
-					   <em class="layui-nav-more"></em>
-					</a>
-					   <dl class="layui-nav-child">
-                           <dd>
-                           	   <a href="javascript:;">
-					              <i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
-					              <span>网站主题</span>
-					           </a>
-                           </dd>
-                           <dd>
-					    		<a href="">
-					    		   <i class="iconfont icon-database" data-icon='icon-database'></i>
-					    		   <span>数据库管理</span>
-					    		</a>
-					    	</dd>
-					   	    <dd>
-					    		<a href="">
-					    		   <i class="iconfont icon-shengchengbaogao" data-icon='icon-shengchengbaogao'></i>
-					    		   <span>生成页面</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="">
-					    		   <i class="iconfont icon-qingchuhuancun" data-icon='icon-qingchuhuancun'></i>
-					    		   <span>更新缓存</span>
-					    		</a>
-					    	</dd>
-					    	
-					   </dl>
-				</li>
-				
-			<!-- 系统设置 -->
+            <!-- 限期整改 -->
 			<li class="layui-nav-item">
-					<a href="javascript:;">
-					   <i class="iconfont icon-xitong" ></i>
-					   <span>系统设置</span>
-					   <em class="layui-nav-more"></em>
-					</a>
-					    <dl class="layui-nav-child">
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-zhandianpeizhi" data-icon='icon-zhandianpeizhi'></i>
-					    		   <span>基本参数设置</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-zhandianguanli1" data-icon='icon-zhandianguanli1'></i>
-					    		   <span>多站点管理</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-anquanshezhi" data-icon='icon-anquanshezhi'></i>
-					    		   <span>安全设置</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-sms" data-icon='icon-sms'></i>
-					    		   <span>短信接口设置</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    		   <i class="iconfont icon-iconfuzhi01" data-icon='icon-iconfuzhi01'></i>
-					    		   <span>系统日志管理</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    			<i class='iconfont icon-SQLServershujuku' data-icon='icon-SQLServershujuku'></i>
-					    			<span>SQL命令行工具</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;">
-					    			<i class='iconfont icon-xinxicaiji' data-icon='icon-xinxicaiji'></i>
-					    			<span>防采集管理</span>
-					    		</a>
-					    	</dd>
-					    </dl>
+				<a href="javascript:;">
+				   <i class="iconfont icon-m-members" ></i>
+				   <span>限期整改</span>
+				   <em class="layui-nav-more"></em>
+				</a>
+				<dl class="layui-nav-child">
+           			<dd>
+           	   			<a href="javascript:;">
+ 							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>质量工程师编制限期整改单</span>
+						</a>
+ 					</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>质控部审核限期整改单</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>质控部领导审批限期整改单</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>责任单位答复</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>被驳回的答复</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>责任单位审核答复</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>责任单位领导审批答复</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>质量工程师确认申请</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>质控部审核确认申请</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>质控部领导审批确认申请</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>质量工程师关闭限期整改单</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>质控部审核关闭单</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>质控部领导审批关闭单</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>查询限期整改通知单</span>
+						</a>
+           			</dd>
+					<dd>
+						<a href="javascript:;">
+							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
+							<span>导出详细信息xls表</span>
+						</a>
+           			</dd>
+                 </dl>
+			</li>
+				
+				
+			<!-- 授权委托 -->
+			<li class="layui-nav-item">
+				<a href="javascript:;">
+				   <i class="iconfont icon-xitong" ></i>
+				   <span>授权委托</span>
+				   <em class="layui-nav-more"></em>
+				</a>
+				    <dl class="layui-nav-child">
+				    	<dd>
+				    		<a href="javascript:;">
+				    		   <i class="iconfont icon-zhandianpeizhi" data-icon='icon-zhandianpeizhi'></i>
+				    		   <span>基本参数设置</span>
+				    		</a>
+				    	</dd>
+				    	<dd>
+				    		<a href="javascript:;">
+				    		   <i class="iconfont icon-zhandianguanli1" data-icon='icon-zhandianguanli1'></i>
+				    		   <span>多站点管理</span>
+				    		</a>
+				    	</dd>
+				    	<dd>
+				    		<a href="javascript:;">
+				    		   <i class="iconfont icon-anquanshezhi" data-icon='icon-anquanshezhi'></i>
+				    		   <span>安全设置</span>
+				    		</a>
+				    	</dd>
+				    	<dd>
+				    		<a href="javascript:;">
+				    		   <i class="iconfont icon-sms" data-icon='icon-sms'></i>
+				    		   <span>短信接口设置</span>
+				    		</a>
+				    	</dd>
+				    	<dd>
+				    		<a href="javascript:;">
+				    		   <i class="iconfont icon-iconfuzhi01" data-icon='icon-iconfuzhi01'></i>
+				    		   <span>系统日志管理</span>
+				    		</a>
+				    	</dd>
+				    	<dd>
+				    		<a href="javascript:;">
+				    			<i class='iconfont icon-SQLServershujuku' data-icon='icon-SQLServershujuku'></i>
+				    			<span>SQL命令行工具</span>
+				    		</a>
+				    	</dd>
+				    	<dd>
+				    		<a href="javascript:;">
+				    			<i class='iconfont icon-xinxicaiji' data-icon='icon-xinxicaiji'></i>
+				    			<span>防采集管理</span>
+				    		</a>
+				    	</dd>
+				    </dl>
 				</li>
 				<!-- 友链设置 -->
 				<li class="layui-nav-item">
@@ -325,7 +412,7 @@
 			</ul>
 			<div class="layui-tab-content" style="min-height: 150px; ">
 				<div class="layui-tab-item layui-show">
-					<iframe class="larry-iframe" data-id='0' src="main.html"></iframe>
+					<iframe class="larry-iframe" data-id='0' src="${pageContext.request.contextPath}/index.jsp"></iframe>
 				</div>
 			</div>
 		</div>
@@ -335,7 +422,9 @@
 	<!-- 底部区域 -->
 	<div class="layui-footer layui-larry-foot" id="larry-footer">
 		<div class="layui-mian">
-		    <div class="larry-footer-left">
+			<!-- 底部固定区域 -->
+	    	© layui.com - 底部固定区域
+		    <!-- <div class="larry-footer-left">
 		    	LarryCMS QQ群：
 		    	<a href="https://jq.qq.com/?_wv=1027&k=42fC4vT"><img border="0" src="images/group.png" title="LarryCMS官方交流群"></a>
 		    	 查看:<a href="http://www.qinshouwei.com" title="">作者信息</a>
@@ -344,14 +433,19 @@
 		    	<span>2016 &copy;</span>
 		    	Write by Larry,<a href="http://www.larrycms.com">LarryCMS</a>. 版权所有
 		    	前端框架layui，下载地址：www.layui.com
-		    </p>
+		    </p> -->
 		</div>
 	</div>
+	
 </div>
+
+
 <!-- 加载js文件-->
-	<script type="text/javascript" src="../common/layui/layui.js"></script> 
-	<script type="text/javascript" src="js/larry.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.js"></script> 
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/larry.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
+	
+	
 <!-- 锁屏 -->
 <div class="lock-screen" style="display: none;">
 	<div id="locker" class="lock-wrapper">

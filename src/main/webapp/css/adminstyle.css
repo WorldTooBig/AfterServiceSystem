@@ -133,7 +133,7 @@
 	padding: 0px;
 }
 .layui-larry-side .user-photo{
-	width: 200px;
+	width: 250px;
 	height: 120px;
 	padding-top: 15px;
 	padding-bottom: 5px;
@@ -175,6 +175,9 @@
 .layui-nav-tree li.layui-nav-item .layui-nav-child dd a{
 	padding-left: 40px !important;
 	padding-right: 0px;
+}
+.layui-nav-tree li.layui-nav-item .layui-nav-child .layui-nav-child a{
+	padding-left: 60px !important;
 }
 .layui-nav-tree li.layui-nav-item .layui-nav-child dd a i{
 	padding-right: 3px;

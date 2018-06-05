@@ -7,16 +7,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Insert title here</title>
 	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui1.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 </head>
 <body class="layui-layout-body">
 	<div class="layui-layout layui-layout-admin">
 
-		<%@include file="navbar.jsp" %>
+		<%-- <%@include file="navbar.jsp" %> --%>
 
 		
-		<div class="layui-body">
+		<!-- <div class="layui-body"> -->
 			<!-- 内容主体区域 -->
 			<div style="padding: 15px;">内容主体区域</div>
 			
@@ -231,14 +231,14 @@
 				</div>
 				
 			</form>
-		</div>
+		<!-- </div> -->
 		
-		<div class="layui-footer">
-	    	<!-- 底部固定区域 -->
+		<!-- <div class="layui-footer">
+	    	底部固定区域
 	    	© layui.com - 底部固定区域
-		</div>
+		</div> -->
 	</div>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.all.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.js"></script>
 	<script>
 	
 	layui.use('laydate', function(){
@@ -251,6 +251,8 @@
 			,calendar: true
 		});
 	});
+	
 	</script>
+	
 </body>
 </html>
