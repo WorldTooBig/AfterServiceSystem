@@ -19,7 +19,7 @@ layui.use(['jquery','layer','element'],function(){
 // larry-side-menu向左折叠
 $('.larry-side-menu').click(function() {
   var sideWidth = $('#larry-side').width();
-  if(sideWidth === 200) {
+  if(sideWidth === 250) {
       $('#larry-body').animate({
         left: '0'
       }); //admin-footer
@@ -31,13 +31,13 @@ $('.larry-side-menu').click(function() {
       });
   } else {
       $('#larry-body').animate({
-        left: '200px'
+        left: '250px'
       });
       $('#larry-footer').animate({
-        left: '200px'
+        left: '250px'
       });
       $('#larry-side').animate({
-        width: '200px'
+        width: '250px'
       });
   }
 });

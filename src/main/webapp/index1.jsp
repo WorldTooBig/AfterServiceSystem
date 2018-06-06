@@ -27,7 +27,7 @@
             <!-- 顶级菜单区域 -->
             <div class="layui-larry-menu">
                  <ul class="layui-nav clearfix">
-                       <li class="layui-nav-item layui-this">
+                       <li class="layui-nav-item">
                  	   	   <a href="javascirpt:;"><i class="iconfont icon-wangzhanguanli"></i>内容管理</a>
                  	   </li>
                  	   <li class="layui-nav-item">
@@ -100,19 +100,19 @@
                         </a>
                     </dd>
                     <dd>
-                        <a href="javascript:;" data-url="changepwd.html">
+                        <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/perSystem.jsp">
                             <i class="iconfont icon-iconfuzhi01" data-icon='icon-iconfuzhi01'></i>
                             <span>编辑驳回反馈单</span>
                         </a>
                     </dd>
                     <dd>
-                        <a href="javascript:;" data-url="myloginfo.html">
+                        <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/userManage.jsp">
                             <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
                             <span>查询异常反馈单内容</span>
                         </a>
                     </dd>
                     <dd>
-                        <a href="javascript:;" data-url="myloginfo.html">
+                        <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/userInfo.jsp">
                             <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
                             <span>导出异常反馈单</span>
                         </a>

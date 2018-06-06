@@ -10,14 +10,19 @@
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css" media="all">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/personal.css" media="all">
 </head>
-<body class="layui-layout-body">
-	<div class="layui-layout layui-layout-admin">
+<body>
+	<div class="larry-wrapper">
+		<div class="larry-personal">
+			<header class="larry-personal-tit">
+				<span>公司部门管理</span>
+			</header>
+			
+			<div class="larry-personal-body clearfix">
 
-		<%@include file="navbar.jsp" %>
-
-		
-		<div class="layui-body">
 			<!-- 内容主体区域 -->
 			<!-- <div style="padding: 15px;">内容主体区域</div> -->
 				<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
@@ -130,15 +135,11 @@
 				  </div>
 				</div> 
 		
-		</div>
-		
-		<div class="layui-footer">
-	    	<!-- 底部固定区域 -->
-	    	© layui.com - 底部固定区域
-		</div>
+	</div>
+	</div>
 	</div>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.all.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.js"></script>
 	<script>
 	layui.use(['jquery', 'layer', 'form', 'element'], function(){
 		var layer = layui.layer

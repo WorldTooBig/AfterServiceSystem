@@ -8,18 +8,23 @@
 	<title>Insert title here</title>
 	
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css" media="all">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/personal.css" media="all">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 </head>
-<body class="layui-layout-body">
-	<div class="layui-layout layui-layout-admin">
+<body>
+	<div class="larry-wrapper">
 
 		<%-- <%@include file="navbar.jsp" %> --%>
 
 		
-		<!-- <div class="layui-body"> -->
-			<!-- 内容主体区域 -->
-			<div style="padding: 15px;">内容主体区域</div>
+		<div class="larry-personal">
+			<header class="larry-personal-tit">
+				<span>填写异常反馈单</span>
+			</header>
 			
+			<div class="larry-personal-body clearfix">
 			<form class="layui-form" action="userAction_findUserListLike" method="post">
 				<div class="layui-form-item">
 					<label class="layui-form-label">反馈单号</label>
@@ -143,12 +148,6 @@
 						</div>
 					</div>	
 					<div class="layui-inline">
-						<label class="layui-form-label">供应商名称</label>
-						<div class="layui-input-inline">
-							<input name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-						</div>
-					</div>	
-					<div class="layui-inline">
 						<label class="layui-form-label">物料类型</label>
 						<div class="layui-input-inline">
 							<select name="" lay-filter="aihao">
@@ -160,13 +159,19 @@
 							</select>
 						</div>
 					</div>	
+					<div class="layui-inline">
+						<label class="layui-form-label">供应商名称</label>
+						<div class="layui-input-inline">
+							<input name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>	
 				</div>
 				<div class="layui-form-item">
 					<div class="layui-inline">
     					<label class="layui-form-label">是否停线</label>
 						<div class="layui-input-inline">
-							<input type="radio" name="" value="1" title="是" checked="">
-							<input type="radio" name="" value="0" title="否">
+							<input type="radio" name="aaa" value="1" title="是" checked="">
+							<input type="radio" name="aaa" value="0" title="否">
 						</div>
 					</div>
 					<div class="layui-inline">
@@ -210,8 +215,8 @@
 					<div class="layui-inline">
 						<label class="layui-form-label">是否批量</label>
 						<div class="layui-input-inline">
-							<input type="radio" name="" value="1" title="是" checked="">
-							<input type="radio" name="" value="0" title="否">
+							<input type="radio" name="bbb" value="1" title="是" checked="">
+							<input type="radio" name="bbb" value="0" title="否">
 						</div>
 					</div>
 				</div>
@@ -231,7 +236,9 @@
 				</div>
 				
 			</form>
-		<!-- </div> -->
+			</div>
+			<!-- 外部 -->
+		</div>
 		
 		<!-- <div class="layui-footer">
 	    	底部固定区域
@@ -241,8 +248,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.js"></script>
 	<script>
 	
-	layui.use('laydate', function(){
-		var laydate = layui.laydate;
+	layui.use(['laydate', 'form'], function(){
+		var laydate = layui.laydate
+		form = layui.form
 		
 		//日期时间INPUT
 		laydate.render({
@@ -250,6 +258,8 @@
 			,type: 'datetime'
 			,calendar: true
 		});
+		
+		form.render();
 	});
 	
 	</script>

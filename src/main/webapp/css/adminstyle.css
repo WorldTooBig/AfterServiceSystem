@@ -82,6 +82,9 @@
 .layui-larry-menu ul.layui-nav li.layui-nav-item{
 	margin: 0px;
 }
+.layui-larry-menu ul.layui-nav li.layui-nav-item:hover{
+	background-color: #2B2E37
+}
 .layui-larry-menu ul.layui-nav li.layui-nav-item a{
 	color: #F5F5F5;
 	font-size: 14px;

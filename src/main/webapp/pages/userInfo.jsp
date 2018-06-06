@@ -8,17 +8,20 @@
 	<title>Insert title here</title>
 	
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css" media="all">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/personal.css" media="all">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 </head>
-<body class="layui-layout-body">
-	<div class="layui-layout layui-layout-admin">
+<body>
+	<div class="larry-wrapper">
+		<div class="larry-personal">
+			<header class="larry-personal-tit">
+				<span>根据条件筛选</span>
+			</header>
+			
+			<div class="larry-personal-body clearfix">
 
-		<%@include file="navbar.jsp" %>
-
-		
-		<div class="layui-body">
-			<!-- 内容主体区域 -->
-			<div style="padding: 15px;">根据条件筛选</div>
 			
 			<form class="layui-form" action="userAction_findUserListLike" method="post">
 			
@@ -91,14 +94,10 @@
 			
 			<table class="layui-hide" id="userTab" lay-data="{id: 'idTest'}"></table>
 			
-		</div>
-		
-		<div class="layui-footer">
-	    	<!-- 底部固定区域 -->
-	    	© layui.com - 底部固定区域
-		</div>
 	</div>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.all.js"></script>
+	</div>
+	</div>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.js"></script>
 	<script>
 	layui.use(['jquery', 'layer', 'form', 'element'], function(){
 		var layer = layui.layer

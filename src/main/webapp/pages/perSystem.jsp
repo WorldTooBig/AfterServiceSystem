@@ -10,14 +10,21 @@
 	
     <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css" media="all">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/personal.css" media="all">
 </head>
-<body class="layui-layout-body">
-	<div class="layui-layout layui-layout-admin">
-
-		<%@include file="navbar.jsp" %>
+<body>
+	<div class="larry-wrapper">
 
 		
-		<div class="layui-body">
+		<div class="larry-personal">
+			<header class="larry-personal-tit">
+				<span>个人信息</span>
+			</header>
+			
+			<div class="larry-personal-body clearfix">
+
 			<!-- 内容主体区域 -->
 			<%-- <div style="padding: 15px;">内容主体区域</div>
 				
@@ -197,14 +204,15 @@
 		</div>
 	</div> -->
 				
-			</div>
-		
-		<div class="layui-footer">
-	    	<!-- 底部固定区域 -->
-	    	© layui.com - 底部固定区域
-		</div>
 	</div>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.all.js"></script>
+	</div>
+		
+		<!-- <div class="layui-footer">
+	    	底部固定区域
+	    	© layui.com - 底部固定区域
+		</div> -->
+	</div>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/layui.js"></script>
 	
 	<script>
 	
