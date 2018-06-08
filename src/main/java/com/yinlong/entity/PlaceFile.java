@@ -25,6 +25,6 @@ public class PlaceFile implements Serializable {
 	private int		plaInvolveHandle;	// 是否涉及厂内或外仓产品处理
 	private String 	plaEmergencyPlan;	// 应急解决方案
 //	private	//涉及异常品处理 a各地库存 b数量 c处理方案 d方案下发方式      另起一表
-//	0
+//	01
 	
 }
