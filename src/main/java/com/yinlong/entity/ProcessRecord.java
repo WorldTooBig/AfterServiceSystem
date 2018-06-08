@@ -7,6 +7,7 @@ import java.io.Serializable;
  * 每个单据每走一次流程就在此记录一次
  * id:
  * data: 记录详细时间
+ * reason: 操作原因
  * result: 记录操作结果
  * User: 操作人			即登陆人
  * Process: 对应流程表
