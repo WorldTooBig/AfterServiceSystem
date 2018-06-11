@@ -9,6 +9,6 @@ import java.io.Serializable;
  *
  */
 @SuppressWarnings("serial")
-public class ResponsibilityUnit implements Serializable {
+public class DutyUnit implements Serializable {
 
 }
