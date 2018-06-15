@@ -8,20 +8,20 @@ import com.yinlong.entity.Role;
 public interface IRoleDao {
 
 	/**
-	 * 添加角色
+	 * 娣诲姞瑙掕壊
 	 * @param role
 	 * @return
 	 */
 	public boolean addRole(Role role);
 	
 	/**
-	 * 执行hql语句且返回Role泛型List
+	 * 鎵цhql璇彞涓旇繑鍥濺ole娉涘瀷List
 	 * @return
 	 */
 	public List<Role> queryRoleHql(String hql);
 	
 	/**
-	 * 执行hql语句且返回非泛型List
+	 * 鎵цhql璇彞涓旇繑鍥為潪娉涘瀷List
 	 * @return
 	 */
 	public List queryHql(String hql);

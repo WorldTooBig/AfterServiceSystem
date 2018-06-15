@@ -11,7 +11,7 @@ import com.yinlong.entity.Section;
 public class SectionDaoImpl extends BaseDao implements ISectionDao {
 
 	/**
-	 * 添加科室
+	 * 娣诲姞绉戝
 	 * @param section
 	 * @return
 	 */
@@ -26,7 +26,7 @@ public class SectionDaoImpl extends BaseDao implements ISectionDao {
 	}
 	
 	/**
-	 * 根据HQL语句获取信息
+	 * 鏍规嵁HQL璇彞鑾峰彇淇℃伅
 	 * @param hql
 	 * @return
 	 */

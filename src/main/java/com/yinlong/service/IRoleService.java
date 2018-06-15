@@ -7,33 +7,33 @@ import com.yinlong.entity.Role;
 public interface IRoleService {
 
 	/**
-	 * Ìí¼Ó½ÇÉ«
+	 * æ·»åŠ è§’è‰²
 	 * @param role
 	 * @return
 	 */
 	public boolean addRole(Role role);
 	
 	/**
-	 * ²éÑ¯ËùÓĞ½ÇÉ«
+	 * æŸ¥è¯¢æ‰€æœ‰è§’è‰²
 	 * @return
 	 */
 	public List<Role> findRoleList();
 	
 	/**
-	 * ²éÑ¯ËùÓĞ½ÇÉ«¼°ÆäÓµÓĞµÄÈ¨ÏŞ
+	 * æŸ¥è¯¢æ‰€æœ‰è§’è‰²åŠå…¶æ‹¥æœ‰çš„æƒé™
 	 * @return
 	 */
 	public List findRoleAndPermission();
 
 	/**
-	 * ¸ù¾İ´«ÈëµÄRoleµÄid²éÑ¯¸ÃRoleËùÓµÓĞµÄÈ¨ÏŞ
+	 * æ ¹æ®ä¼ å…¥çš„Roleçš„idæŸ¥è¯¢è¯¥Roleæ‰€æ‹¥æœ‰çš„æƒé™
 	 * @param role
 	 * @return
 	 */
 	public List findRoleAndPermissionByRoleId(Role role);
 
 	/**
-	 * ¸ù¾İ´«ÈëµÄRoleµÄrname²éÑ¯¸ÃRoleËùÓµÓĞµÄÈ¨ÏŞ
+	 * æ ¹æ®ä¼ å…¥çš„Roleçš„rnameæŸ¥è¯¢è¯¥Roleæ‰€æ‹¥æœ‰çš„æƒé™
 	 * @param role
 	 * @return
 	 */

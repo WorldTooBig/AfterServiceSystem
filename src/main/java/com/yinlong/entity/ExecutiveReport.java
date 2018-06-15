@@ -2,11 +2,20 @@ package com.yinlong.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  * 预防纠正措施预防报告
  * @author 01270059
  *
  */
+@Entity
+@Table(name = "YL_ExecutiveReport")
 @SuppressWarnings("serial")
 public class ExecutiveReport implements Serializable {
 
@@ -25,6 +34,10 @@ public class ExecutiveReport implements Serializable {
 		this.etrDescription = etrDescription;
 		this.etrFileNo = etrFileNo;
 	}
+
+	@Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_ExecutiveReport")   
+    @SequenceGenerator(name="SEQ_ExecutiveReport", sequenceName="SEQ_ExecutiveReport",allocationSize = 1) 
 	public int getEtrId() {
 		return etrId;
 	}

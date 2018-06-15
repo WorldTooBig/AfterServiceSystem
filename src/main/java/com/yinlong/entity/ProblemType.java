@@ -2,11 +2,15 @@ package com.yinlong.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.*;
+
 /**
  * 问题类别表
  * @author 01270059
  *
  */
+@Entity
+@Table(name = "YL_ProblemType")
 @SuppressWarnings("serial")
 public class ProblemType implements Serializable {
 	
@@ -23,7 +27,10 @@ public class ProblemType implements Serializable {
 		this.pbtId = pbtId;
 		this.pbtName = pbtName;
 	}
-	
+
+	@Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_ProblemType")   
+    @SequenceGenerator(name="SEQ_ProblemType", sequenceName="SEQ_ProblemType",allocationSize = 1) 
 	public int getPbtId() {
 		return pbtId;
 	}

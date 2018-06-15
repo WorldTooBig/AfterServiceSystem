@@ -11,6 +11,11 @@
 	<include file="struts-company.xml"/>
 	<include file="struts-department.xml"/>
 	<include file="struts-section.xml"/>
+	
+	<include file="struts-feedback.xml"/>
+	<include file="struts-placeFile.xml"/>
+	<include file="struts-productType.xml"/>
+	<include file="struts-problemType.xml"/>
 </struts>
 
 

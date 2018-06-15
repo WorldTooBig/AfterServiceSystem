@@ -1,6 +1,9 @@
 package com.yinlong.entity;
 
 import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.*;
 
 /**
  * 流程表
@@ -29,26 +32,36 @@ import java.io.Serializable;
  * @author KA
  *
  */
+@Entity
+@Table(name = "YL_Process")
 @SuppressWarnings("serial")
 public class Process implements Serializable {
 	
-	private String proId;
+	private int proId;
 	private String proName;
+	
+	private Process parentProcess;
+	
+	private List<Process> processList;
+	
 	public Process() {
 		super();
 	}
 	
-	public Process(String proId, String proName) {
+	public Process(int proId, String proName) {
 		super();
 		this.proId = proId;
 		this.proName = proName;
 	}
 
-	public String getProId() {
+	@Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_Process")   
+    @SequenceGenerator(name="SEQ_Process", sequenceName="SEQ_Process",allocationSize = 1) 
+	public int getProId() {
 		return proId;
 	}
 
-	public void setProId(String proId) {
+	public void setProId(int proId) {
 		this.proId = proId;
 	}
 
@@ -58,6 +71,26 @@ public class Process implements Serializable {
 
 	public void setProName(String proName) {
 		this.proName = proName;
+	}
+	
+	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="parentProcess")
+	public Process getParentProcess() {
+		return parentProcess;
+	}
+
+	public void setParentProcess(Process parentProcess) {
+		this.parentProcess = parentProcess;
+	}
+	
+	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="parentProcess")
+	public List<Process> getProcessList() {
+		return processList;
+	}
+
+	public void setProcessList(List<Process> processList) {
+		this.processList = processList;
 	}
 	
 	

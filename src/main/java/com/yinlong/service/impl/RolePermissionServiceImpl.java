@@ -25,7 +25,7 @@ public class RolePermissionServiceImpl implements IRolePermissionService {
 
 	
 	/**
-	 * ²éÑ¯ËùÓĞ½ÇÉ«È¨ÏŞ±íĞÅÏ¢
+	 * æŸ¥è¯¢æ‰€æœ‰è§’è‰²æƒé™è¡¨ä¿¡æ¯
 	 * @return
 	 */
 	public List<RolePermission> findRolePermission() {
@@ -34,7 +34,7 @@ public class RolePermissionServiceImpl implements IRolePermissionService {
 	}
 
 	/**
-	 * ¸ù¾İIDÉ¾³ı¸Ã½ÇÉ«È¨ÏŞĞÅÏ¢
+	 * æ ¹æ®IDåˆ é™¤è¯¥è§’è‰²æƒé™ä¿¡æ¯
 	 * @param rolePermission
 	 * @return
 	 */
@@ -43,7 +43,7 @@ public class RolePermissionServiceImpl implements IRolePermissionService {
 	}
 
 	/**
-	 * Îª½ÇÉ«°ó¶¨È¨ÏŞ
+	 * ä¸ºè§’è‰²ç»‘å®šæƒé™
 	 * @param rolePermission
 	 * @return
 	 */

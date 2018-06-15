@@ -2,11 +2,24 @@ package com.yinlong.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  * 对责任单位的考核情况
  * @author 01270059
  *
  */
+@Entity
+@Table(name = "YL_Appraise")
 @SuppressWarnings("serial")
 public class Appraise implements Serializable {
 
@@ -16,9 +29,8 @@ public class Appraise implements Serializable {
 	private int		appIsCriticism;	// 是否通报批评
 	private String	appRemark;		// 备注
 	
-	private Department department; // 责任单位（即部门）
+	private Department department;	// 责任单位（即部门）
 	
-//	private 对责任单位的考核情况  a责任单位名称 b责任人   c扣分   d通报批评(勾选) e备注
 	public Appraise() {
 		super();
 	}
@@ -30,6 +42,10 @@ public class Appraise implements Serializable {
 		this.appIsCriticism = appIsCriticism;
 		this.appRemark = appRemark;
 	}
+
+	@Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_Appraise")   
+    @SequenceGenerator(name="SEQ_Appraise", sequenceName="SEQ_Appraise",allocationSize = 1) 
 	public int getAppId() {
 		return appId;
 	}
@@ -60,6 +76,9 @@ public class Appraise implements Serializable {
 	public void setAppRemark(String appRemark) {
 		this.appRemark = appRemark;
 	}
+
+	@OneToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="deptId")
 	public Department getDepartment() {
 		return department;
 	}

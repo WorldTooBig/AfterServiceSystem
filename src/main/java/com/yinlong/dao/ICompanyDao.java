@@ -7,28 +7,28 @@ import com.yinlong.entity.Company;
 public interface ICompanyDao {
 
 	/**
-	 * 根据 HQL语句查询公司信息
+	 * 鏍规嵁 HQL璇彞鏌ヨ鍏徃淇℃伅
 	 * @param hql
 	 * @return
 	 */
 	public List<Company> queryCompanyHql(String hql);
 	
 	/**
-	 * 根据SQL语句查询需要的信息
+	 * 鏍规嵁SQL璇彞鏌ヨ闇�瑕佺殑淇℃伅
 	 * @param sql
 	 * @return
 	 */
 	public List queryCompanySql(String sql);
 	
 	/**
-	 * 添加公司
+	 * 娣诲姞鍏徃
 	 * @param company
 	 * @return
 	 */
 	public boolean addCompany(Company company);
 	
 	/**
-	 * 根据ID查询公司信息
+	 * 鏍规嵁ID鏌ヨ鍏徃淇℃伅
 	 * @param company
 	 * @return
 	 */

@@ -2,13 +2,27 @@ package com.yinlong.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 考核通报填写
  * @author KA
  *
  */
+@Entity
+@Table(name = "YL_Notified")
 @SuppressWarnings("serial")
 public class Notified implements Serializable {
 	
@@ -17,8 +31,6 @@ public class Notified implements Serializable {
 	private String 	notCauseAnalysis;	// 初步原因分析
 	private Date	notEndDate;			// 限期整改日期
 	private Date	notHandleDate;		// 处理时间(默认当前)
-	
-	private List<Appraise> appList;		// 对责任单位的考核情况
 	
 	private PlaceFile placeFile;		// 对应的归档操作表
 	
@@ -33,6 +45,10 @@ public class Notified implements Serializable {
 		this.notEndDate = notEndDate;
 		this.notHandleDate = notHandleDate;
 	}
+	
+	@Id
+	@GeneratedValue(generator = "notified")    
+	@GenericGenerator(name = "notified", strategy = "uuid")   
 	public int getNotId() {
 		return notId;
 	}
@@ -63,12 +79,8 @@ public class Notified implements Serializable {
 	public void setNotHandleDate(Date notHandleDate) {
 		this.notHandleDate = notHandleDate;
 	}
-	public List<Appraise> getAppList() {
-		return appList;
-	}
-	public void setAppList(List<Appraise> appList) {
-		this.appList = appList;
-	}
+	@OneToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="plaId")
 	public PlaceFile getPlaceFile() {
 		return placeFile;
 	}

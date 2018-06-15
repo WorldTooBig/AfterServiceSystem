@@ -3,6 +3,8 @@ package com.yinlong.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.*;
+
 /**
  * 流程记录表
  * 每个单据每走一次流程就在此记录一次
@@ -19,6 +21,8 @@ import java.util.Date;
  * @author KA
  *
  */
+@Entity
+@Table(name = "YL_ProcessRecord")
 @SuppressWarnings("serial")
 public class ProcessRecord implements Serializable {
 	
@@ -42,7 +46,10 @@ public class ProcessRecord implements Serializable {
 		this.preResult = preResult;
 		this.preRemark = preRemark;
 	}
-	
+
+	@Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_ProcessRecord")   
+    @SequenceGenerator(name="SEQ_ProcessRecord", sequenceName="SEQ_ProcessRecord",allocationSize = 1) 
 	public int getPreId() {
 		return preId;
 	}
@@ -67,18 +74,27 @@ public class ProcessRecord implements Serializable {
 	public void setPreRemark(String preRemark) {
 		this.preRemark = preRemark;
 	}
+	
+	@OneToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="userId")
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	@OneToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="proId")
 	public Process getProcess() {
 		return process;
 	}
 	public void setProcess(Process process) {
 		this.process = process;
 	}
+
+	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="docId")
 	public Feedback getFeedback() {
 		return feedback;
 	}

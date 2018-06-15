@@ -7,14 +7,14 @@ import com.yinlong.entity.Section;
 public interface ISectionDao {
 
 	/**
-	 * 添加科室
+	 * 娣诲姞绉戝
 	 * @param section
 	 * @return
 	 */
 	public boolean addSection(Section section);
 	
 	/**
-	 * 根据HQL语句获取信息
+	 * 鏍规嵁HQL璇彞鑾峰彇淇℃伅
 	 * @param hql
 	 * @return
 	 */

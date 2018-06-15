@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.yinlong.dao.*;
 import com.yinlong.entity.*;
 import com.yinlong.service.IUserService;
+import com.yinlong.util.AddProcessRecordUtil;
 
 @Service("userService")
 @Transactional(propagation = Propagation.REQUIRED)

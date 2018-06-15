@@ -1,32 +1,46 @@
 package com.yinlong.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * 归档处理填写
  * @author KA
  *
  */
+@Entity
+@Table(name = "YL_PlaceFile")
 @SuppressWarnings("serial")
 public class PlaceFile implements Serializable {
 
 	private int 	plaId;
-	private String	plaBigCategory;		// 问题大类                                  
-	private int		plaIsTrialControl;	// 是否试制把关
-	private int 	plaIsSafeAfterRisk;	// 是否有引发售后投诉的隐患
-	private String	plaAbnormalType;	// 缺陷类别
-	private int		plaIsFirstCheckLose;// 是否首检失效
-	private int 	plaMouthLoopCount;	// 是否重复一个月发生,第几次发生
-	private String	plaCauseAnalysis;	// 根本原因分析
-	private String[] plaBigReason;		// 原因大类
-	private String[] plaSmallReason;	// 原因小类
-	private int		plaIsInvolveHandle;	// 是否涉及厂内或外仓产品处理
-	private String 	plaEmergencyPlan;	// 应急解决方案
+	private String	plaBigCategory;			// 问题大类                                  
+	private int		plaIsTrialControl;		// 是否试制把关
+	private int 	plaIsSafeAfterRisk;		// 是否有引发售后投诉的隐患
+	private String	plaAbnormalType;		// 缺陷类别
+	private int		plaIsFirstCheckLose;	// 是否首检失效
+	private int 	plaMouthLoopCount;		// 是否重复一个月发生,第几次发生
+	private String	plaCauseAnalysis;		// 根本原因分析
+	private String[] plaBigReason;			// 原因大类
+	private String[] plaSmallReason;		// 原因小类
+	private int		plaIsInvolveHandle;		// 是否涉及厂内或外仓产品处理
+	private String 	plaEmergencyPlan;		// 应急解决方案
 	
-	private List<ProblemType> ptList;	// 问题类别
-	private List<AbnormalProcessing> apList;	// 涉及异常品处理类 列表
-	private Feedback feedback;			// 反馈单
+	private Set<ProblemType> ptList;		// 问题类别
+	private Set<AbnormalProcessing> apList;	// 涉及异常品处理类 列表
+	private Feedback feedback;				// 反馈单
 	
 	public PlaceFile() {
 		super();
@@ -48,6 +62,10 @@ public class PlaceFile implements Serializable {
 		this.plaIsInvolveHandle = plaIsInvolveHandle;
 		this.plaEmergencyPlan = plaEmergencyPlan;
 	}
+	
+	@Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_PlaceFile")   
+    @SequenceGenerator(name="SEQ_PlaceFile", sequenceName="SEQ_PlaceFile",allocationSize = 1)  
 	public int getPlaId() {
 		return plaId;
 	}
@@ -120,18 +138,27 @@ public class PlaceFile implements Serializable {
 	public void setPlaEmergencyPlan(String plaEmergencyPlan) {
 		this.plaEmergencyPlan = plaEmergencyPlan;
 	}
-	public List<ProblemType> getPtList() {
+
+	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="plaId")
+	public Set<ProblemType> getPtList() {
 		return ptList;
 	}
-	public void setPtList(List<ProblemType> ptList) {
+	public void setPtList(Set<ProblemType> ptList) {
 		this.ptList = ptList;
 	}
-	public List<AbnormalProcessing> getApList() {
+
+	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="plaId")
+	public Set<AbnormalProcessing> getApList() {
 		return apList;
 	}
-	public void setApList(List<AbnormalProcessing> apList) {
+	public void setApList(Set<AbnormalProcessing> apList) {
 		this.apList = apList;
 	}
+	
+	@OneToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="docId")
 	public Feedback getFeedback() {
 		return feedback;
 	}

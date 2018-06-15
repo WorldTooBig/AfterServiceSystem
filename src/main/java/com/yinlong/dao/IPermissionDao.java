@@ -8,21 +8,21 @@ import com.yinlong.entity.Permission;
 public interface IPermissionDao {
 	
 	/**
-	 * 添加权限
+	 * 娣诲姞鏉冮檺
 	 * @param permission
 	 * @return
 	 */
 	public boolean addPermission(Permission permission);
 
 	/**
-	 * 执行sql语句返回Permission泛型List
+	 * 鎵цsql璇彞杩斿洖Permission娉涘瀷List
 	 * @param sql
 	 * @return
 	 */
 	public List<Permission> queryPermissionSql(String sql);
 	
 	/**
-	 * 执行hql语句返回Permission泛型List
+	 * 鎵цhql璇彞杩斿洖Permission娉涘瀷List
 	 * @param hql
 	 * @return
 	 */

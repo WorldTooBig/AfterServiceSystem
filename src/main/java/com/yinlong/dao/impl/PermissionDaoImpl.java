@@ -2,9 +2,6 @@ package com.yinlong.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.boot.model.naming.Identifier;
-import org.hibernate.boot.model.naming.ImplicitPrimaryKeyJoinColumnNameSource;
-import org.hibernate.boot.spi.MetadataBuildingContext;
 import org.springframework.stereotype.Repository;
 
 import com.yinlong.dao.IPermissionDao;
@@ -14,7 +11,7 @@ import com.yinlong.entity.Permission;
 public class PermissionDaoImpl extends BaseDao implements IPermissionDao {
 
 	/**
-	 * 添加权限
+	 * 娣诲姞鏉冮檺
 	 * @param permission
 	 * @return
 	 */
@@ -29,7 +26,7 @@ public class PermissionDaoImpl extends BaseDao implements IPermissionDao {
 	}
 	
 	/**
-	 * 执行sql语句返回Permission泛型List
+	 * 鎵цsql璇彞杩斿洖Permission娉涘瀷List
 	 * @param sql
 	 * @return
 	 */
@@ -43,7 +40,7 @@ public class PermissionDaoImpl extends BaseDao implements IPermissionDao {
 	}
 
 	/**
-	 * 执行hql语句返回Permission泛型List
+	 * 鎵цhql璇彞杩斿洖Permission娉涘瀷List
 	 * @param hql
 	 * @return
 	 */

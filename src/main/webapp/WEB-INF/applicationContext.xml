@@ -17,7 +17,7 @@
 	<!-- 开启注解 -->
 	<context:annotation-config/>
 	<!-- 设置扫描范围 -->
-	<context:component-scan base-package="com.yinlong"/>
+	<context:component-scan base-package="com.yinlong.*"/>
 	<!-- 设置自动代理 -->
 	<aop:aspectj-autoproxy/>
 

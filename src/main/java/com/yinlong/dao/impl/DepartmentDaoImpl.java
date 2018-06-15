@@ -11,7 +11,7 @@ import com.yinlong.entity.Department;
 public class DepartmentDaoImpl extends BaseDao implements IDepartmentDao {
 
 	/**
-	 * 添加部门 
+	 * 娣诲姞閮ㄩ棬 
 	 * @param department
 	 * @return
 	 */
@@ -26,7 +26,7 @@ public class DepartmentDaoImpl extends BaseDao implements IDepartmentDao {
 	}
 	
 	/**
-	 * 根据HQL查询信息
+	 * 鏍规嵁HQL鏌ヨ淇℃伅
 	 * @return
 	 */
 	public List<Department> queryDepartmentListHql(String hql) {

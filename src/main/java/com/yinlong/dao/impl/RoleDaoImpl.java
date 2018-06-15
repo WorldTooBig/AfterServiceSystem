@@ -11,7 +11,7 @@ import com.yinlong.entity.Role;
 public class RoleDaoImpl extends BaseDao implements IRoleDao {
 
 	/**
-	 * 添加角色
+	 * 娣诲姞瑙掕壊
 	 */
 	public boolean addRole(Role role) {
 		try {
@@ -24,7 +24,7 @@ public class RoleDaoImpl extends BaseDao implements IRoleDao {
 	}
 
 	/**
-	 * 执行hql语句且返回Role泛型List
+	 * 鎵цhql璇彞涓旇繑鍥濺ole娉涘瀷List
 	 * @return
 	 */
 	public List<Role> queryRoleHql(String hql) {
@@ -37,7 +37,7 @@ public class RoleDaoImpl extends BaseDao implements IRoleDao {
 	}
 
 	/**
-	 * 执行hql语句且返回非泛型List
+	 * 鎵цhql璇彞涓旇繑鍥為潪娉涘瀷List
 	 * @return
 	 */
 	public List queryHql(String hql) {

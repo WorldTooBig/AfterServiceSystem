@@ -24,7 +24,7 @@ public class CompanyServiceImpl implements ICompanyService {
 	}
 	
 	/**
-	 * Ìí¼Ó¹«Ë¾
+	 * æ·»åŠ å…¬å¸
 	 * @param company
 	 * @return
 	 */
@@ -33,7 +33,7 @@ public class CompanyServiceImpl implements ICompanyService {
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞ¹«Ë¾ĞÅÏ¢
+	 * æŸ¥è¯¢æ‰€æœ‰å…¬å¸ä¿¡æ¯
 	 * @return
 	 */
 	public List<Company> findCompanyList() {
@@ -42,7 +42,7 @@ public class CompanyServiceImpl implements ICompanyService {
 	}
 
 	/**
-	 * ¸ù¾İID²éÑ¯¹«Ë¾ĞÅÏ¢
+	 * æ ¹æ®IDæŸ¥è¯¢å…¬å¸ä¿¡æ¯
 	 * @param company
 	 * @return
 	 */

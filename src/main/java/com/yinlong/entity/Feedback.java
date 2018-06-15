@@ -3,25 +3,28 @@ package com.yinlong.entity;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
+
+import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 反馈单信息
  * @author KA
  *
  */
+@Entity
+@Table(name = "YL_Feedback")
 @SuppressWarnings("serial")
 public class Feedback implements Serializable {
-
-	////////////////////////////////////
-
-	private int		docId;				// ID
-	private int		docNum;				// 异常反馈单号	自动
+	
+	private String	docId;				// ID 异常反馈单号	自动
 	private Date	docCreateDate;		// 创建时间		隐藏
 	private String	docTheme;			// 主题			
 	private File	docFile;			// 附件
-	private Date	docFindDate;		// 发现时间		自动
-	private String	docFindAddr;		// 发现地点		自动
+	private Date	docFindDate;		// 发现时间		
+	private String	docFindAddr;		// 发现地点		
 	private String	docCustName;		// 客户名称
 	private String	docProMode;			// 产品型号
 	private String	docOrderNum;		// 订单号
@@ -42,25 +45,22 @@ public class Feedback implements Serializable {
 	private String	docDescribe;		// 异常描述
 	private String	docStatus; 			// 状态
 	
-	private User	user;				// 反馈人
 	private ProductType productType;	// 产品类别
 	private Process	process;			// 下一流程节点
 
-	private List<Appraise> appList;		// 责任单位
-	private	List<User>	andresseeList;	// 收件人
+	private Set<Appraise> appSet;		// 责任单位
 	
 	
 	public Feedback() {
 		super();
 	}
-	public Feedback(int docId, int docNum, Date docCreateDate, String docTheme, File docFile, Date docFindDate,
+	public Feedback(String docId, Date docCreateDate, String docTheme, File docFile, Date docFindDate,
 			String docFindAddr, String docCustName, String docProMode, String docOrderNum, String docProDep,
 			String docProTeam, String docResStation, String docItemType, String docItemName, String docItemNum,
 			String docSupName, int docIsStopLine, String docLoss, String docSeverityLevel, int docUsedCounts,
 			int docDefproCounts, String docFindDep, int docIsBatch, String docDescribe, String docStatus) {
 		super();
 		this.docId = docId;
-		this.docNum = docNum;
 		this.docCreateDate = docCreateDate;
 		this.docTheme = docTheme;
 		this.docFile = docFile;
@@ -86,17 +86,15 @@ public class Feedback implements Serializable {
 		this.docDescribe = docDescribe;
 		this.docStatus = docStatus;
 	}
-	public int getDocId() {
+
+	@Id
+	@GeneratedValue(generator = "feedback")    
+	@GenericGenerator(name = "feedback", strategy = "uuid")    
+	public String getDocId() {
 		return docId;
 	}
-	public void setDocId(int docId) {
+	public void setDocId(String docId) {
 		this.docId = docId;
-	}
-	public int getDocNum() {
-		return docNum;
-	}
-	public void setDocNum(int docNum) {
-		this.docNum = docNum;
 	}
 	public Date getDocCreateDate() {
 		return docCreateDate;
@@ -242,35 +240,30 @@ public class Feedback implements Serializable {
 	public void setDocStatus(String docStatus) {
 		this.docStatus = docStatus;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
+	@OneToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="pdtId")
 	public ProductType getProductType() {
 		return productType;
 	}
 	public void setProductType(ProductType productType) {
 		this.productType = productType;
 	}
+	@OneToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="proId")
 	public Process getProcess() {
 		return process;
 	}
 	public void setProcess(Process process) {
 		this.process = process;
 	}
-	public List<Appraise> getAppList() {
-		return appList;
+	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="docId")
+	public Set<Appraise> getAppSet() {
+		return appSet;
 	}
-	public void setAppList(List<Appraise> appList) {
-		this.appList = appList;
-	}
-	public List<User> getAndresseeList() {
-		return andresseeList;
-	}
-	public void setAndresseeList(List<User> andresseeList) {
-		this.andresseeList = andresseeList;
+	public void setAppSet(Set<Appraise> appSet) {
+		this.appSet = appSet;
 	}
 
 	

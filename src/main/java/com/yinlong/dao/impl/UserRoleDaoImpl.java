@@ -9,7 +9,7 @@ import com.yinlong.entity.UserRole;
 public class UserRoleDaoImpl extends BaseDao implements IUserRoleDao {
 
 	/**
-	 * É¾³ıÊı¾İ£¬½â°óÓÃ»§½ÇÉ«
+	 * åˆ é™¤æ•°æ®ï¼Œè§£ç»‘ç”¨æˆ·è§’è‰²
 	 * @param userRole
 	 * @return
 	 */
@@ -24,7 +24,7 @@ public class UserRoleDaoImpl extends BaseDao implements IUserRoleDao {
 	}
 
 	/**
-	 * Ìí¼ÓÊı¾İ£¬°ó¶¨ÓÃ»§½ÇÉ«
+	 * æ·»åŠ æ•°æ®ï¼Œç»‘å®šç”¨æˆ·è§’è‰²
 	 * @param userRole
 	 * @return
 	 */

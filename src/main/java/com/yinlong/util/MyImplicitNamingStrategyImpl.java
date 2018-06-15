@@ -3,9 +3,9 @@ package com.yinlong.util;
 import org.hibernate.boot.model.naming.*;
 
 /**
- * ÃüÃû²ßÂÔ
- * ¸ÃÀàÊµÏÖÁË  Íâ¼üµÄÃüÃû¹æÔò£¨Í¨¹ıÊµÌåÀà×¢½â×Ô¶¯ÔÚÊı¾İ¿âÉú²ú·ûºÏÃüÃû¹æÔòµÄÍâ¼üÃû£©
- * FK_±íÃû_ÁĞÃû
+ * å‘½åç­–ç•¥
+ * è¯¥ç±»å®ç°äº†  å¤–é”®çš„å‘½åè§„åˆ™ï¼ˆé€šè¿‡å®ä½“ç±»æ³¨è§£è‡ªåŠ¨åœ¨æ•°æ®åº“ç”Ÿäº§ç¬¦åˆå‘½åè§„åˆ™çš„å¤–é”®åï¼‰
+ * FK_è¡¨å_åˆ—å
  * @author 01270059
  *
  */
@@ -130,7 +130,7 @@ public class MyImplicitNamingStrategyImpl extends ImplicitNamingStrategyJpaCompl
     public Identifier determineForeignKeyName(ImplicitForeignKeyNameSource source) {
         Identifier name = super.determineForeignKeyName(source);
         String result = null;
-        String tableName = source.getTableName().getText();
+        String tableName = source.getReferencedTableName().getText();
         if(source.getColumnNames().size() == 1){
             result = "FK_" + tableName + "_" + source.getColumnNames().get(0).getText();
         } else  {

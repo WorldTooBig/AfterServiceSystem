@@ -2,6 +2,13 @@ package com.yinlong.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  * 涉及异常品处理类
  * a) 园区
@@ -12,6 +19,8 @@ import java.io.Serializable;
 //	private	//涉及异常品处理 a各地库存 b数量 c处理方案 d方案下发方式      另起一表
  *
  */
+@Entity
+@Table(name = "YL_AbnormalProcessing")
 @SuppressWarnings("serial")
 public class AbnormalProcessing implements Serializable {
 
@@ -35,6 +44,9 @@ public class AbnormalProcessing implements Serializable {
 		this.ampDownWay = ampDownWay;
 	}
 
+	@Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_AbnormalProcessing")   
+    @SequenceGenerator(name="SEQ_AbnormalProcessing", sequenceName="SEQ_AbnormalProcessing",allocationSize = 1) 
 	public int getAmpId() {
 		return ampId;
 	}

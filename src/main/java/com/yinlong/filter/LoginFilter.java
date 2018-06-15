@@ -15,20 +15,20 @@ public class LoginFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// »ñÈ¡request,response,session¶ÔÏó
+		// è·å–request,response,sessionå¯¹è±¡
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
 		HttpServletResponse servletResponse = (HttpServletResponse) response;
 		HttpSession session = servletRequest.getSession();
 
-		// »ñÈ¡ÓÃ»§ÇëÇóµÄURI
+		// è·å–ç”¨æˆ·è¯·æ±‚çš„URI
 		String path = servletRequest.getRequestURI();
 
-		// »ñÈ¡sessionÖĞÓÃ»§ÃûĞÅÏ¢
+		// è·å–sessionä¸­ç”¨æˆ·åä¿¡æ¯
 		User user = (User) session.getAttribute("user_login");
 		if(user!=null)
 			chain.doFilter(request, response);
 
-		// ÅĞ¶ÏÊÇ·ñÎªµÇÂ½½çÃæ£¬Èç¹ûÊÇµÇÂ½½çÃæÔò·ÅĞĞ£¬·ñÔò½øĞĞÓÃ»§ĞÅÏ¢¼ì²é
+		// åˆ¤æ–­æ˜¯å¦ä¸ºç™»é™†ç•Œé¢ï¼Œå¦‚æœæ˜¯ç™»é™†ç•Œé¢åˆ™æ”¾è¡Œï¼Œå¦åˆ™è¿›è¡Œç”¨æˆ·ä¿¡æ¯æ£€æŸ¥
 		if(path.indexOf("/login.jsp") >-1 || path.contains("userLogin")) {
 			chain.doFilter(request, response);
 		}else if(!path.contains(".jsp")&&(path.contains(".css")||path.contains(".js")||path.contains(".ttf")||path.contains(".ico")||path.contains("Mobile"))) {
