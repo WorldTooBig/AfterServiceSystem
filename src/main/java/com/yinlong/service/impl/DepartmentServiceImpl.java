@@ -26,7 +26,7 @@ public class DepartmentServiceImpl implements IDepartmentService {
 
 
 	/**
-	 * ��Ӳ���
+	 * 添加部门
 	 * @param department
 	 * @return
 	 */
@@ -35,7 +35,7 @@ public class DepartmentServiceImpl implements IDepartmentService {
 	}
 	
 	/**
-	 * ��ѯ���еĲ�����Ϣ  ���ݹ�˾ID
+	 * 根据公司id查询该公司下的所有部门
 	 * @return
 	 */
 	public List<Department> findDepartmentList(Company company) {

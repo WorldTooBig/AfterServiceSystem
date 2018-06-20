@@ -7,8 +7,10 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.yinlong.entity.Company;
 import com.yinlong.entity.Department;
+import com.yinlong.entity.User;
 import com.yinlong.service.IDepartmentService;
 
 @Controller("departmentAction")
@@ -44,6 +46,15 @@ public class DepartmentAction {
 		return "findDepartmentList";
 	}
 	
+	/**
+	 * 根据登录人查询登录人所在公司的所有部门
+	 * @return
+	 */
+	public String findDepartmentListByUser() {
+		User user = (User) ActionContext.getContext().getSession().get("user_login");
+		list = departmentService.findDepartmentList(user.getSection().getDepartment().getCompany());
+		return "findDepartmentList";
+	}
 	
 	public Company getCompany() {
 		return company;

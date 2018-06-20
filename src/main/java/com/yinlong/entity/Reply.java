@@ -64,7 +64,7 @@ public class Reply implements Serializable {
 	public void setRepCorrectionMethod(String repCorrectionMethod) {
 		this.repCorrectionMethod = repCorrectionMethod;
 	}
-	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY)
 	@JoinColumn(name="repId")
 	public List<ExecutiveReport> getErList() {
 		return erList;

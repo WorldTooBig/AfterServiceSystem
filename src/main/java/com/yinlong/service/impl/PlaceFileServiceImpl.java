@@ -1,5 +1,7 @@
 package com.yinlong.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -30,6 +32,26 @@ public class PlaceFileServiceImpl implements IPlaceFileService {
 	public boolean addPlaceFile(PlaceFile placeFile) {
 		
 		return placeFileDao.addPlaceFile(placeFile);
+	}
+	
+	/**
+	 * 查询所有的PlaceFile
+	 * @return
+	 */
+	@Override
+	public List<PlaceFile> findPlaceFileList() {
+		String hql = "from PlaceFile";
+		return placeFileDao.findPlacefileList(hql);
+	}
+
+	/**
+	 * 根据ID查询PlaceFile
+	 * @param placeFile
+	 * @return
+	 */
+	@Override
+	public PlaceFile findPlaceFileById(PlaceFile placeFile) {
+		return placeFileDao.findPlaceFileById(placeFile);
 	}
 
 }

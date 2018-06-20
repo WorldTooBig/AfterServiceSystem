@@ -32,7 +32,7 @@ public class UserRoleServiceImpl implements IUserRoleService {
 
 
 	/**
-	 * ¸ù¾İIDÉ¾³ıÊı¾İ£¬½â°óÓÃ»§½ÇÉ«
+	 * æ ¹æ®IDåˆ é™¤æ•°æ®ï¼Œè§£ç»‘ç”¨æˆ·è§’è‰²
 	 * @param userRole
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public class UserRoleServiceImpl implements IUserRoleService {
 	}
 
 	/**
-	 * ²éÑ¯¸ÃÓÃ»§Ã»ÓĞ°ó¶¨µÄ½ÇÉ«
+	 * æŸ¥è¯¢è¯¥ç”¨æˆ·æ²¡æœ‰ç»‘å®šçš„è§’è‰²
 	 * @param user
 	 * @return
 	 */
@@ -54,7 +54,7 @@ public class UserRoleServiceImpl implements IUserRoleService {
 		return roleDao.queryRoleHql(hql);
 	}
 	/**
-	 * Ìí¼ÓÊı¾İ£¬°ó¶¨ÓÃ»§½ÇÉ«
+	 * æ·»åŠ æ•°æ®ï¼Œç»‘å®šç”¨æˆ·è§’è‰²
 	 * @param userRole
 	 * @return
 	 */

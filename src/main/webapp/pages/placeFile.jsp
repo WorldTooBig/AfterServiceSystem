@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css" media="all">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/personal.css" media="all">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.params.js"></script>
 </head>
 <body>
 	<div class="larry-wrapper">
@@ -22,7 +23,7 @@
 			
 			<div class="larry-personal-body clearfix">
 			<form class="layui-form" action="placeFileAction_doAddPlaceFile" method="post">
-				
+				<input type="hidden" name="feedback.docId" value="">
 				<div class="layui-form-item">
 					<label class="layui-form-label">异常处理类型</label>
 					<div class="layui-input-block">
@@ -196,6 +197,7 @@
 			  console.log(data.value); //复选框value值，也可以通过data.elem.value得到
 			  console.log(data.othis); //得到美化后的DOM对象
 			});  
+		
 		//问题类别
 		$.post("problemTypeAction_findProblemTypeList", "", function(data){
 			var str = ""
@@ -213,6 +215,17 @@
 	
 	function test(){
 		alert($("form").eq(0).serialize());
+	}
+	
+	window.onload = start();
+	
+	function start() {
+		getFeedbackId();
+	}
+	
+	function getFeedbackId(){
+		var docId = $.query.get("docId");
+		$("input[name='feedback.docId']").val(docId);
 	}
 	</script>
 </body>

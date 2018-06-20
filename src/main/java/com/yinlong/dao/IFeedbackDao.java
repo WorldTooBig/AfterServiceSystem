@@ -1,5 +1,7 @@
 package com.yinlong.dao;
 
+import java.util.List;
+
 import com.yinlong.entity.Feedback;
 
 public interface IFeedbackDao {
@@ -17,5 +19,12 @@ public interface IFeedbackDao {
 	 * @return
 	 */
 	public Feedback findFeedbackById(Feedback feedback);
+	
+	/**
+	 * 查询所有反馈单
+	 * @param hql
+	 * @return
+	 */
+	public List<Feedback> findFeedBackList(String hql);
 	
 }

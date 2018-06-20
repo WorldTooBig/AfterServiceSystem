@@ -78,9 +78,6 @@
 								<div class="layui-input-block">
 									<select name="company.compId" lay-filter="aihao" lay-verify="number">
 										<option value="">--请选择--</option>
-										<s:iterator var="comp" value="#session.compList">
-											<option value="${comp.compId }">${comp.compName }</option>
-										</s:iterator>
 									</select>
 								</div>
 							</div>
@@ -108,9 +105,6 @@
 								<div class="layui-input-block">
 									<select lay-filter="findDepartmentList" lay-verify="number">
 										<option value="">--请选择--</option>
-										<s:iterator var="comp" value="#session.compList">
-											<option value="${comp.compId }">${comp.compName }</option>
-										</s:iterator>
 									</select>
 								</div>
 							</div>
@@ -147,6 +141,15 @@
 		,element = layui.element
 		,$ = layui.$
 
+		$.post("companyAction_findCompanyListJson", "", function(data) {
+			var str = "";
+			$.each(data.list, function(i, v) {
+				str += "<option value='" + v.compId + "'>" + v.compName + "</option>";
+			});
+			$("select[name='company.compId'],select[lay-filter='findDepartmentList']").append(str);
+			form.render();
+		}, "json");
+		
 		//获取部门
 		form.on('select(findDepartmentList)', function(data){
 			$.post("departmentAction_findDepartmentList", "company.compId=" + data.elem.value, function(data) {

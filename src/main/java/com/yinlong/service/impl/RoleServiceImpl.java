@@ -25,7 +25,7 @@ public class RoleServiceImpl implements IRoleService {
 
 
 	/**
-	 * Ìí¼Ó½ÇÉ«
+	 * æ·»åŠ è§’è‰²
 	 * @param role
 	 * @return
 	 */
@@ -35,7 +35,7 @@ public class RoleServiceImpl implements IRoleService {
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞ½ÇÉ«
+	 * æŸ¥è¯¢æ‰€æœ‰è§’è‰²
 	 * @return
 	 */
 	public List<Role> findRoleList() {
@@ -44,7 +44,7 @@ public class RoleServiceImpl implements IRoleService {
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞ½ÇÉ«¼°ÆäÓµÓĞµÄÈ¨ÏŞ
+	 * æŸ¥è¯¢æ‰€æœ‰è§’è‰²åŠå…¶æ‹¥æœ‰çš„æƒé™
 	 * @return
 	 */
 	public List findRoleAndPermission() {
@@ -53,7 +53,7 @@ public class RoleServiceImpl implements IRoleService {
 	}
 
 	/**
-	 * ¸ù¾İ´«ÈëµÄRoleµÄid²éÑ¯¸ÃRoleËùÓµÓĞµÄÈ¨ÏŞ
+	 * æ ¹æ®ä¼ å…¥çš„Roleçš„idæŸ¥è¯¢è¯¥Roleæ‰€æ‹¥æœ‰çš„æƒé™
 	 * @param role
 	 * @return
 	 */
@@ -63,7 +63,7 @@ public class RoleServiceImpl implements IRoleService {
 	}
 	
 	/**
-	 * ¸ù¾İ´«ÈëµÄRoleµÄrname²éÑ¯¸ÃRoleËùÓµÓĞµÄÈ¨ÏŞ
+	 * æ ¹æ®ä¼ å…¥çš„Roleçš„rnameæŸ¥è¯¢è¯¥Roleæ‰€æ‹¥æœ‰çš„æƒé™
 	 * @param role
 	 * @return
 	 */

@@ -80,7 +80,7 @@
 		<!-- 左侧菜单 -->
 		<ul class="layui-nav layui-nav-tree">
 			<li class="layui-nav-item layui-this">
-				<a href="javascript:;" data-url="${pageContext.request.contextPath}/main.jsp">
+				<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/main.jsp">
 				    <i class="iconfont icon-home1" data-icon='icon-home1'></i>
 					<span>后台首页</span>
 				</a>
@@ -154,7 +154,7 @@
 				</a>
 			    <dl class="layui-nav-child">
 			    	<dd>
-			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/placeFile.jsp">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectPlaceFile.jsp">
 			    		   <i class="iconfont icon-yonghu1" data-icon='icon-yonghu1'></i>
 			    		   <span>质量异常反馈归档处</span>
 			    		</a>
@@ -170,13 +170,13 @@
 				</a>
 			   <dl class="layui-nav-child">
 			   	   <dd>
-			    		<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectNotified.jsp">
 			    		   <i class="iconfont icon-lanmuguanli" data-icon='icon-lanmuguanli'></i>
 			    		   <span>质量工程师编制考核通报</span>
 			    		</a>
 			    	</dd>
 			    	<dd>
-			    		<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/reply.jsp">
 			    		   <i class="iconfont icon-wenzhang2" data-icon='icon-wenzhang2'></i>
 			    		   <span>质控部审核考核通报</span>
 			    		</a>
@@ -412,7 +412,7 @@
 			</ul>
 			<div class="layui-tab-content" style="min-height: 150px; ">
 				<div class="layui-tab-item layui-show">
-					<iframe class="larry-iframe" data-id='0' src="${pageContext.request.contextPath}/main.jsp"></iframe>
+					<iframe class="larry-iframe" data-id='0' src="${pageContext.request.contextPath}/pages/main.jsp"></iframe>
 				</div>
 			</div>
 		</div>

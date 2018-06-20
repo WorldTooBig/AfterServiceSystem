@@ -17,12 +17,13 @@ import com.yinlong.service.IProcessRecordService;
 @Component
 public class AddProcessRecordUtil {
 	
+	private static AddProcessRecordUtil addProcessRecordUtil;
+	
 	@Resource(name = "processRecordService")
 	private IProcessRecordService processRecordService;
 	
 	private ProcessRecord processRecord;
 
-	private static AddProcessRecordUtil addProcessRecordUtil;
 	
 	@PostConstruct
 	public void init() {

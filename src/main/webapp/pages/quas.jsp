@@ -27,11 +27,16 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">主题</label>
 					<div class="layui-input-block">
-						<input name="feedback.docTheme" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input" />
+						<input name="feedback.docTheme" lay-verify="required" autocomplete="off" placeholder="请输入主题" class="layui-input" />
 					</div>
 				</div>	
 				<div class="layui-form-item">
-						
+					<label class="layui-form-label">附件</label>
+					<div class="layui-input-block">
+						<input type="file" name="">
+					</div>
+				</div>
+				<div class="layui-form-item">
 					<div class="layui-inline">
 						<label class="layui-form-label">发现时间</label>
 						<div class="layui-input-inline">
@@ -41,7 +46,7 @@
 					<div class="layui-inline">
 						<label class="layui-form-label">发现地点</label>
 						<div class="layui-input-inline">
-							<input name="feedback.docFindAddr" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input name="feedback.docFindAddr" lay-verify="required" placeholder="车间和产线" autocomplete="off" class="layui-input">
 						</div>
 					</div>	
 					
@@ -64,7 +69,7 @@
 					<div class="layui-inline">
 						<label class="layui-form-label">产品型号</label>
 						<div class="layui-input-inline">
-							<input name="feedback.docProMode" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input name="feedback.docProMode" lay-verify="required" placeholder="如：GTQ6121VBT3 /30AH/40AH" autocomplete="off" class="layui-input">
 						</div>
 					</div>	
 				</div>
@@ -154,13 +159,13 @@
 					<div class="layui-inline">
 						<label class="layui-form-label">使用数量</label>
 						<div class="layui-input-inline">
-							<input name="feedback.docUsedCounts" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input name="feedback.docUsedCounts" lay-verify="number" placeholder="请输入整数" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-inline">
 						<label class="layui-form-label">不良品数量</label>
 						<div class="layui-input-inline">
-							<input name="feedback.docDefproCounts" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input name="feedback.docDefproCounts" lay-verify="number" placeholder="请输入整数" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-inline">
@@ -187,10 +192,7 @@
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">责任单位</label>
-					<div class="layui-input-block">
-						<input type="checkbox" name="" title="写作">
-						<input type="checkbox" name="" title="阅读" checked="">
-						<input type="checkbox" name="" title="游戏">
+					<div class="layui-input-block" id="dutyUnit">
 					</div>
 				</div>
 				<div class="layui-form-item layui-form-text">
@@ -234,9 +236,10 @@
 	
 	
 	
-	layui.use(['jquery', 'laydate', 'form'], function(){
+	layui.use(['jquery', 'laydate', 'form', 'upload'], function(){
 		var laydate = layui.laydate
 		,form = layui.form
+		,upload = layui.upload
 		,$ = layui.$
 		
 		//日期时间INPUT
@@ -246,6 +249,27 @@
 			,calendar: true
 		});
 		
+		//产品类别
+		$.post("productTypeAction_findProductTypeList", null, function(data){
+			var str = "";
+			$.each(data.productTypeList, function(i, v){
+				str += "<option value='" + v.pdtId + "'>" + v.pdtName + "</option>";
+			});
+			$("select[name='feedback.productType.pdtId']").append(str);
+			form.render();
+		}, "json");
+		
+		//责任单位
+		$.post("departmentAction_findDepartmentListByUser", "", function(data){
+			var str = "";
+			$.each(data.list, function(i, v){
+				str += '<input type="checkbox" name="appList[' + i + '].department.deptId" title="' + v.deptName + '" value="' + v.deptId + '">';
+			});
+			$("#dutyUnit").empty();
+			$("#dutyUnit").append(str);
+			form.render();
+		}, "json");
+		  
 		form.render();
 		
 	});
@@ -254,18 +278,8 @@
 	
 	function start() {
 		//alert("${user_login.userName }");
-		findProductType();
 	}
 	
-	function findProductType() {
-		$.post("productTypeAction_findProductTypeList", null, function(data){
-			var str = "";
-			$.each(data.productTypeList, function(i, v){
-				str += "<option value='" + v.pdtId + "'>" + v.pdtName + "</option>";
-			});
-			$("select[name='feedback.productType.pdtId']").append(str);
-		}, "json");
-	}
 	
 	</script>
 	

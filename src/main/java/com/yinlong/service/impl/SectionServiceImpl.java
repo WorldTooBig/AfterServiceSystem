@@ -26,7 +26,7 @@ public class SectionServiceImpl implements ISectionService {
 
 	
 	/**
-	 * Ìí¼Ó¿ÆÊÒ
+	 * æ·»åŠ ç§‘å®¤
 	 * @param section
 	 * @return
 	 */
@@ -35,7 +35,7 @@ public class SectionServiceImpl implements ISectionService {
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞ¿ÆÊÒĞÅÏ¢
+	 * æŸ¥è¯¢æ‰€æœ‰ç§‘å®¤ä¿¡æ¯
 	 * @return
 	 */
 	public List<Section> findSectionList(Department department) {

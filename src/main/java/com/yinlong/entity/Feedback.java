@@ -3,6 +3,7 @@ package com.yinlong.entity;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -48,7 +49,7 @@ public class Feedback implements Serializable {
 	private ProductType productType;	// 产品类别
 	private Process	process;			// 下一流程节点
 
-	private Set<Appraise> appSet;		// 责任单位
+	private List<Appraise> appList;		// 责任单位
 	
 	
 	public Feedback() {
@@ -259,11 +260,11 @@ public class Feedback implements Serializable {
 	}
 	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
 	@JoinColumn(name="docId")
-	public Set<Appraise> getAppSet() {
-		return appSet;
+	public List<Appraise> getAppList() {
+		return appList;
 	}
-	public void setAppSet(Set<Appraise> appSet) {
-		this.appSet = appSet;
+	public void setAppList(List<Appraise> appList) {
+		this.appList = appList;
 	}
 
 	

@@ -7,20 +7,20 @@ import com.yinlong.entity.Company;
 public interface ICompanyService {
 
 	/**
-	 * Ìí¼Ó¹«Ë¾
+	 * æ·»åŠ å…¬å¸
 	 * @param company
 	 * @return
 	 */
 	public boolean addCompany(Company company);
 	
 	/**
-	 * ²éÑ¯ËùÓĞ¹«Ë¾ĞÅÏ¢
+	 * æŸ¥è¯¢æ‰€æœ‰å…¬å¸ä¿¡æ¯
 	 * @return
 	 */
 	public List<Company> findCompanyList();
 	
 	/**
-	 * ¸ù¾İID²éÑ¯¹«Ë¾ĞÅÏ¢
+	 * æ ¹æ®IDæŸ¥è¯¢å…¬å¸ä¿¡æ¯
 	 * @param company
 	 * @return
 	 */

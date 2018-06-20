@@ -1,5 +1,7 @@
 package com.yinlong.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -41,6 +43,16 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	@Override
 	public Feedback findFeedbackById(Feedback feedback) {
 		return feedbackDao.findFeedbackById(feedback);
+	}
+
+	/**
+	 * 查询所有反馈单
+	 * @return
+	 */
+	@Override
+	public List<Feedback> findfeedbackList() {
+		String hql = "from Feedback";
+		return feedbackDao.findFeedBackList(hql);
 	}
 
 }

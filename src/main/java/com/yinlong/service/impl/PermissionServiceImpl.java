@@ -26,7 +26,7 @@ public class PermissionServiceImpl implements IPermissionService {
 
 	
 	/**
-	 * Ìí¼ÓÈ¨ÏŞ
+	 * æ·»åŠ æƒé™
 	 * @param permission
 	 * @return
 	 */
@@ -35,7 +35,7 @@ public class PermissionServiceImpl implements IPermissionService {
 	}
 
 	/**
-	 * ²éÑ¯ËùÓĞÈ¨ÏŞ
+	 * æŸ¥è¯¢æ‰€æœ‰æƒé™
 	 * @return
 	 */
 	public List<Permission> findPermissionList() {
@@ -44,7 +44,7 @@ public class PermissionServiceImpl implements IPermissionService {
 	}
 
 	/**
-	 * ¸ù¾İ½ÇÉ«id²éÑ¯¸Ã½ÇÉ«Î´ÓµÓĞµÄÈ¨ÏŞ
+	 * æ ¹æ®è§’è‰²idæŸ¥è¯¢è¯¥è§’è‰²æœªæ‹¥æœ‰çš„æƒé™
 	 * @param role
 	 * @return
 	 */

@@ -1,5 +1,7 @@
 package com.yinlong.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.yinlong.dao.IFeedbackDao;
@@ -35,6 +37,21 @@ public class FeedbackDaoImpl extends BaseDao implements IFeedbackDao {
 			return getSession().get(Feedback.class, feedback.getDocId());
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * 查询所有反馈单
+	 * @param hql
+	 * @return
+	 */
+	@Override
+	public List<Feedback> findFeedBackList(String hql) {
+		try {
+			return getSession().createQuery(hql).list();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		return null;
 	}

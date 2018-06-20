@@ -1,5 +1,8 @@
 package com.yinlong.web;
 
+import java.io.IOException;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
@@ -11,6 +14,8 @@ import com.yinlong.entity.Process;
 import com.yinlong.service.IFeedbackService;
 import com.yinlong.service.IPlaceFileService;
 import com.yinlong.util.AddProcessRecordUtil;
+import com.yinlong.util.LayuiTableData;
+import com.yinlong.util.NextProcess;
 
 @Controller("placeFileAction")
 @Scope("prototype")
@@ -26,6 +31,8 @@ public class PlaceFileAction {
 	private Feedback feedback;
 	private Process process;
 	
+	private List<PlaceFile> placeFileList;
+	
 	/**
 	 * 保存并关闭异常归档（即可以开始下一步）
 	 * @return
@@ -35,8 +42,9 @@ public class PlaceFileAction {
 		placeFile.setFeedback(feedback);						// 将feedback与placeFile绑定
 		if (placeFileService.addPlaceFile(placeFile)) {
 			AddProcessRecordUtil.addProcessRecord(feedback, feedback.getProcess(), "保存并关闭异常归档成功");
-			feedback.setProcess(process);						// 修改下一流程节点
-			feedbackService.addOrUpdateFeedback(feedback);		// 保存修改的流程节点
+			NextProcess.nextProcess(feedback, process);			// 修改下一流程节点
+			//feedback.setProcess(process);						// 修改下一流程节点
+			//feedbackService.addOrUpdateFeedback(feedback);		// 保存修改的流程节点
 		}
 		return "doAddPlaceFile";
 	}
@@ -61,6 +69,16 @@ public class PlaceFileAction {
 	public String toAddPlaceFile() {
 		
 		return "";
+	}
+	
+	/**
+	 * 查询所有的PlaceFile
+	 * @throws IOException 
+	 */
+	public void findPlaceFileList() throws IOException {
+		placeFileList = placeFileService.findPlaceFileList();
+		int count = placeFileList.size();
+		LayuiTableData.layuiTableUserList(0, "", count, placeFileList);
 	}
 
 	
@@ -90,5 +108,17 @@ public class PlaceFileAction {
 
 	public void setProcess(Process process) {
 		this.process = process;
+	}
+
+	public List<PlaceFile> getPlaceFileList() {
+		return placeFileList;
+	}
+
+	public void setPlaceFileList(List<PlaceFile> placeFileList) {
+		this.placeFileList = placeFileList;
+	}
+
+	public void setFeedbackService(IFeedbackService feedbackService) {
+		this.feedbackService = feedbackService;
 	}
 }

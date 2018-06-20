@@ -1,5 +1,7 @@
 package com.yinlong.service;
 
+import java.util.List;
+
 import com.yinlong.entity.Feedback;
 
 public interface IFeedbackService {
@@ -17,4 +19,11 @@ public interface IFeedbackService {
 	 * @return
 	 */
 	public Feedback findFeedbackById(Feedback feedback);
+	
+	/**
+	 * 查询所有反馈单
+	 * @return
+	 */
+	public List<Feedback> findfeedbackList();
+	
 }
