@@ -14,6 +14,14 @@
 	
 	<include file="struts-feedback.xml"/>
 	<include file="struts-placeFile.xml"/>
+	<include file="struts-notified.xml"/>
+	<include file="struts-deadline.xml"/>
+	<include file="struts-reply.xml"/>
+	<include file="struts-replyDeadline.xml"/>
+	<include file="struts-delay.xml"/>
+	<include file="struts-conclusion.xml"/>
+	<include file="struts-conDeadline.xml"/>
+	
 	<include file="struts-productType.xml"/>
 	<include file="struts-problemType.xml"/>
 </struts>

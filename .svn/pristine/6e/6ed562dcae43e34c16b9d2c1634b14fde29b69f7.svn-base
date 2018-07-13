@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	
+	<!-- 设置系统参数 -->
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.action.extension" value="action,do,,"/>
+	<constant name="struts.ui.theme" value="simple"/>
+
+	<package name="yl-reply" extends="json-default">
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+		<action name="replyAction_*" method="{1}" class="replyAction">
+			<result name="addReply" type="redirect">/pages/selectReply.jsp</result>
+			<result name="findReplyById">/pages/replyExamine.jsp</result>
+			<result name="examine1" type="redirect">/pages/selectReplyExamine1.jsp</result>
+			<result name="examine2" type="redirect">/pages/selectReplyExamine2.jsp</result>
+			<result name="findReplyByIdToReply">/pages/reply.jsp</result>
+			
+		</action>
+	</package>
+</struts>
+
+
+
+
+

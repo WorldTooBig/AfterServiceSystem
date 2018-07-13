@@ -1,0 +1,72 @@
+package com.yinlong.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.yinlong.dao.IDeadlineDao;
+import com.yinlong.entity.Deadline;
+import com.yinlong.entity.User;
+import com.yinlong.service.IDeadlineService;
+
+@Service("deadlineService")
+@Transactional(propagation = Propagation.REQUIRED)
+public class DeadlineServiceImpl implements IDeadlineService {
+
+	@Resource(name = "deadlineDao")
+	private IDeadlineDao deadlineDao;
+
+	public void setDeadlineDao(IDeadlineDao deadlineDao) {
+		this.deadlineDao = deadlineDao;
+	}
+
+	/**
+	 * 添加
+	 * @param deadline
+	 * @return
+	 */
+	@Override
+	public boolean addDeadline(Deadline deadline) {
+		return deadlineDao.addDeadline(deadline);
+	}
+
+	/**
+	 * 查询登录人和填写人部门相同的Deadline集合
+	 * @param proId
+	 * @return
+	 */
+	@Override
+	public List<Deadline> findDeadlineList(int proId) {
+		User user = (User) ActionContext.getContext().getSession().get("user_login");
+		String hql = "select d from Deadline d left join ProcessRecord p on d.placeFile.feedback.docId = p.feedback.docId "
+				+ "where d.placeFile.feedback.process.proId = " + proId 
+				+ " and p.process.proId = 2 and p.user.section.department.deptId = " + user.getSection().getDepartment().getDeptId();
+		return deadlineDao.queryDeadline(hql);
+	}
+
+	/**
+	 * 根据ID查询Deadline
+	 * @param deadline
+	 * @return
+	 */
+	@Override
+	public Deadline findDeadlineById(Deadline deadline) {
+		return deadlineDao.queryDeadlineById(deadline);
+	}
+
+	/**
+	 * 查询待关闭的限期单
+	 */
+	@Override
+	public List<Deadline> findDeadlineOnConclusion() {
+		String hql = "select d from Deadline d "
+				+ "where d.placeFile.feedback.process.proId =15";
+		return deadlineDao.queryDeadline(hql);
+	}
+
+}

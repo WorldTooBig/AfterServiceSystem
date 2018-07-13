@@ -1,0 +1,81 @@
+package com.yinlong.entity;
+
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+/**
+ * ����
+ * @author 01270059
+ *
+ */
+@Entity
+@Table(name = "YL_DEPARTMENT")
+@SuppressWarnings("serial")
+public class Department implements Serializable {
+	
+	private int deptId;
+	private String deptName;
+	private String deptRemark;
+	
+	private Company company;
+
+	public Department() {
+		super();
+	}
+
+	public Department(int deptId, String deptName, String deptRemark) {
+		super();
+		this.deptId = deptId;
+		this.deptName = deptName;
+		this.deptRemark = deptRemark;
+	}
+
+	@Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_DEPARTMENT")   
+    @SequenceGenerator(name="SEQ_DEPARTMENT", sequenceName="SEQ_DEPARTMENT",allocationSize = 1)  
+	public int getDeptId() {
+		return deptId;
+	}
+
+	public void setDeptId(int deptId) {
+		this.deptId = deptId;
+	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public String getDeptRemark() {
+		return deptRemark;
+	}
+
+	public void setDeptRemark(String deptRemark) {
+		this.deptRemark = deptRemark;
+	}
+
+	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinColumn(name="compId")
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+	
+
+}

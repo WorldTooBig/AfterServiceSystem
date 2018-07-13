@@ -33,6 +33,12 @@
 			<artifactId>jsp-api</artifactId>
 			<version>2.0</version>
 			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- Junit依赖 -->
@@ -147,8 +153,19 @@
 		    <artifactId>json</artifactId>
 		    <version>20180130</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.47</version>
+		</dependency>
+		<!-- 引入ExcelUtil -->
+		<dependency>
+		    <groupId>net.oschina.likaixuan</groupId>
+		    <artifactId>excelutil</artifactId>
+		    <version>2.0.1</version>
+		</dependency>
 		
-
 
 	</dependencies>
 
@@ -174,6 +191,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.1</version>  
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>

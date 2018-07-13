@@ -23,7 +23,8 @@
 			
 			<div class="larry-personal-body clearfix">
 			<form class="layui-form" action="feedbackAction_addFeedback" method="post">
-				
+			
+				<input type="hidden" name="feedback.process.proId" value="2">
 				<div class="layui-form-item">
 					<label class="layui-form-label">主题</label>
 					<div class="layui-input-block">
@@ -115,7 +116,7 @@
 					<div class="layui-inline">
 						<label class="layui-form-label">物料类型</label>
 						<div class="layui-input-inline">
-							<select name="feedback.docItemType" lay-filter="aihao">
+							<select name="feedback.docItemType">
 								<option value="">请选择</option>
 								<option value="外购件">外购件</option>
 								<option value="自制件">自制件</option>
@@ -208,16 +209,42 @@
 							<input name="feedback." lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>
-					<div class="layui-inline">
 						<label class="layui-form-label">收件人</label>
-						<div class="layui-input-inline">
-							<input name="feedback." lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						<div class="layui-input-block" id="addrUser">
+							<input name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
-					</div>
 				</div> -->
 				<div class="layui-form-item">
+						<label class="layui-form-label">收件人</label>
+						<div class="layui-input-block" style="min-height:38px;">
+							<div class="layui-input-inline">
+								<input id="addrUserText" placeholder="请输入outlook邮箱" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-form-mid layui-word-aux">@yinlong.com</div>
+							<div class="layui-input-inline">
+							<button type="button" class="layui-btn layui-btn-primary" id="addrUserBtn">添加</button>
+							</div>
+						</div>
+						<div class="layui-input-block" id="addrUser" style="font-size: 18px;">
+						</div>
+				</div>
+				<div class="layui-form-item">
+						<label class="layui-form-label">抄送</label>
+						<div class="layui-input-block" style="min-height:38px;">
+							<div class="layui-input-inline">
+								<input id="copyUserText" placeholder="请输入outlook邮箱" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-form-mid layui-word-aux">@yinlong.com</div>
+							<div class="layui-input-inline">
+							<button type="button" class="layui-btn layui-btn-primary" id="copyUserBtn">添加</button>
+							</div>
+						</div>
+						<div class="layui-input-block" id="copyUser" style="font-size: 18px;">
+						</div>
+				</div>
+				<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button type="submit" class="layui-btn">保存并发送该异常反馈单</button>
+						<button lay-submit class="layui-btn" onclick="sub();return false;">保存并发送该异常反馈单</button>
 						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 					</div>
 				</div>
@@ -249,6 +276,56 @@
 			,calendar: true
 		});
 		
+		// 添加收件人邮箱
+		$("#addrUserBtn").click(function() {
+			var $addrs = $("#addrUser input:checkbox");	// 获取收件人列表中的所有复选框
+			var email = $("#addrUserText").val();		// 获得输入框中的值，即邮箱头
+			if (email == "") 							// 如果输入框中的值为空则结束
+				return;
+			email += "@yinlong.com";					// 获得完整邮箱名
+			var isHave = false;							// 用来判断该邮箱是否已经在收件人列表
+			for (var i = 0; i < $addrs.length; i++) {	// 遍历所有复选框
+				var $addr = $addrs.eq(i);				// 单独获取每一个复选框
+				if($addr.attr("data-email") == email || $addr.attr("title") == email) {		// 如果该复选框的邮箱==输入框中的邮箱
+					$addr.prop("checked", true);		// 则让该复选框为选中状态
+					isHave = true;						// 改变改值
+					break;								// 跳出循环
+				}
+			}
+			if(isHave == false) {						// 如果所有复选框中的邮箱都!=输入框中的邮箱，则添加一个该邮箱的复选框，且为选中状态
+				var str = "<input type='checkbox' name='feedback.docAddrEmail' title='" + email + "' value='" + email + "' data-email='" + email + "' checked=true>";
+				$("#addrUser").append(str);
+			}
+			form.render();
+			$("#addrUserText").val("");					// 清空输入框
+		});
+		
+		
+		// 添加抄送邮箱
+		$("#copyUserBtn").click(function() {
+			var $addrs = $("#copyUser input:checkbox");
+			var email = $("#copyUserText").val();
+			if (email == "") 
+				return;
+			email += "@yinlong.com";
+			var isHave = false;
+			for (var i = 0; i < $addrs.length; i++) {
+				var $addr = $addrs.eq(i);
+				if($addr.attr("data-email") == email || $addr.attr("title") == email) {
+					$addr.prop("checked", true);
+					isHave = true;
+					break;
+				}
+			}
+			if(isHave == false) {
+				var str = "<input type='checkbox' name='feedback.docCopyEmail' title='" + email + "' value='" + email + "' data-email='" + email + "' checked=true>";
+				$("#copyUser").append(str);
+			}
+			form.render();
+			$("#copyUserText").val("");
+		});
+		
+		
 		//产品类别
 		$.post("productTypeAction_findProductTypeList", null, function(data){
 			var str = "";
@@ -270,16 +347,41 @@
 			form.render();
 		}, "json");
 		  
+		// 收件人与抄送 人员列表
+		$.post("userAction_findUserByDepartment", "", function(data) {
+			var str1 = "";
+			var str2 = "";
+			$.each(data.userList, function(i, v) {
+				str1 += '<input type="checkbox" name="addrList[' + i + '].userId" title="' + v.userRealName + '" value="' + v.userId + '" data-email="' + v.userEmail + '">'; 
+				str2 += '<input type="checkbox" name="copyList[' + i + '].userId" title="' + v.userRealName + '" value="' + v.userId + '" data-email="' + v.userEmail + '">';  
+			});
+			$("#addrUser").append(str1);
+			$("#copyUser").append(str2);
+			form.render();
+		}, "json");
+		
+		
+		
 		form.render();
 		
 	});
 	
-	window.onload = start();
-	
-	function start() {
-		//alert("${user_login.userName }");
+	function sub() {
+		var $addrEmails = $("#addrUser :checkbox:checked");
+		var $copyEmails = $("#copyUser :checkbox:checked");
+		var str1 = "<input type='hidden' name='' value='' >";
+		var str = "";
+		for (var i = 0; i < $addrEmails.length; i++) {
+			str += "<input type='hidden' name='addrEmails' value='" + $addrEmails.eq(i).attr("data-email") + "'>";
+		}
+		for (var i = 0; i < $copyEmails.length; i++) {
+			str += "<input type='hidden' name='copyEmails' value='" + $copyEmails.eq(i).attr("data-email") + "'>";
+		}
+		$("form").append(str);
+		//alert($("form input[name='addrEmails']").serialize() + $("form input[name='copyEmails']").serialize());
+		//$("form").submit();
+		return true;
 	}
-	
 	
 	</script>
 	

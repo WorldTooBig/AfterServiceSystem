@@ -62,10 +62,10 @@
 						锁屏</a>
 					</li>
 					<li class="layui-nav-item">
-						<a href="login.html">
+						<a href="userAction_userOutSystem">
                         <i class="iconfont icon-exit"></i>
 						退出</a>
-					</li>
+				  	</li>
             </ul>
 		</div>
 	</div>
@@ -75,7 +75,7 @@
 		<div class="user-photo">
 			<a class="img" title="我的头像" >
 				<img src="images/user.png" class="userimg1"></a>
-			<p>你好！admin, 欢迎登录</p>
+			<p>你好！${user_login.userRealName }, 欢迎登录</p>
 		</div>
 		<!-- 左侧菜单 -->
 		<ul class="layui-nav layui-nav-tree">
@@ -100,19 +100,19 @@
                         </a>
                     </dd>
                     <dd>
-                        <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/perSystem.jsp">
+                        <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/1.jsp">
                             <i class="iconfont icon-iconfuzhi01" data-icon='icon-iconfuzhi01'></i>
                             <span>编辑驳回反馈单</span>
                         </a>
                     </dd>
                     <dd>
-                        <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/userManage.jsp">
+                        <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/select.jsp">
                             <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
                             <span>查询异常反馈单内容</span>
                         </a>
                     </dd>
                     <dd>
-                        <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/userInfo.jsp">
+                        <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/1.jsp">
                             <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
                             <span>导出异常反馈单</span>
                         </a>
@@ -176,43 +176,49 @@
 			    		</a>
 			    	</dd>
 			    	<dd>
-			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/reply.jsp">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectNotifiedExamine1.jsp">
 			    		   <i class="iconfont icon-wenzhang2" data-icon='icon-wenzhang2'></i>
 			    		   <span>质控部审核考核通报</span>
 			    		</a>
 			    	</dd>
 			    	<dd>
-			    		<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectNotifiedExamine2.jsp">
 			    		   <i class="iconfont icon-icon1" data-icon='icon-icon1'></i>
 			    		   <span>质控部领导审批考核通报</span>
 			    		</a>
 			    	</dd>
 			    	<dd>
-			    		<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectReply.jsp">
 			    		   <i class="iconfont icon-word" data-icon='icon-word'></i>
-			    		   <span>责任单位答复</span>
+			    		   <span>责任单位答复 </span>
 			    		</a>
 			    	</dd>
 			    	<dd>
-			    		<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectReplyExamine1.jsp">
+			    		   <i class="iconfont icon-pinglun1" data-icon='icon-pinglun1'></i>
+			    		   <span>责任单位主任审批答复</span>
+			    		</a>
+			    	</dd>
+			    	<dd>
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectReplyExamine2.jsp">
 			    		   <i class="iconfont icon-pinglun1" data-icon='icon-pinglun1'></i>
 			    		   <span>责任单位领导审批答复</span>
 			    		</a>
 			    	</dd>
 			    	<dd>
-			    		<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectConclusion.jsp">
 			    		   <i class="iconfont icon-tags1" data-icon='icon-tags1'></i>
 			    		   <span>质量工程师下考核结论</span>
 			    		</a>
 			    	</dd>
 			    	<dd>
-			    		<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectConclusionExamine1.jsp">
 			    		   <i class="iconfont icon-huishouzhan1" data-icon='icon-huishouzhan1'></i>
 			    		   <span>质控部审核考核结论</span>
 			    		</a>
 			    	</dd>
 			    	<dd>
-			    		<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectConclusionExamine2.jsp">
 			    		   <i class="iconfont icon-huishouzhan1" data-icon='icon-huishouzhan1'></i>
 			    		   <span>质控部领导审批考核结论</span>
 			    		</a>
@@ -247,25 +253,25 @@
 				</a>
 				<dl class="layui-nav-child">
            			<dd>
-           	   			<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectDeadline.jsp">
  							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 							<span>质量工程师编制限期整改单</span>
 						</a>
  					</dd>
 					<dd>
-						<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectDeadlineExamine1.jsp">
 							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 							<span>质控部审核限期整改单</span>
 						</a>
            			</dd>
 					<dd>
-						<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectDeadlineExamine2.jsp">
 							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 							<span>质控部领导审批限期整改单</span>
 						</a>
            			</dd>
 					<dd>
-						<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectReplyDeadline.jsp">
 							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 							<span>责任单位答复</span>
 						</a>
@@ -277,49 +283,49 @@
 						</a>
            			</dd>
 					<dd>
-						<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectReplyDeadlineExamine1.jsp">
 							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 							<span>责任单位审核答复</span>
 						</a>
            			</dd>
 					<dd>
-						<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectReplyDeadlineExamine2.jsp">
 							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 							<span>责任单位领导审批答复</span>
 						</a>
            			</dd>
 					<dd>
-						<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectDelay.jsp">
 							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 							<span>质量工程师确认申请</span>
 						</a>
            			</dd>
 					<dd>
-						<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectDelayExamine1.jsp">
 							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 							<span>质控部审核确认申请</span>
 						</a>
            			</dd>
 					<dd>
-						<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectDelayExamine2.jsp">
 							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 							<span>质控部领导审批确认申请</span>
 						</a>
            			</dd>
 					<dd>
-						<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectConDeadline.jsp">
 							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 							<span>质量工程师关闭限期整改单</span>
 						</a>
            			</dd>
 					<dd>
-						<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectConDeadlineExamine1.jsp">
 							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 							<span>质控部审核关闭单</span>
 						</a>
            			</dd>
 					<dd>
-						<a href="javascript:;">
+			    		<a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/selectConDeadlineExamine2.jsp">
 							<i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 							<span>质控部领导审批关闭单</span>
 						</a>
@@ -344,26 +350,26 @@
 			<li class="layui-nav-item">
 				<a href="javascript:;">
 				   <i class="iconfont icon-xitong" ></i>
-				   <span>授权委托</span>
+				   <span>用户管理</span>
 				   <em class="layui-nav-more"></em>
 				</a>
 				    <dl class="layui-nav-child">
 				    	<dd>
-				    		<a href="javascript:;">
+                      	  <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/userInfo.jsp">
 				    		   <i class="iconfont icon-zhandianpeizhi" data-icon='icon-zhandianpeizhi'></i>
-				    		   <span>基本参数设置</span>
+				    		   <span>查询用户信息</span>
 				    		</a>
 				    	</dd>
 				    	<dd>
-				    		<a href="javascript:;">
+                  	      <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/userManage.jsp">
 				    		   <i class="iconfont icon-zhandianguanli1" data-icon='icon-zhandianguanli1'></i>
-				    		   <span>多站点管理</span>
+				    		   <span>公司部门管理</span>
 				    		</a>
 				    	</dd>
 				    	<dd>
-				    		<a href="javascript:;">
+                	        <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/perSystem.jsp">
 				    		   <i class="iconfont icon-anquanshezhi" data-icon='icon-anquanshezhi'></i>
-				    		   <span>安全设置</span>
+				    		   <span>用户角色管理</span>
 				    		</a>
 				    	</dd>
 				    	<dd>
@@ -385,9 +391,9 @@
 				    		</a>
 				    	</dd>
 				    	<dd>
-				    		<a href="javascript:;">
+                	        <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/perSystem.jsp">
 				    			<i class='iconfont icon-xinxicaiji' data-icon='icon-xinxicaiji'></i>
-				    			<span>防采集管理</span>
+				    			<span>邮件</span>
 				    		</a>
 				    	</dd>
 				    </dl>

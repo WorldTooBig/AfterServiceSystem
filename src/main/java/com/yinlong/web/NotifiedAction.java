@@ -1,22 +1,29 @@
 package com.yinlong.web;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.yinlong.entity.Appraise;
 import com.yinlong.entity.Feedback;
 import com.yinlong.entity.Notified;
 import com.yinlong.entity.PlaceFile;
 import com.yinlong.entity.Process;
+import com.yinlong.entity.ProcessRecord;
+import com.yinlong.entity.Reply;
 import com.yinlong.service.INotifiedService;
 import com.yinlong.service.IPlaceFileService;
+import com.yinlong.service.IProcessRecordService;
+import com.yinlong.service.IReplyService;
 import com.yinlong.util.AddProcessRecordUtil;
 import com.yinlong.util.LayuiTableData;
 import com.yinlong.util.NextProcess;
+import com.yinlong.util.PrListsUtil;
 
 @Controller("notifiedAction")
 @Scope("prototype")
@@ -26,37 +33,149 @@ public class NotifiedAction {
 	private INotifiedService notifiedService;
 	@Resource(name = "placeFileService")
 	private IPlaceFileService placeFileService;
+	@Resource(name = "processRecordService")
+	private IProcessRecordService processRecordService;
+	@Resource(name = "replyService")
+	private IReplyService replyService;
 	
 	private Notified notified;
 	private Feedback feedback;
 	private PlaceFile placeFile;
 	private Process process;
+	private ProcessRecord processRecord;
+	private Reply reply;
 	
+	private List<ProcessRecord> prList;
+	private List<Appraise> appraiseList;
 	private List<Notified> notifiedList;
+	
+	private int opinion;		// 审核或审批结果
 	
 	/**
 	 * 保存
 	 * @return
 	 */
 	public String addNotified() {
-		placeFile = placeFileService.findPlaceFileById(placeFile);	// 查询所有的PlaceFile
-		feedback = placeFile.getFeedback();							// 获取该考核通报相关的反馈单
-		notifiedService.addNotified(notified);						// 保存该考核通报
-		AddProcessRecordUtil.addProcessRecord(feedback, feedback.getProcess(), "考核通报填写成功");	// 保存此次操作
-		NextProcess.nextProcess(feedback, process);					// 改变流程节点
+		placeFile = placeFileService.findPlaceFileById(placeFile);					// 查询PlaceFile\
+		if (appraiseList != null) {
+			appraiseList.removeAll(Collections.singleton(null));					// 删除空值
+			placeFile.getFeedback().setAppSet(new HashSet<Appraise>(appraiseList));	// 将获取的考核情况赋予反馈单
+		}
+		notified.setPlaceFile(placeFile);											// 设置考核通报的归档
+		notifiedService.addNotified(notified);										// 保存该考核通报
+		feedback = placeFile.getFeedback();											// 获取该考核通报相关的反馈单
+		AddProcessRecordUtil.addProcessRecord(feedback, feedback.getProcess(), "考核通报填写成功");		// 保存此次操作
+		NextProcess.nextProcess(feedback, process);									// 改变流程节点
 		return "addNotified";
+	}
+
+	/**
+	 * 科室主任审核考核通报
+	 * @return
+	 */
+	public String examine1() {
+		feedback = placeFileService.findPlaceFileById(placeFile).getFeedback();	
+		if (opinion == 1) {
+			AddProcessRecordUtil.addProcessRecord(feedback, feedback.getProcess(), "科室主任审核成功");	// 保存此次操作
+		} else {
+			AddProcessRecordUtil.addProcessRecord(feedback, feedback.getProcess(), "科室主任审核驳回");	// 保存此次操作
+		}
+		NextProcess.nextProcess(feedback, process);													// 改变流程节点
+		return "examine1";
 	}
 	
 	/**
-	 * 查询所有Notified
+	 * 部门领导审批考核通报
+	 * 审批同意后为每一个责任单位创建一个答复单 
+	 * @return
+	 */
+	public String examine2() {
+		notified = notifiedService.findNotifiedById(notified);
+		feedback = notified.getPlaceFile().getFeedback();	
+		if (opinion == 1) {
+			AddProcessRecordUtil.addProcessRecord(feedback, feedback.getProcess(), "部门领导审批成功");	// 保存此次操作
+		} else {
+			AddProcessRecordUtil.addProcessRecord(feedback, feedback.getProcess(), "部门领导审批驳回");	// 保存此次操作
+		}
+		NextProcess.nextProcess(feedback, process);		
+		//为每一个责任单位创建一个答复单
+		for (Appraise appraise : feedback.getAppSet()) {
+			reply = new Reply();
+			reply.setDepartment(appraise.getDepartment());
+			reply.setNotified(notified);
+			replyService.addReply(reply);
+		}
+		return "examine2";
+	}
+	
+	/**
+	 * 查询所有Notified及其关联数据
+	 * @return
+	 */
+	public String findNotified() {
+		notifiedList = notifiedService.findNotifiedList();
+		return "findNotified";
+	}
+	
+	/**
+	 * 根据ID查询Notified
+	 * @return
+	 */
+	public String findNotifiedById() {
+		notified = notifiedService.findNotifiedById(notified);               
+		prList = processRecordService.findProcessRecordByFeedbackId(notified.getPlaceFile().getFeedback());
+		PrListsUtil.findPrList(prList);
+		return "findNotifiedById";
+	}
+
+	/**
+	 * 查询所有Notified用于layui表格
+	 * 待考核通报
 	 * @throws IOException
 	 */
 	public void findNotifiedList() throws IOException {
-		notifiedList = notifiedService.findNotifiedList();
-		LayuiTableData.layuiTableUserList(0, null, notifiedList.size(), notifiedList);
+		notifiedList = notifiedService.findNotifiedListPending(4);
+		LayuiTableData.layuiTableUserList(0, null, notifiedList.size(), notifiedList);	 // layui表格url请求返回数据
 	}
 	
+	/**
+	 * 查询所有Notified用于layui表格
+	 * 待科室审核
+	 * @throws IOException
+	 */
+	public void findNotifiedList1() throws IOException {
+		notifiedList = notifiedService.findNotifiedListPending(6);
+		LayuiTableData.layuiTableUserList(0, null, notifiedList.size(), notifiedList);	 // layui表格url请求返回数据
+	}
 	
+	/**
+	 * 查询所有Notified用于layui表格
+	 * 待部门审批
+	 * @throws IOException
+	 */
+	public void findNotifiedList2() throws IOException {
+		notifiedList = notifiedService.findNotifiedListPending(7);
+		LayuiTableData.layuiTableUserList(0, null, notifiedList.size(), notifiedList);	 // layui表格url请求返回数据
+	}
+	
+	/**
+	 * 查询所有Notified用于layui表格
+	 * 部门审批完毕，待责任单位答复  
+	 * @throws IOException
+	 */
+	public void findNotifiedList3() throws IOException {
+		notifiedList = notifiedService.findNotifiedListOnReply();
+		LayuiTableData.layuiTableUserList(0, null, notifiedList.size(), notifiedList);	 // layui表格url请求返回数据
+	}
+	
+	/**
+	 * 查询答复中和所有答复完成待下结论的Notified
+	 * @throws IOException
+	 */
+	public void findNotifiedListOnConclusion() throws IOException {
+		notifiedList = notifiedService.findNotifiedListOnConclusion();
+		LayuiTableData.layuiTableUserList(0, null, notifiedList.size(), notifiedList);	 // layui表格url请求返回数据
+	}
 	
 	
 	
@@ -81,6 +200,60 @@ public class NotifiedAction {
 	}
 	public void setPlaceFile(PlaceFile placeFile) {
 		this.placeFile = placeFile;
+	}
+	public Process getProcess() {
+		return process;
+	}
+	public void setProcess(Process process) {
+		this.process = process;
+	}
+	public List<Appraise> getAppraiseList() {
+		return appraiseList;
+	}
+	public void setAppraiseList(List<Appraise> appraiseList) {
+		this.appraiseList = appraiseList;
+	}
+	public List<ProcessRecord> getPrList() {
+		return prList;
+	}
+	public void setPrList(List<ProcessRecord> prList) {
+		this.prList = prList;
+	}
+	public ProcessRecord getProcessRecord() {
+		return processRecord;
+	}
+	public void setProcessRecord(ProcessRecord processRecord) {
+		this.processRecord = processRecord;
+	}
+	public void setPlaceFileService(IPlaceFileService placeFileService) {
+		this.placeFileService = placeFileService;
+	}
+	public void setProcessRecordService(IProcessRecordService processRecordService) {
+		this.processRecordService = processRecordService;
+	}
+	public Feedback getFeedback() {
+		return feedback;
+	}
+	public void setFeedback(Feedback feedback) {
+		this.feedback = feedback;
+	}
+	public int getOpinion() {
+		return opinion;
+	}
+	public void setOpinion(int opinion) {
+		this.opinion = opinion;
+	}
+
+	public Reply getReply() {
+		return reply;
+	}
+
+	public void setReply(Reply reply) {
+		this.reply = reply;
+	}
+
+	public void setReplyService(IReplyService replyService) {
+		this.replyService = replyService;
 	}
 	
 	

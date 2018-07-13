@@ -14,7 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * ╡©це
+ * О©╫О©╫О©╫О©╫
  * @author 01270059
  *
  */
@@ -67,7 +67,7 @@ public class Department implements Serializable {
 		this.deptRemark = deptRemark;
 	}
 
-	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER)
 	@JoinColumn(name="compId")
 	public Company getCompany() {
 		return company;

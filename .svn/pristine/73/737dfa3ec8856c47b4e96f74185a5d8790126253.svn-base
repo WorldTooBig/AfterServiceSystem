@@ -1,0 +1,211 @@
+package com.yinlong.web;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.yinlong.entity.Conclusion;
+import com.yinlong.entity.Deadline;
+import com.yinlong.entity.Feedback;
+import com.yinlong.entity.Process;
+import com.yinlong.entity.ProcessRecord;
+import com.yinlong.service.IConDeadlineService;
+import com.yinlong.service.IDeadlineService;
+import com.yinlong.service.IProcessRecordService;
+import com.yinlong.service.IReplyDeadlineService;
+import com.yinlong.util.AddProcessRecordUtil;
+import com.yinlong.util.LayuiTableData;
+import com.yinlong.util.NextProcess;
+
+@Controller("conDeadlineAction")
+@Scope("prototype")
+public class ConDeadlineAction {
+
+	@Resource(name = "conDeadlineService")
+	private IConDeadlineService conDeadlineService;
+	@Resource(name = "replyDeadlineService")
+	private IReplyDeadlineService replyDeadlineService;
+	@Resource(name = "deadlineService")
+	private IDeadlineService deadlineService;
+	@Resource(name = "processRecordService")
+	private IProcessRecordService processRecordService;
+	
+	private Conclusion conclusion;
+	private Deadline deadline;
+	private Feedback feedback;
+	private Process process;
+	
+	private List<Conclusion> conclusionList;
+	private List<ProcessRecord> prList;
+	
+	public String addConclusion() {
+		conclusion.setConHandleDate(new Date());
+		conclusion.setReplyList(replyDeadlineService.findReplyByDeadline(deadline));
+		conDeadlineService.addConclusion(conclusion);
+		deadline = deadlineService.findDeadlineById(deadline);
+		feedback = deadline.getPlaceFile().getFeedback();	
+		AddProcessRecordUtil.addProcessRecord(feedback, feedback.getProcess(), "成功下考核结论");	// 保存此次操作
+		NextProcess.nextProcess(feedback, process);												// 改变流程节点
+		return "addConclusion";
+	}
+
+	public String findConclusionById() {
+		conclusion = conDeadlineService.findConclusionById(conclusion);
+		deadline = conclusion.getReplyList().get(0).getDeadline();
+		prList = processRecordService.findProcessRecordByFeedbackId(deadline.getPlaceFile().getFeedback());
+		boolean isNotifiedExamine1 = false, isNotifiedExamine2 = false;
+		for (ProcessRecord processRecord : prList) {
+			switch (processRecord.getProcess().getProId()) {
+			case 1:	// 异常反馈单
+				ActionContext.getContext().put("feePr", processRecord);
+				break;
+			case 2:	// 归档处理
+				ActionContext.getContext().put("plaPr", processRecord);
+				break;
+			case 4:	// 考核通报
+				ActionContext.getContext().put("notPr", processRecord);
+				break;
+			case 6: // 科室主任审核
+				if(isNotifiedExamine1) {
+					if(ActionContext.getContext().get("conEx1") == null) {
+						List<ProcessRecord> l = new ArrayList<ProcessRecord>();
+						l.add(processRecord);
+						ActionContext.getContext().put("conEx1", l);
+					} else {
+						List<ProcessRecord> l = (List<ProcessRecord>) ActionContext.getContext().get("conEx1");
+						l.add(processRecord);
+						ActionContext.getContext().put("conEx1", l);
+					}
+				} else {
+					ActionContext.getContext().put("notEx1", processRecord);
+					isNotifiedExamine1 = true;
+				}
+				break;
+			case 7: // 部门领导审批
+				ActionContext.getContext().put("notEx2", processRecord);
+				isNotifiedExamine2 = true;
+				break;
+			case 9: // 责任单位答复
+				ActionContext.getContext().put("repPr", processRecord);
+				break;
+			case 13: // 责任单位主任审核
+				ActionContext.getContext().put("repEx1", processRecord);
+				break;
+			case 14: // 责任单位领导审批
+				ActionContext.getContext().put("repEx2", processRecord);
+				break;
+			case 15: // 质量工程师下考核结论
+				ActionContext.getContext().put("conEx", processRecord);
+				break;
+
+			default:
+				break;
+			}
+		}
+		return "findConclusionById";
+	}
+
+	
+	/**
+	 * 待审核
+	 * @throws IOException
+	 */
+	public void findConclusion1() throws IOException {
+		conclusionList = conDeadlineService.findConclusionList(6);
+		if (conclusionList == null) {
+			LayuiTableData.layuiTableUserList(0, null, 0, null);	
+		} else {	 
+			LayuiTableData.layuiTableUserList(0, null, conclusionList.size(), conclusionList);		 // layui表格url请求返回数据
+		}
+	}
+	
+	/**
+	 * 待审批
+	 * @throws IOException
+	 */
+	public void findConclusion2() throws IOException {
+		conclusionList = conDeadlineService.findConclusionList(7);
+		if (conclusionList == null) {
+			LayuiTableData.layuiTableUserList(0, null, 0, null);	
+		} else {	 
+			LayuiTableData.layuiTableUserList(0, null, conclusionList.size(), conclusionList);		 // layui表格url请求返回数据
+		}
+	}
+	
+	
+	
+	
+	
+	public Conclusion getConclusion() {
+		return conclusion;
+	}
+
+
+	public void setConclusion(Conclusion conclusion) {
+		this.conclusion = conclusion;
+	}
+
+
+	public void setConDeadlineService(IConDeadlineService conDeadlineService) {
+		this.conDeadlineService = conDeadlineService;
+	}
+
+
+	public Deadline getDeadline() {
+		return deadline;
+	}
+
+
+	public void setDeadline(Deadline deadline) {
+		this.deadline = deadline;
+	}
+
+
+	public Feedback getFeedback() {
+		return feedback;
+	}
+
+
+	public void setFeedback(Feedback feedback) {
+		this.feedback = feedback;
+	}
+
+
+	public Process getProcess() {
+		return process;
+	}
+
+
+	public void setProcess(Process process) {
+		this.process = process;
+	}
+
+
+	public List<Conclusion> getConclusionList() {
+		return conclusionList;
+	}
+
+
+	public void setConclusionList(List<Conclusion> conclusionList) {
+		this.conclusionList = conclusionList;
+	}
+
+
+	public void setReplyDeadlineService(IReplyDeadlineService replyDeadlineService) {
+		this.replyDeadlineService = replyDeadlineService;
+	}
+
+
+	public void setDeadlineService(IDeadlineService deadlineService) {
+		this.deadlineService = deadlineService;
+	}
+	
+	
+}

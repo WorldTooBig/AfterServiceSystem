@@ -1,0 +1,153 @@
+package com.yinlong.util;
+
+import java.util.Set;
+
+import com.jacob.activeX.ActiveXComponent;
+import com.jacob.com.Dispatch;
+import com.yinlong.entity.User;
+
+public class EmailUtil implements Runnable {
+	
+	private String addrUsers;
+	private String copyUsers;
+	private String docAddrEmail;
+	private String docCopyEmail;
+	
+	public EmailUtil() {
+		super();
+	}
+
+	public EmailUtil(String addrUsers, String copyUsers, String docAddrEmail, String docCopyEmail) {
+		super();
+		this.addrUsers = addrUsers;
+		this.copyUsers = copyUsers;
+		this.docAddrEmail = docAddrEmail;
+		this.docCopyEmail = docCopyEmail;
+	}
+	
+	public static void start(String addrUsers, String copyUsers, String docAddrEmail, String docCopyEmail) {
+
+		new Thread(new EmailUtil(addrUsers, copyUsers, docAddrEmail, docCopyEmail)).start();
+	}
+
+	@Override
+	public void run() {
+		try {
+			toEmail(addrUsers, copyUsers, docAddrEmail, docCopyEmail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	/**
+	 * 
+	 * @param addrUsers
+	 * @param copyUsers
+	 * @param docAddrEmail
+	 * @param docCopyEmail
+	 * @throws Exception 
+	 */
+	public static void main(String[] args) throws Exception {
+		//toEmail("01270053@yinlong.com, 01270059@yinlong.com", "undefined", "", "");
+	}
+	
+	/**
+	 * 
+	 * @param addrs 收件人
+	 * @param copy	抄送	
+	 * @param head	标题
+	 * @param body	内容
+	 * @throws Exception
+	 */
+	public void toEmail(String addr, String copy, String head, String body) throws Exception {
+		
+		String[] addrs = addr.split(",");
+		String[] copys = copy.split(",");
+		
+		/*String body = "<div style='color:red;'>This is a Test !</div>";
+		Runtime.getRuntime().exec("D:\\Program Files\\Microsoft Office\\Office14\\OUTLOOK.EXE  mailto:KO@techson.com.hk?subject=Chinese New Year backup arrangement" +
+				"&cc=Ko@techson.com.hk&body="+body);*/
+		
+		//System.out.println(System.getProperty("java.library.path"));  
+		
+		ActiveXComponent axOutlook = new ActiveXComponent("Outlook.Application");  
+		   //Dispatch ds = axOutlook.getObject();
+		  /* Dispatch namespace = Dispatch.call(axOutlook, "GetNamespace", "MAPI").toDispatch() ;
+		   String path = new File("F:/test.htm").getAbsolutePath(); 
+		   Dispatch mailItem = Dispatch.call(namespace, "OpenSharedItem", path).toDispatch(); */
+		   
+		   
+		Dispatch mailItem = Dispatch.call(axOutlook, "CreateItem", 0).getDispatch();  
+		   
+		   //Dispatch mailItem = Dispatch.call(axOutlook, "Open", "F:/test.htm").toDispatch();
+		  // Dispatch body = Dispatch.call(mailItem, "Body").getDispatch();;  
+		  // Dispatch.call(body, "Copy");
+		   
+//		   Dispatch inspector = Dispatch.get(mailItem, "GetInspector").getDispatch();
+ 
+		//收件人  
+		Dispatch recipients = Dispatch.call(mailItem, "Recipients").getDispatch();  
+//		   Dispatch.call(recipients, "Add" , "crycbj@163.com");  
+		for (String str : addrs) {
+			Dispatch.call(recipients, "Add" , str);  //收件人地址
+		}
+		   //邮件主题  
+		   Dispatch.put(mailItem, "Subject", head); 
+//		   Dispatch.put(mailItem, "Subject", "Test5!");  
+//		   Dispatch.put(mailItem, "CC", "1@qq.com");  
+		   for (String str : copys) {
+			   Dispatch.put(mailItem, "CC" , str);  //抄送地址
+		   }
+		   //Dispatch.put(mailItem, "CC", "cry@163.com");  
+		   //Dispatch.put(mailItem, "ReadReceiptRequested", "false"); 
+		   
+		   // 发送内容
+
+		   Dispatch.put(mailItem, "HTMLBody", body); 
+//		   String body = "<html><body><div style='color:red;'>This is a Test !</div></body></html>";
+//		   Dispatch.put(mailItem, "HTMLBody", body); 
+		   
+		  // File file = new File("C:/test.htm");
+//		   FileOutputStream f = new FileOutputStream("F:/test.htm");
+//		   f.write(body.getBytes());
+//		   f.close();
+		   
+//		   BufferedReader bf = new BufferedReader(new FileReader(new File("F:/Ro.htm")));
+//		   String html = "";
+//		   String str = "";
+//		   while( (str=bf.readLine()) != null){
+//			   html += str;
+//		   }
+//		   Dispatch.put(mailItem, "HTMLBody", html); 
+		   
+		   //Dispatch bodyDis = Dispatch.get(mailItem, "Body").toDispatch();  
+		   //Dispatch.call(bodyDis, "Add" , "F:/test.htm");  
+		   //Dispatch.put(mailItem, "Body", new Variant("F:/test.htm"));  
+		   
+		   //Dispatch.put(mailItem, "Body", body);  
+		   //Dispatch.call(mailItem, "InsertAfter",body );//插入一个段落
+		   
+		   //Dispatch selection = Dispatch.get(axOutlook, "Selection").toDispatch();
+		   
+		   //Dispatch inHtmleditor = Dispatch.call(inspector, "HTMLEditor").getDispatch();
+		  // Dispatch.call(inHtmleditor, "Paste").getDispatch();  
+		   //Dispatch.invoke(inHtmleditor, "Paste", Dispatch.Method, new Object[]{false}, new Variant(false));
+		   
+		   //附件  
+//			   Dispatch attachments = Dispatch.call(mailItem, "Attachments").getDispatch();  
+//			   Dispatch.call(attachments, "Add" , "D:\\20110127.txt");  
+//			   Dispatch.call(attachments, "Add" , "D:\\20110128.txt");  
+		   
+		   
+		   // 显示新邮件窗口  
+		   Dispatch.call(mailItem, "Display"); 
+		   // 发送
+		   Dispatch.call(mailItem, "Send");  
+		   
+		   
+	}
+
+
+}

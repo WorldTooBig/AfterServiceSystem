@@ -27,6 +27,9 @@
             <result name="findUserBySectIdData" type="json">
                 <param name="includeProperties">map.*</param>
             </result>
+            <result name="findUserByDepartment" type="json">
+                <param name="includeProperties">userList.*</param>
+            </result>
 		</action>
 	</package>
 </struts>
